@@ -1,0 +1,2335 @@
+openapi: 3.0.0
+info:
+  title: '@tictactrip/api Autocomplete Booking API'
+  version: 2.1489.0
+  description: Tictactrip's API service
+  license:
+    name: UNLICENSED
+  contact:
+    name: Tictactrip
+    email: dev@tictactrip.eu
+    url: https://www.tictactrip.eu
+servers:
+- url: /
+tags:
+- name: Booking
+paths:
+  /booking/v3/carts/{cartId}:
+    get:
+      operationId: GetCart
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  cart:
+                    $ref: '#/components/schemas/ISerializedCart'
+                required:
+                - cart
+                type: object
+              examples:
+                Example 1:
+                  value:
+                    cart:
+                      id: 6771146ca0b7432b
+                      partnerId: null
+                      partnerExternalId: null
+                      paidPrice: 1420
+                      rawPrice: 1320
+                      totalPrice: 1420
+                      isIdentityDocumentRequired: false
+                      trips:
+                        outboundTrip:
+                          id: '1165021'
+                          uuid: 1f945779-4d9d-47ae-a711-c32bbcbf7639
+                          origin:
+                            id: 12709
+                            city: Pralognan La Vanoise
+                            country: France
+                            station: PRALOGNAN LA VANOISE Airelles
+                          destination:
+                            id: 549
+                            city: Moûtiers
+                            country: France
+                            station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          priceCents: 1420
+                          feeCents: 0
+                          paidPrice: 1420
+                          departureUTC: 1663561920
+                          arrivalUTC: 1663566300
+                          durationMinutes: 73
+                          companies:
+                          - Altibus
+                          segments:
+                          - id: '1764084'
+                            company: Altibus
+                            mean: bus
+                            origin:
+                              city: Pralognan La Vanoise
+                              country: France
+                              station: PRALOGNAN LA VANOISE Airelles
+                              lat: 45.3819
+                              long: 6.72121
+                            destination:
+                              city: Moûtiers
+                              country: France
+                              station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                              lat: 45.4852
+                              long: 6.5291
+                            isBookable: true
+                            priceCents: 1420
+                            feeCents: 100
+                            includedProviderFeeCents: 120
+                            departureUTC: 1663561920
+                            arrivalUTC: 1663566300
+                            originOffset: '+0200'
+                            destinationOffset: '+0200'
+                            durationMinutes: 73
+                            redirectionLink: /redirect?company=21&trip=MOG577&date=19/09/2022&env=production
+                            isPresale: false
+                          mean: BUS
+                          co2g: 669
+                      passengers:
+                      - id: 1445751
+                        lastName: null
+                        firstName: null
+                        title: null
+                        isCustomer: false
+                        discountCardId: null
+                        category: adults
+                        discountCards: []
+                        age: 30
+                        birthdate: null
+        '404':
+          description: If cart does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: carts:client:cartNotFound
+                    errorMessage: Cart was not found
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Get a cart by its id and its matching order if it exists.
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters:
+      - in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+        example: 6771146ca0b7432b
+      tags:
+      - Booking
+    patch:
+      operationId: UpdateCart
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  isAvailable:
+                    type: boolean
+                  priceCentsDiff:
+                    type: number
+                    format: double
+                  cart:
+                    $ref: '#/components/schemas/ISerializedCart'
+                required:
+                - isAvailable
+                - priceCentsDiff
+                - cart
+                type: object
+              examples:
+                Example 1:
+                  value:
+                    cart:
+                      id: 6771146ca0b7432b
+                      partnerId: null
+                      partnerExternalId: null
+                      paidPrice: 1180
+                      totalPrice: 1180
+                      rawPrice: 1080
+                      isIdentityDocumentRequired: false
+                      trips:
+                        outboundTrip:
+                          id: '1165021'
+                          uuid: 1f945779-4d9d-47ae-a711-c32bbcbf7639
+                          origin:
+                            id: 12709
+                            city: Pralognan La Vanoise
+                            country: France
+                            station: PRALOGNAN LA VANOISE Airelles
+                          destination:
+                            id: 549
+                            city: Moûtiers
+                            country: France
+                            station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          priceCents: 1080
+                          feeCents: 0
+                          paidPrice: 1180
+                          departureUTC: 1663561920
+                          arrivalUTC: 1663566300
+                          durationMinutes: 73
+                          companies:
+                          - Altibus
+                          segments:
+                          - id: '1764084'
+                            company: Altibus
+                            mean: bus
+                            origin:
+                              city: Pralognan La Vanoise
+                              country: France
+                              station: PRALOGNAN LA VANOISE Airelles
+                              lat: 45.3819
+                              long: 6.72121
+                            destination:
+                              city: Moûtiers
+                              country: France
+                              station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                              lat: 45.4852
+                              long: 6.5291
+                            isBookable: true
+                            priceCents: 1180
+                            feeCents: 100
+                            includedProviderFeeCents: 120
+                            departureUTC: 1663561920
+                            arrivalUTC: 1663566300
+                            originOffset: '+0200'
+                            destinationOffset: '+0200'
+                            durationMinutes: 73
+                            redirectionLink: /redirect?company=21&trip=MOG577&date=19/09/2022&env=production
+                            isPresale: false
+                          mean: BUS
+                          co2g: 669
+                      passengers:
+                      - id: 1445752
+                        lastName: name
+                        firstName: firstName
+                        title: MR
+                        isCustomer: true
+                        discountCardId: null
+                        category: adults
+                        discountCards: []
+                        age: 30
+                        birthdate: '1992-09-09T00:00:00.000Z'
+                      customer:
+                        mail: mail@mail.com
+                        title: MR
+                        lastName: lastName
+                        firstName: firstName
+                        birthdate: '1992-09-09T00:00:00.000Z'
+                    isAvailable: false
+        '404':
+          description: If cart does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: carts:client:cartNotFound
+                    errorMessage: Cart was not found
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: '
+
+        Updates a cart with the provided informations. A price lookup is done everytime a cart is patched.
+
+        Keep in mind that patching a cart with an empty payload WILL NOT reset the cart''s data, and will trigger a price lookup with the saved cart''s data.'
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters:
+      - in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IUpdateCartPayload'
+            example:
+              passengers:
+              - lastName: name
+                discountCards: []
+                isCustomer: true
+                title: MR
+                firstName: firstName
+                category: adults
+                age: 25
+                birthdate: '1992-09-09'
+              customer:
+                lastName: lastName
+                mail: mail@mail.com
+                isSubscribedToNewsletter: false
+                title: MR
+                firstName: firstName
+                birthdate: '1992-09-09'
+      tags:
+      - Booking
+  /booking/v3/carts:
+    post:
+      operationId: CreateCart
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  cart:
+                    $ref: '#/components/schemas/ISerializedCart'
+                required:
+                - cart
+                type: object
+              examples:
+                Example 1:
+                  value:
+                    cart:
+                      id: 6771146ca0b7432b
+                      partnerId: null
+                      partnerExternalId: null
+                      paidPrice: 1420
+                      rawPrice: 1320
+                      totalPrice: 1420
+                      isIdentityDocumentRequired: false
+                      trips:
+                        outboundTrip:
+                          id: '1165021'
+                          uuid: 1f945779-4d9d-47ae-a711-c32bbcbf7639
+                          origin:
+                            id: 12709
+                            city: Pralognan La Vanoise
+                            country: France
+                            station: PRALOGNAN LA VANOISE Airelles
+                          destination:
+                            id: 549
+                            city: Moûtiers
+                            country: France
+                            station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          priceCents: 1420
+                          feeCents: 0
+                          paidPrice: 1420
+                          departureUTC: 1663561920
+                          arrivalUTC: 1663566300
+                          durationMinutes: 73
+                          companies:
+                          - Altibus
+                          segments:
+                          - id: '1764084'
+                            company: Altibus
+                            mean: bus
+                            origin:
+                              city: Pralognan La Vanoise
+                              country: France
+                              station: PRALOGNAN LA VANOISE Airelles
+                              lat: 45.3819
+                              long: 6.72121
+                            destination:
+                              city: Moûtiers
+                              country: France
+                              station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                              lat: 45.4852
+                              long: 6.5291
+                            isBookable: true
+                            priceCents: 1420
+                            feeCents: 100
+                            includedProviderFeeCents: 120
+                            departureUTC: 1663561920
+                            arrivalUTC: 1663566300
+                            originOffset: '+0200'
+                            destinationOffset: '+0200'
+                            durationMinutes: 73
+                            redirectionLink: /redirect?company=21&trip=MOG577&date=19/09/2022&env=production
+                            isPresale: false
+                          mean: BUS
+                          co2g: 669
+                      passengers:
+                      - id: 1445751
+                        lastName: null
+                        firstName: null
+                        title: null
+                        isCustomer: false
+                        discountCardId: null
+                        category: adults
+                        discountCards: []
+                        age: 30
+                        birthdate: null
+        '400':
+          description: If trip does not exist or has expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: carts:client:tripExpired
+                    errorMessage: The trip does not exist or has expired
+        '404':
+          description: If partner is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: partnersApi:client:partnerNotFound
+                    errorMessage: Partner was not found
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Creates a cart. Has to contain at least an outbound trip id and minimal passenger information for it to work.
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ICreateCartBody'
+            example:
+              outboundTripId: 1f945779-4d9d-47ae-a711-c32bbcbf7639
+              passengers:
+              - age: 30
+                discountCards: []
+      tags:
+      - Booking
+  /booking/v3/orders:
+    get:
+      operationId: GetOrders
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IGetOrdersResponse'
+              examples:
+                Example 1:
+                  value:
+                    orders:
+                    - id: 8bc8557793fe4447
+                      orderDate: '2022-09-09T15:30:02.896Z'
+                      cartId: 6771146ca0b7432b
+                      orderStatus: CREATED
+                      paidPrice: 1180
+                      rawPrice: 1180
+                      totalPrice: 1880
+                      trips:
+                        outboundTrip:
+                          id: '309496'
+                          origin:
+                            city: Pralognan La Vanoise
+                            country: France
+                            station: PRALOGNAN LA VANOISE Airelles
+                          destination:
+                            city: Moûtiers
+                            country: France
+                            station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                          priceCents: 1180
+                          feeCents: 0
+                          paidPrice: 1180
+                          departureUTC: 1663561920
+                          arrivalUTC: 1663566300
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          durationMinutes: 73
+                          companies:
+                          - Altibus
+                          segments:
+                          - id: '406308'
+                            company: Altibus
+                            mean: bus
+                            origin:
+                              city: Pralognan La Vanoise
+                              country: France
+                              station: PRALOGNAN LA VANOISE Airelles
+                              lat: 45.3886
+                              long: 6.7163
+                            destination:
+                              city: Moûtiers
+                              country: France
+                              station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                              lat: 45.4867
+                              long: 6.5311
+                            priceCents: 1180
+                            feeCents: 100
+                            includedProviderFeeCents: 120
+                            departureUTC: 1663561920
+                            arrivalUTC: 1663566300
+                            originOffset: '+0200'
+                            destinationOffset: '+0200'
+                            durationMinutes: 73
+                            isBookable: true
+                            redirectionLink: /redirect?company=21&trip=MOG577&date=19/09/2022&env=production
+                            eTicketUrl: https://api.tictactrip.eu/booking/v3/orders/8bc8557793fe4447/etickets/79967/download?filename=eticket
+                            isPresale: false
+                          mean: BUS
+                          co2g: 669
+                      passengers:
+                      - id: 349410
+                        title: MR
+                        lastName: name
+                        firstName: firstName
+                        category: adults
+                        discountCards: []
+                        isCustomer: true
+                        identityDocument: null
+                        age: 30
+                        birthDay: 9
+                        birthMonth: 9
+                        birthYear: 1992
+                        discountCardId: null
+                      customer:
+                        mail: mail@mail.com
+                        title: MR
+                        lastName: name
+                        firstName: firstName
+                        birthDay: 9
+                        birthMonth: 9
+                        birthYear: 1992
+                      paymentStatus: ACCEPTED
+                    pagination:
+                      currentPage: 1
+                      itemsPerPage: 30
+                      totalItems: 1
+                      totalPages: 1
+                      hasNextPage: false
+                      hasPreviousPage: false
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: 'Retrieves a paginated list of all orders for the authenticated partner, ordered by most recent first.
+
+        Each page contains up to 30 orders.'
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters:
+      - description: Page number (1-indexed). Defaults to 1.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: double
+          type: number
+      - description: Number of orders per page. Defaults to 30 and is capped at 30.
+        in: query
+        name: itemsPerPage
+        required: false
+        schema:
+          default: 30
+          format: double
+          type: number
+      tags:
+      - Booking
+    post:
+      operationId: CreateOrder
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ICreateOrderResponse'
+              examples:
+                Example 1:
+                  value:
+                    order:
+                      id: 8bc8557793fe4447
+                      orderDate: '2022-09-09T13:24:15.533Z'
+                      cartId: 6771146ca0b7432b
+                      orderStatus: CREATED
+                      totalPrice: 1180
+                      rawPrice: 1180
+                      paidPrice: 1180
+                      trips:
+                        outboundTrip:
+                          id: '309495'
+                          origin:
+                            city: Pralognan La Vanoise
+                            country: France
+                            station: PRALOGNAN LA VANOISE Airelles
+                          destination:
+                            city: Moûtiers
+                            country: France
+                            station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                          priceCents: 1180
+                          feeCents: 0
+                          paidPrice: 1180
+                          departureUTC: 1663561920
+                          arrivalUTC: 1663566300
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          durationMinutes: 73
+                          companies:
+                          - Altibus
+                          segments:
+                          - id: '406307'
+                            company: Altibus
+                            mean: bus
+                            origin:
+                              city: Pralognan La Vanoise
+                              country: France
+                              station: PRALOGNAN LA VANOISE Airelles
+                              lat: 45.3886
+                              long: 6.7163
+                            destination:
+                              city: Moûtiers
+                              country: France
+                              station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                              lat: 45.4867
+                              long: 6.5311
+                            priceCents: 1180
+                            feeCents: 100
+                            includedProviderFeeCents: 120
+                            departureUTC: 1663561920
+                            arrivalUTC: 1663566300
+                            originOffset: '+0200'
+                            destinationOffset: '+0200'
+                            durationMinutes: 73
+                            isBookable: true
+                            redirectionLink: /redirect?company=21&trip=MOG577&date=19/09/2022&env=production
+                            isPresale: false
+                          mean: BUS
+                          co2g: 669
+                      passengers:
+                      - id: 349409
+                        title: MR
+                        lastName: name
+                        firstName: firstName
+                        category: adults
+                        discountCards: []
+                        isCustomer: true
+                        identityDocument: null
+                        age: 30
+                        birthDay: 9
+                        birthMonth: 9
+                        birthYear: 1992
+                        discountCardId: null
+                      customer:
+                        mail: mail@mail.com
+                        title: MR
+                        lastName: name
+                        firstName: firstName
+                        birthDay: 9
+                        birthMonth: 9
+                        birthYear: 1992
+                      paymentStatus: ACCEPTED
+                    priceCentsDiff: 0
+                    isAvailable: true
+                    expiresAt: '2022-09-09T13:39:15.533Z'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: string
+                    errorMessage: string
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: 'Creates an order. It uses the cart''s information to build the order from it.
+
+        The cart must have been patched with customer information and at least one passenger.'
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ICreateOrderPayload'
+            example:
+              cartId: 6771146ca0b7432b
+      tags:
+      - Booking
+  /booking/v3/orders/{orderId}:
+    get:
+      operationId: GetOrder
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  order:
+                    $ref: '#/components/schemas/ISerializedOrder'
+                required:
+                - order
+                type: object
+              examples:
+                Example 1:
+                  value:
+                    order:
+                      id: 8bc8557793fe4447
+                      orderDate: '2022-09-09T15:30:02.896Z'
+                      cartId: 6771146ca0b7432b
+                      orderStatus: CREATED
+                      paidPrice: 1180
+                      rawPrice: 1180
+                      totalPrice: 1880
+                      trips:
+                        outboundTrip:
+                          id: '309496'
+                          origin:
+                            city: Pralognan La Vanoise
+                            country: France
+                            station: PRALOGNAN LA VANOISE Airelles
+                          destination:
+                            city: Moûtiers
+                            country: France
+                            station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                          priceCents: 1180
+                          feeCents: 0
+                          paidPrice: 1180
+                          departureUTC: 1663561920
+                          arrivalUTC: 1663566300
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          durationMinutes: 73
+                          companies:
+                          - Altibus
+                          segments:
+                          - id: '406308'
+                            company: Altibus
+                            mean: bus
+                            origin:
+                              city: Pralognan La Vanoise
+                              country: France
+                              station: PRALOGNAN LA VANOISE Airelles
+                              lat: 45.3886
+                              long: 6.7163
+                            destination:
+                              city: Moûtiers
+                              country: France
+                              station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                              lat: 45.4867
+                              long: 6.5311
+                            priceCents: 1180
+                            feeCents: 100
+                            includedProviderFeeCents: 120
+                            departureUTC: 1663561920
+                            arrivalUTC: 1663566300
+                            originOffset: '+0200'
+                            destinationOffset: '+0200'
+                            durationMinutes: 73
+                            isBookable: true
+                            redirectionLink: /redirect?company=21&trip=MOG577&date=19/09/2022&env=production
+                            eTicketUrl: https://api.tictactrip.eu/booking/v3/orders/8bc8557793fe4447/etickets/79967/download?filename=eticket
+                            isPresale: false
+                          mean: BUS
+                          co2g: 669
+                      passengers:
+                      - id: 349410
+                        title: MR
+                        lastName: name
+                        firstName: firstName
+                        category: adults
+                        discountCards: []
+                        isCustomer: true
+                        identityDocument: null
+                        age: 30
+                        birthDay: 9
+                        birthMonth: 9
+                        birthYear: 1992
+                        discountCardId: null
+                      customer:
+                        mail: mail@mail.com
+                        title: MR
+                        lastName: name
+                        firstName: firstName
+                        birthDay: 9
+                        birthMonth: 9
+                        birthYear: 1992
+                      paymentStatus: ACCEPTED
+        '404':
+          description: If order does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: orders:client:orderNotFound
+                    errorMessage: Order was not found
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Retrieves the order from the given cart ID.
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters:
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        example: 8bc8557793fe4447
+      tags:
+      - Booking
+  /booking/v3/discountCards:
+    get:
+      operationId: GetDiscountCards
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IDiscountCard'
+                type: array
+              examples:
+                Example 1:
+                  value:
+                  - id: TTT_ADULT_PASS
+                    label: Avantage Adulte
+                    visibility: 7
+                    cardCode: WEEKEND_PASS
+                    isIdRequired: true
+                  - id: TTT_VSC_YOUNG_PASS
+                    label: Avantage Jeune
+                    visibility: 6
+                    cardCode: YOUNG_PASS
+                    isIdRequired: true
+                  - id: TTT_VSC_SENIOR_PASS
+                    label: Avantage Senior
+                    visibility: 5
+                    cardCode: SENIOR_PASS
+                    isIdRequired: true
+                  - id: TTT_VSC_FAM30
+                    label: Famille nombreuse 30%
+                    visibility: 4
+                    cardCode: FAM30
+                    isIdRequired: false
+                  - id: TTT_VSC_FAM40
+                    label: Famille nombreuse 40%
+                    visibility: 3
+                    cardCode: FAM40
+                    isIdRequired: false
+                  - id: TTT_VSC_FAM50
+                    label: Famille nombreuse 50%
+                    visibility: 2
+                    cardCode: FAM50
+                    isIdRequired: false
+                  - id: TTT_VSC_FAM75
+                    label: Famille nombreuse 75%
+                    visibility: 1
+                    cardCode: FAM75
+                    isIdRequired: false
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Returns all available discount cards.
+      security: []
+      parameters: []
+      tags:
+      - Booking
+  /booking/v3/orders/{orderId}/book:
+    post:
+      operationId: CreateBook
+      responses:
+        '202':
+          description: Booking in progress
+          content:
+            application/json:
+              schema:
+                properties:
+                  order:
+                    $ref: '#/components/schemas/ISerializedOrder'
+                required:
+                - order
+                type: object
+              examples:
+                Example 1:
+                  value:
+                    order:
+                      id: 8bc8557793fe4447
+                      orderDate: '2022-09-09T15:30:02.896Z'
+                      cartId: 6771146ca0b7432b
+                      orderStatus: PENDING_BOOKING
+                      paidPrice: 1180
+                      rawPrice: 1180
+                      totalPrice: 1880
+                      trips:
+                        outboundTrip:
+                          id: '309496'
+                          origin:
+                            city: Pralognan La Vanoise
+                            country: France
+                            station: PRALOGNAN LA VANOISE Airelles
+                          destination:
+                            city: Moûtiers
+                            country: France
+                            station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                          priceCents: 1180
+                          feeCents: 0
+                          paidPrice: 1180
+                          departureUTC: 1663561920
+                          arrivalUTC: 1663566300
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          durationMinutes: 73
+                          companies:
+                          - Altibus
+                          segments:
+                          - id: '406308'
+                            company: Altibus
+                            mean: bus
+                            origin:
+                              city: Pralognan La Vanoise
+                              country: France
+                              station: PRALOGNAN LA VANOISE Airelles
+                              lat: 45.3886
+                              long: 6.7163
+                            destination:
+                              city: Moûtiers
+                              country: France
+                              station: Moûtiers - Salins-les-Thermes - Brides-les-Bains
+                              lat: 45.4867
+                              long: 6.5311
+                            priceCents: 1180
+                            feeCents: 100
+                            includedProviderFeeCents: 120
+                            departureUTC: 1663561920
+                            arrivalUTC: 1663566300
+                            originOffset: '+0200'
+                            destinationOffset: '+0200'
+                            durationMinutes: 73
+                            isBookable: true
+                            redirectionLink: /redirect?company=21&trip=MOG577&date=19/09/2022&env=production
+                            isPresale: false
+                          mean: BUS
+                          co2g: 669
+                      passengers:
+                      - id: 349410
+                        title: MR
+                        lastName: name
+                        firstName: firstName
+                        category: adults
+                        discountCards: []
+                        isCustomer: true
+                        identityDocument: null
+                        age: 30
+                        birthDay: 9
+                        birthMonth: 9
+                        birthYear: 1992
+                        discountCardId: null
+                      customer:
+                        mail: mail@mail.com
+                        title: MR
+                        lastName: name
+                        firstName: firstName
+                        birthDay: 9
+                        birthMonth: 9
+                        birthYear: 1992
+                      paymentStatus: ACCEPTED
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: string
+                    errorMessage: string
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Triggers an asynchronous booking process.
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters:
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        example: 8bc8557793fe4447
+      tags:
+      - Booking
+  /booking/v3/orders/{orderId}/ticket:
+    get:
+      operationId: DownloadTicket
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: byte
+        '404':
+          description: If no order is found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: orderEtickets:client:orderNotFound
+                    errorMessage: Order was not found
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Download an order Eticket and gives the name provided to the file.
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters:
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        example: 8bc8557793fe4447
+      - in: query
+        name: filename
+        required: false
+        schema:
+          default: ticket
+          type: string
+        example: myTicketName
+      tags:
+      - Booking
+  /booking/v3/orderTickets/{orderTicketId}/cancellation/conditions:
+    get:
+      operationId: PartnerCancellationConditions
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IBookingCancellationConditions'
+                - properties:
+                    voucherAmountCents:
+                      type: number
+                      format: double
+                  type: object
+        '403':
+          description: If you're accessing an order ticket you haven't emitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: partnersApi:client:notIssuer
+                    errorMessage: The user is not the issuer of this entity
+        '404':
+          description: If no order is found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: orderEtickets:client:orderNotFound
+                    errorMessage: Order was not found
+        '409':
+          description: If cancelling a ticket that shouldn't be canceled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: bookableTickets:client:bookableTicketNotCancellable
+                    errorMessage: Bookable ticket is not cancellable
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Get cancellation conditions.
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters:
+      - in: path
+        name: orderTicketId
+        required: true
+        schema:
+          format: double
+          type: number
+      tags:
+      - Booking
+  /booking/v3/orderTickets/{orderTicketId}/cancellation:
+    put:
+      operationId: PartnerCancelBooking
+      responses:
+        '200':
+          description: The status of the cancellation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderTicketCancellationStatus'
+        '403':
+          description: If you're accessing an order ticket you haven't emitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: partnersApi:client:notIssuer
+                    errorMessage: The user is not the issuer of this entity
+        '404':
+          description: If no order is found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: orderEtickets:client:orderNotFound
+                    errorMessage: Order was not found
+        '409':
+          description: If cancelling a ticket that shouldn't be canceled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: bookableTickets:client:bookableTicketNotCancellable
+                    errorMessage: Bookable ticket is not cancellable
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      security:
+      - authentication:
+        - admin
+        - bookPartner
+      parameters:
+      - description: The order ticket id
+        in: path
+        name: orderTicketId
+        required: true
+        schema:
+          format: double
+          type: number
+      tags:
+      - Booking
+components:
+  schemas:
+    IGetOrdersResponse:
+      properties:
+        orders:
+          items:
+            $ref: '#/components/schemas/ISerializedOrder'
+          type: array
+        pagination:
+          properties:
+            hasPreviousPage:
+              type: boolean
+            hasNextPage:
+              type: boolean
+            totalPages:
+              type: number
+              format: double
+            totalItems:
+              type: number
+              format: double
+            itemsPerPage:
+              type: number
+              format: double
+            currentPage:
+              type: number
+              format: double
+          required:
+          - hasPreviousPage
+          - hasNextPage
+          - totalPages
+          - totalItems
+          - itemsPerPage
+          - currentPage
+          type: object
+      required:
+      - orders
+      - pagination
+      type: object
+      additionalProperties: false
+    DeviceAttributes:
+      properties:
+        id:
+          type: number
+          format: double
+        orderCustomerId:
+          type: string
+          nullable: true
+        notificationToken:
+          type: string
+        deviceId:
+          type: string
+        platform:
+          type: string
+        userAgent:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - id
+      - orderCustomerId
+      - notificationToken
+      - deviceId
+      - platform
+      - userAgent
+      - createdAt
+      - updatedAt
+      - deletedAt
+      type: object
+      additionalProperties: false
+    ICreateOrderResponse:
+      properties:
+        order:
+          $ref: '#/components/schemas/ISerializedOrder'
+        priceCentsDiff:
+          type: number
+          format: double
+        isAvailable:
+          type: boolean
+        expiresAt:
+          type: string
+          format: date-time
+        paylineToken:
+          type: string
+      required:
+      - order
+      - priceCentsDiff
+      - isAvailable
+      - expiresAt
+      type: object
+      additionalProperties: false
+    IClientSegment:
+      properties:
+        id:
+          type: string
+        company:
+          type: string
+        mean:
+          $ref: '#/components/schemas/EApiTransportType'
+        origin:
+          $ref: '#/components/schemas/TClientPlace'
+        destination:
+          $ref: '#/components/schemas/TClientPlace'
+        priceCents:
+          type: number
+          format: double
+        feeCents:
+          type: number
+          format: double
+        includedProviderFeeCents:
+          type: number
+          format: double
+        departureUTC:
+          type: number
+          format: double
+        arrivalUTC:
+          type: number
+          format: double
+        originOffset:
+          type: string
+        destinationOffset:
+          type: string
+        durationMinutes:
+          type: number
+          format: double
+        isBookable:
+          type: boolean
+        bookingStatus:
+          $ref: '#/components/schemas/ETicketStatusStatus'
+        redirectionLink:
+          type: string
+        conditions:
+          items:
+            type: string
+          type: array
+        conditionsName:
+          type: string
+        fareName:
+          type: string
+        bookingClass:
+          type: string
+        vehicleIdentifier:
+          type: string
+        cancellationStatus:
+          type: string
+        voucherDetails:
+          $ref: '#/components/schemas/IVoucherDetails'
+        companyProviderName:
+          type: string
+        companyId:
+          type: number
+          format: double
+        isCustomerCancellationEnabled:
+          type: boolean
+        refundedAmountCents:
+          type: number
+          format: double
+        eTicketUrl:
+          type: string
+          nullable: true
+        cancellationConditions:
+          items:
+            type: string
+          type: array
+        availableSeats:
+          type: number
+          format: double
+          nullable: true
+        isPresale:
+          type: boolean
+      required:
+      - id
+      - company
+      - mean
+      - origin
+      - destination
+      - priceCents
+      - feeCents
+      - includedProviderFeeCents
+      - departureUTC
+      - arrivalUTC
+      - originOffset
+      - destinationOffset
+      - durationMinutes
+      - isBookable
+      - redirectionLink
+      - isPresale
+      type: object
+      additionalProperties: false
+    ETicketStatusStatus:
+      enum:
+      - LOCKED
+      - CANCELED
+      - BOOKED
+      - ERRORED
+      - ERRORED_AFTER_BOOKED
+      - REFUNDED
+      - PRESOLD
+      type: string
+    EPaymentStatus:
+      enum:
+      - ACCEPTED
+      - REFUSED
+      - CANCELLED
+      - ERROR
+      - INPROGRESS
+      - ONHOLD_PARTNER
+      - PENDING_RISK
+      type: string
+    ISerializedCart:
+      properties:
+        id:
+          type: string
+        partnerId:
+          type: string
+        partnerExternalId:
+          type: string
+        paidPrice:
+          type: number
+          format: double
+          description: The paid price from the customer perspective. Matches the sum of the trips price with all the fees
+        rawPrice:
+          type: number
+          format: double
+          description: The actual price from Tictactrip's perspective. Matches the sum of the trips price without any fees.
+        totalPrice:
+          type: number
+          format: double
+        order:
+          $ref: '#/components/schemas/Order'
+        trips:
+          properties:
+            returnTrip:
+              $ref: '#/components/schemas/IClientTrip'
+            outboundTrip:
+              $ref: '#/components/schemas/IClientTrip'
+          required:
+          - outboundTrip
+          type: object
+        passengers:
+          items:
+            $ref: '#/components/schemas/ISerializedPassenger'
+          type: array
+        customer:
+          $ref: '#/components/schemas/ISerializedCustomer'
+        isIdentityDocumentRequired:
+          type: boolean
+      required:
+      - id
+      - paidPrice
+      - rawPrice
+      - totalPrice
+      - trips
+      - isIdentityDocumentRequired
+      type: object
+      additionalProperties: false
+    ISerializedPassenger:
+      properties:
+        id:
+          type: number
+          format: double
+        lastName:
+          type: string
+        firstName:
+          type: string
+        category:
+          $ref: '#/components/schemas/EPassengerCategory'
+        discountCards:
+          items:
+            $ref: '#/components/schemas/IDiscountCard'
+          type: array
+        title:
+          $ref: '#/components/schemas/EPassengerTitle'
+        isCustomer:
+          type: boolean
+        birthdate:
+          type: string
+          format: date-time
+        age:
+          type: number
+          format: double
+        discountCardId:
+          type: string
+      required:
+      - id
+      - lastName
+      - firstName
+      - category
+      - discountCards
+      - title
+      - isCustomer
+      - birthdate
+      - age
+      type: object
+      additionalProperties: false
+    TClientPassenger:
+      properties:
+        id:
+          type: number
+          format: double
+        lastName:
+          type: string
+        firstName:
+          type: string
+        category:
+          $ref: '#/components/schemas/EPassengerCategory'
+        discountCards:
+          items:
+            $ref: '#/components/schemas/IDiscountCard'
+          type: array
+        identityDocument:
+          $ref: '#/components/schemas/IIdentityDocument'
+        title:
+          $ref: '#/components/schemas/EPassengerTitle'
+        isCustomer:
+          type: boolean
+        birthDay:
+          type: number
+          format: double
+        birthMonth:
+          type: number
+          format: double
+        birthYear:
+          type: number
+          format: double
+        age:
+          type: number
+          format: double
+        discountCardId:
+          type: string
+      required:
+      - id
+      - lastName
+      - firstName
+      - category
+      - discountCards
+      - identityDocument
+      - title
+      - isCustomer
+      - birthDay
+      - birthMonth
+      - birthYear
+      - age
+      type: object
+      additionalProperties: false
+    IVoucherDetails:
+      properties:
+        voucher:
+          type: string
+        expireDateUTCUnix:
+          type: number
+          format: double
+        amountCents:
+          type: number
+          format: double
+        usableOn:
+          type: string
+      required:
+      - voucher
+      - expireDateUTCUnix
+      - amountCents
+      - usableOn
+      type: object
+      additionalProperties: false
+    EPassengerCategory:
+      enum:
+      - youths
+      - seniors
+      - adults
+      type: string
+    ICreateCartBody:
+      properties:
+        outboundTripId:
+          type: string
+        returnTripId:
+          type: string
+        passengers:
+          items:
+            $ref: '#/components/schemas/ICartPassenger'
+          type: array
+        customer:
+          $ref: '#/components/schemas/ICartCustomer'
+        partnerId:
+          type: string
+          nullable: true
+        partnerExternalId:
+          type: string
+          nullable: true
+          description: Matches an id provided from a partner. It is used to keep track of the partner's orders and enables an order match between their system and our own
+        deviceId:
+          type: number
+          format: double
+      required:
+      - outboundTripId
+      type: object
+      additionalProperties: false
+    IDiscountCard:
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        cardCode:
+          type: string
+        visibility:
+          type: number
+          format: double
+        isIdRequired:
+          type: boolean
+      required:
+      - id
+      - label
+      - cardCode
+      - visibility
+      - isIdRequired
+      type: object
+      additionalProperties: false
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    ISerializedTrip_IClientSegment_:
+      properties:
+        id:
+          type: string
+        uuid:
+          type: string
+        origin:
+          $ref: '#/components/schemas/TClientPlace'
+        destination:
+          $ref: '#/components/schemas/TClientPlace'
+        priceCents:
+          type: number
+          format: double
+        feeCents:
+          type: number
+          format: double
+        paidPrice:
+          type: number
+          format: double
+        departureUTC:
+          type: number
+          format: double
+        arrivalUTC:
+          type: number
+          format: double
+        originOffset:
+          type: string
+        destinationOffset:
+          type: string
+        durationMinutes:
+          type: number
+          format: double
+        companies:
+          items:
+            type: string
+          type: array
+        mean:
+          $ref: '#/components/schemas/ETripTransport'
+        segments:
+          items:
+            $ref: '#/components/schemas/IClientSegment'
+          type: array
+        co2g:
+          type: number
+          format: double
+        vehicleIdentifier:
+          type: string
+      required:
+      - id
+      - origin
+      - destination
+      - priceCents
+      - feeCents
+      - paidPrice
+      - departureUTC
+      - arrivalUTC
+      - originOffset
+      - destinationOffset
+      - durationMinutes
+      - companies
+      - mean
+      - segments
+      - co2g
+      type: object
+      additionalProperties: false
+    EIsoCountryCodes:
+      enum:
+      - AF
+      - AX
+      - AL
+      - DZ
+      - AS
+      - AD
+      - AO
+      - AI
+      - AQ
+      - AG
+      - AR
+      - AM
+      - AW
+      - AU
+      - AT
+      - AZ
+      - BS
+      - BH
+      - BD
+      - BB
+      - BY
+      - BE
+      - BZ
+      - BJ
+      - BM
+      - BT
+      - BO
+      - BQ
+      - BA
+      - BW
+      - BV
+      - BR
+      - IO
+      - BN
+      - BG
+      - BF
+      - BI
+      - CV
+      - KH
+      - CM
+      - CA
+      - KY
+      - CF
+      - TD
+      - CL
+      - CN
+      - CX
+      - CC
+      - CO
+      - KM
+      - CG
+      - CD
+      - CK
+      - CR
+      - CI
+      - HR
+      - CU
+      - CW
+      - CY
+      - CZ
+      - DK
+      - DJ
+      - DM
+      - DO
+      - EC
+      - EG
+      - SV
+      - GQ
+      - ER
+      - EE
+      - SZ
+      - ET
+      - FK
+      - FO
+      - FJ
+      - FI
+      - FR
+      - GF
+      - PF
+      - TF
+      - GA
+      - GM
+      - GE
+      - DE
+      - GH
+      - GI
+      - GR
+      - GL
+      - GD
+      - GP
+      - GU
+      - GT
+      - GG
+      - GN
+      - GW
+      - GY
+      - HT
+      - HM
+      - VA
+      - HN
+      - HK
+      - HU
+      - IS
+      - IN
+      - ID
+      - IR
+      - IQ
+      - IE
+      - IM
+      - IL
+      - IT
+      - JM
+      - JP
+      - JE
+      - JO
+      - KZ
+      - KE
+      - KI
+      - KR
+      - KW
+      - KG
+      - LA
+      - LV
+      - LB
+      - LS
+      - LR
+      - LY
+      - LI
+      - LT
+      - LU
+      - MO
+      - MG
+      - MW
+      - MY
+      - MV
+      - ML
+      - MT
+      - MH
+      - MQ
+      - MR
+      - MU
+      - YT
+      - MX
+      - FM
+      - MD
+      - MC
+      - MN
+      - ME
+      - MS
+      - MA
+      - MZ
+      - MM
+      - NA
+      - NR
+      - NP
+      - NL
+      - NC
+      - NZ
+      - NI
+      - NE
+      - NG
+      - NU
+      - NF
+      - MK
+      - MP
+      - 'NO'
+      - OM
+      - PK
+      - PW
+      - PS
+      - PA
+      - PG
+      - PY
+      - PE
+      - PH
+      - PN
+      - PL
+      - PT
+      - PR
+      - QA
+      - RE
+      - RO
+      - RU
+      - RW
+      - BL
+      - SH
+      - KN
+      - LC
+      - MF
+      - PM
+      - VC
+      - WS
+      - SM
+      - ST
+      - SA
+      - SN
+      - RS
+      - SC
+      - SL
+      - SG
+      - SX
+      - SK
+      - SI
+      - SB
+      - SO
+      - ZA
+      - GS
+      - SS
+      - ES
+      - LK
+      - SD
+      - SR
+      - SJ
+      - SE
+      - CH
+      - SY
+      - TW
+      - TJ
+      - TZ
+      - TH
+      - TL
+      - TG
+      - TK
+      - TO
+      - TT
+      - TN
+      - TR
+      - TM
+      - TC
+      - TV
+      - UG
+      - UA
+      - AE
+      - GB
+      - US
+      - UM
+      - UY
+      - UZ
+      - VU
+      - VE
+      - VN
+      - VG
+      - VI
+      - WF
+      - EH
+      - YE
+      - ZM
+      - ZW
+      type: string
+    OrderTicketCancellationStatus:
+      additionalProperties: false
+      type: object
+      description: '{@inheritDoc}'
+    ISerializedCustomer:
+      properties:
+        mail:
+          type: string
+        lastName:
+          type: string
+        firstName:
+          type: string
+        title:
+          $ref: '#/components/schemas/EPassengerTitle'
+        birthdate:
+          type: string
+          format: date-time
+      required:
+      - mail
+      - lastName
+      - firstName
+      - title
+      - birthdate
+      type: object
+      additionalProperties: false
+    Order:
+      additionalProperties: false
+      type: object
+      description: '{@inheritDoc}'
+    IIdentityDocument:
+      properties:
+        type:
+          $ref: '#/components/schemas/EIdentityDocumentType'
+        documentIdentifier:
+          type: string
+        expirationDate:
+          type: string
+          description: YYYY-MM-DD
+        countryCode:
+          $ref: '#/components/schemas/EIsoCountryCodes'
+      required:
+      - type
+      - documentIdentifier
+      - expirationDate
+      - countryCode
+      type: object
+      additionalProperties: false
+    TClientCustomer:
+      properties:
+        mail:
+          type: string
+        lastName:
+          type: string
+        firstName:
+          type: string
+        title:
+          $ref: '#/components/schemas/EPassengerTitle'
+        birthDay:
+          type: number
+          format: double
+        birthMonth:
+          type: number
+          format: double
+        birthYear:
+          type: number
+          format: double
+      required:
+      - mail
+      - lastName
+      - firstName
+      - title
+      - birthDay
+      - birthMonth
+      - birthYear
+      type: object
+      additionalProperties: false
+    IBookingCancellationConditions:
+      properties:
+        isCancellable:
+          type: boolean
+          description: Specifies whether the booking is cancellable or not
+        feeCents:
+          type: number
+          format: double
+          nullable: true
+          description: The fee in cents that applies to the cancellation and must be deducted from the price to calculate the refund value
+        cutoff:
+          type: string
+          nullable: true
+          description: The date (deadline) in ISO 8601 format by which the booking can be cancelled for a cost of `feeCents`. e.g. 2021-06-15T06:05:00.000Z
+        bookingId:
+          $ref: '#/components/schemas/TBookableTicketId'
+          description: Booking id
+        isRefundedByVoucher:
+          type: boolean
+          description: Specifies whether the booking is reimbursed with coupons or not
+      required:
+      - isCancellable
+      - feeCents
+      - bookingId
+      - isRefundedByVoucher
+      type: object
+      additionalProperties: false
+    ICreateOrderPayload:
+      properties:
+        cartId:
+          type: string
+      required:
+      - cartId
+      type: object
+      additionalProperties: false
+    IClientTrip:
+      $ref: '#/components/schemas/ISerializedTrip_IClientSegment_'
+    IUpdateCartPayload:
+      properties:
+        passengers:
+          items:
+            $ref: '#/components/schemas/ICartPassenger'
+          type: array
+        customer:
+          $ref: '#/components/schemas/ICartCustomer'
+        segmentAlternatives:
+          properties: {}
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+      additionalProperties: false
+    TClientPlace:
+      properties:
+        id:
+          type: number
+          format: double
+        city:
+          type: string
+        country:
+          type: string
+        stopGroupGpuid:
+          type: string
+        stopClusterGpuid:
+          type: string
+        station:
+          type: string
+        lat:
+          type: number
+          format: double
+        long:
+          type: number
+          format: double
+      required:
+      - city
+      - country
+      type: object
+      additionalProperties: false
+    TBookableTicketId:
+      type: string
+    EIdentityDocumentType:
+      enum:
+      - IDENTITY_CARD
+      - PASSPORT
+      type: string
+    ETripTransport:
+      enum:
+      - MULTIMODAL
+      - BUS
+      - TRAIN
+      - CARPOOLING
+      type: string
+    ISerializedOrder:
+      properties:
+        id:
+          type: string
+        paidPrice:
+          type: number
+          format: double
+        rawPrice:
+          type: number
+          format: double
+        totalPrice:
+          type: number
+          format: double
+        orderDate:
+          type: string
+        cartId:
+          type: string
+        partnerId:
+          type: string
+        orderStatus:
+          $ref: '#/components/schemas/EOrderStatus'
+        trips:
+          properties:
+            returnTrip:
+              $ref: '#/components/schemas/IClientTrip'
+            outboundTrip:
+              $ref: '#/components/schemas/IClientTrip'
+          required:
+          - outboundTrip
+          type: object
+        passengers:
+          items:
+            $ref: '#/components/schemas/TClientPassenger'
+          type: array
+        customer:
+          $ref: '#/components/schemas/TClientCustomer'
+        error:
+          $ref: '#/components/schemas/IErrorCodeResponse'
+        paymentStatus:
+          $ref: '#/components/schemas/EPaymentStatus'
+      required:
+      - id
+      - paidPrice
+      - rawPrice
+      - totalPrice
+      - orderDate
+      - orderStatus
+      - trips
+      - passengers
+      - customer
+      - paymentStatus
+      type: object
+      additionalProperties: false
+    EPassengerTitle:
+      enum:
+      - MR
+      - MS
+      type: string
+    EApiTransportType:
+      enum:
+      - carpooling
+      - bus
+      - train
+      type: string
+    EOrderStatus:
+      enum:
+      - CREATED
+      - SUCCESS
+      - CANCELED
+      - CANCELED_PARTIAL
+      - PENDING_BOOKING
+      - ERRORED
+      - UNAVAILABLE
+      - REFUNDED
+      - PRESOLD
+      type: string
+    ICartCustomer:
+      properties:
+        id:
+          type: string
+        mail:
+          type: string
+        title:
+          $ref: '#/components/schemas/EPassengerTitle'
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthdate:
+          type: string
+          format: date-time
+        phoneNumber:
+          type: string
+        orders:
+          items:
+            $ref: '#/components/schemas/Order'
+          type: array
+        language:
+          type: string
+        devices:
+          items:
+            $ref: '#/components/schemas/DeviceAttributes'
+          type: array
+        isSubscribedToNewsletter:
+          type: boolean
+      required:
+      - mail
+      - title
+      - firstName
+      - lastName
+      - birthdate
+      - isSubscribedToNewsletter
+      type: object
+      additionalProperties: false
+    ICartPassenger:
+      properties:
+        category:
+          type: string
+        age:
+          type: number
+          format: double
+        discountCards:
+          items:
+            properties:
+              code:
+                type: string
+                nullable: true
+                description: 'The discount card number.
+
+                  This field is required when using the TTT Booking API''s UpdateCart endpoint.'
+              id:
+                type: string
+                description: Matches the TTT discount card ID's, such as "TTT_VSC_YOUNG_PASS"
+            required:
+            - id
+            type: object
+          type: array
+        title:
+          $ref: '#/components/schemas/EPassengerTitle'
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthdate:
+          type: string
+          format: date-time
+        identityDocument:
+          $ref: '#/components/schemas/IIdentityDocument'
+        isCustomer:
+          type: boolean
+      required:
+      - age
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

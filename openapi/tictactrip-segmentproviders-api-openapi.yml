@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: '@tictactrip/api Autocomplete SegmentProviders API'
+  version: 2.1489.0
+  description: Tictactrip's API service
+  license:
+    name: UNLICENSED
+  contact:
+    name: Tictactrip
+    email: dev@tictactrip.eu
+    url: https://www.tictactrip.eu
+servers:
+- url: /
+tags:
+- name: SegmentProviders
+paths:
+  /v2/segmentProviders:
+    get:
+      operationId: GetSegmentProviders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TSegmentProvider'
+                type: array
+              examples:
+                Example 1:
+                  value:
+                  - id: 1
+                    name: vsc
+                    fullname: Voyages SNCF
+                    requiresIdentityDocument: false
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+      description: Returns all SegmentProviders
+      security:
+      - authentication:
+        - bookPartner
+        - searchPartner
+        - admin
+      parameters: []
+      tags:
+      - SegmentProviders
+components:
+  schemas:
+    TSegmentProvider:
+      properties:
+        requiresIdentityDocument:
+          type: boolean
+        fullname:
+          type: string
+        name:
+          type: string
+        id:
+          type: number
+          format: double
+      required:
+      - requiresIdentityDocument
+      - fullname
+      - name
+      - id
+      type: object
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

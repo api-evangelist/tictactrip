@@ -1,0 +1,238 @@
+openapi: 3.0.0
+info:
+  title: '@tictactrip/api Autocomplete StopGroups API'
+  version: 2.1489.0
+  description: Tictactrip's API service
+  license:
+    name: UNLICENSED
+  contact:
+    name: Tictactrip
+    email: dev@tictactrip.eu
+    url: https://www.tictactrip.eu
+servers:
+- url: /
+tags:
+- name: StopGroups
+paths:
+  /v2/stopGroups:
+    get:
+      operationId: GetAllStopGroups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IGetStopGroupResponse'
+                type: array
+              examples:
+                Example 1:
+                  value:
+                  - id: g|FRavignon_@spg3vp
+                    name: Avignon Centre
+                    city: Avignon
+                    region: Provence-Alpes-Côte d’Azur
+                    country: FR
+                    address: 1 rue du centre, 84000, Avignon
+                    latitude: 43.9408
+                    longitude: 4.79167
+                    transportTypes:
+                    - bus
+                    - train
+                    stopClusters:
+                    - id: c|FRavignon_@spg6j
+                      name: Avignon
+                      city: Avignon
+                      region: Provence-Alpes-Côte d'Azur
+                      country: FR
+                      latitude: 43.952499
+                      longitude: 4.804022
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Returns the list of all StopGroups.
+      security:
+      - authentication:
+        - bookPartner
+        - searchPartner
+        - admin
+      parameters:
+      - in: query
+        name: providerId
+        required: false
+        schema:
+          format: double
+          type: number
+      tags:
+      - StopGroups
+  /v2/stopGroups/{stopGroupGpuid}:
+    get:
+      operationId: GetStopGroup
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IGetStopGroupResponse'
+              examples:
+                Example 1:
+                  value:
+                    id: g|FRavignon_@spg3vp
+                    name: Avignon Centre
+                    city: Avignon
+                    region: Provence-Alpes-Côte d’Azur
+                    country: FR
+                    address: 1 rue du centre, 84000, Avignon
+                    latitude: 43.9408
+                    longitude: 4.79167
+                    transportTypes:
+                    - bus
+                    - train
+                    stopClusters:
+                    - id: c|FRavignon_@spg6j
+                      name: Avignon
+                      city: Avignon
+                      region: Provence-Alpes-Côte d'Azur
+                      country: FR
+                      latitude: 43.952499
+                      longitude: 4.804022
+        '404':
+          description: StopGroup not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: partnersApi:client:stopGroupNotFound
+                    errorMessage: This StopGroup could not be found
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Returns a StopGroup details.
+      security:
+      - authentication:
+        - bookPartner
+        - searchPartner
+        - admin
+      parameters:
+      - in: path
+        name: stopGroupGpuid
+        required: true
+        schema:
+          type: string
+        example: g|FRavignon_@spg3vp
+      tags:
+      - StopGroups
+components:
+  schemas:
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    IApiStopCluster:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+      required:
+      - id
+      - name
+      - city
+      - region
+      - country
+      - latitude
+      - longitude
+      type: object
+      additionalProperties: false
+    IGetStopGroupResponse:
+      properties:
+        id:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        name:
+          type: string
+        region:
+          type: string
+        transportTypes:
+          items:
+            $ref: '#/components/schemas/EApiTransportType'
+          type: array
+        stopClusters:
+          items:
+            $ref: '#/components/schemas/IApiStopCluster'
+          type: array
+      required:
+      - id
+      - address
+      - city
+      - country
+      - latitude
+      - longitude
+      - name
+      - region
+      - transportTypes
+      - stopClusters
+      type: object
+      additionalProperties: false
+    EApiTransportType:
+      enum:
+      - carpooling
+      - bus
+      - train
+      type: string
+  securitySchemes:
+    authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,263 @@
+openapi: 3.0.0
+info:
+  title: '@tictactrip/api Autocomplete StopClusters API'
+  version: 2.1489.0
+  description: Tictactrip's API service
+  license:
+    name: UNLICENSED
+  contact:
+    name: Tictactrip
+    email: dev@tictactrip.eu
+    url: https://www.tictactrip.eu
+servers:
+- url: /
+tags:
+- name: StopClusters
+paths:
+  /v2/stopClusters:
+    get:
+      operationId: GetAllStopClusters
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IGetStopClusterResponse'
+                type: array
+              examples:
+                Example 1:
+                  value:
+                  - id: c|FRangers__@gbrw5
+                    name: Angers
+                    city: Angers
+                    region: Pays-de-la-Loire
+                    country: FR
+                    latitude: 47.478419
+                    longitude: 0.563166
+                    transportTypes:
+                    - bus
+                    - train
+                    stopGroups:
+                    - id: g|FRangmaiec@gbrw5c
+                      name: Angers Maitre Ecole
+                      city: Angers
+                      region: Pays-de-la-Loire
+                      country: FR
+                      address: 21 Rue Louis Legendre, 49100 Angers, France
+                      latitude: 47.467
+                      longitude: 0.5322
+                      transportTypes:
+                      - train
+                    - id: g|FRangsaila@gbrw52
+                      name: Angers Saint-Laud
+                      city: Angers
+                      region: Pays-de-la-Loire
+                      country: FR
+                      address: 1 Esplanade De La Gare, 49100 Angers, France
+                      latitude: 47.46477
+                      longitude: 0.55693
+                      transportTypes:
+                      - bus
+                      - train
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Returns the list of all StopClusters.
+      security:
+      - authentication:
+        - bookPartner
+        - searchPartner
+        - admin
+      parameters: []
+      tags:
+      - StopClusters
+  /v2/stopClusters/{stopClusterGpuid}:
+    get:
+      operationId: GetStopCluster
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IGetStopClusterResponse'
+              examples:
+                Example 1:
+                  value:
+                    id: c|FRangers__@gbrw5
+                    name: Angers
+                    city: Angers
+                    region: Pays-de-la-Loire
+                    country: FR
+                    latitude: 47.478419
+                    longitude: 0.563166
+                    transportTypes:
+                    - bus
+                    - train
+                    stopGroups:
+                    - id: g|FRangmaiec@gbrw5c
+                      name: Angers Maitre Ecole
+                      city: Angers
+                      region: Pays-de-la-Loire
+                      country: FR
+                      address: 21 Rue Louis Legendre, 49100 Angers, France
+                      latitude: 47.467
+                      longitude: 0.5322
+                      transportTypes:
+                      - train
+                    - id: g|FRangsaila@gbrw52
+                      name: Angers Saint-Laud
+                      city: Angers
+                      region: Pays-de-la-Loire
+                      country: FR
+                      address: 1 Esplanade De La Gare, 49100 Angers, France
+                      latitude: 47.46477
+                      longitude: 0.55693
+                      transportTypes:
+                      - bus
+                      - train
+        '404':
+          description: StopCluster not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: partnersApi:client:stopClusterNotFound
+                    errorMessage: This StopCluster could not be found
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Returns a StopCluster details.
+      security:
+      - authentication:
+        - bookPartner
+        - searchPartner
+        - admin
+      parameters:
+      - in: path
+        name: stopClusterGpuid
+        required: true
+        schema:
+          type: string
+        example: c|FRangers__@gbrw5
+      tags:
+      - StopClusters
+components:
+  schemas:
+    IApiStopGroupWithTransportTypes:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        address:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        transportTypes:
+          items:
+            $ref: '#/components/schemas/EApiTransportType'
+          type: array
+      required:
+      - id
+      - name
+      - city
+      - region
+      - country
+      - address
+      - latitude
+      - longitude
+      - transportTypes
+      type: object
+      additionalProperties: false
+    IGetStopClusterResponse:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        transportTypes:
+          items:
+            $ref: '#/components/schemas/EApiTransportType'
+          type: array
+        stopGroups:
+          items:
+            $ref: '#/components/schemas/IApiStopGroupWithTransportTypes'
+          type: array
+      required:
+      - id
+      - name
+      - city
+      - region
+      - country
+      - latitude
+      - longitude
+      - transportTypes
+      - stopGroups
+      type: object
+      additionalProperties: false
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    EApiTransportType:
+      enum:
+      - carpooling
+      - bus
+      - train
+      type: string
+  securitySchemes:
+    authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

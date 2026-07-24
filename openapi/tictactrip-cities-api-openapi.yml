@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: '@tictactrip/api Autocomplete Cities API'
+  version: 2.1489.0
+  description: Tictactrip's API service
+  license:
+    name: UNLICENSED
+  contact:
+    name: Tictactrip
+    email: dev@tictactrip.eu
+    url: https://www.tictactrip.eu
+servers:
+- url: /
+tags:
+- name: Cities
+paths:
+  /v2/cities/popular/{limit}:
+    get:
+      operationId: GetPopularCities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IPopularCity'
+                type: array
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Returns the `limit` most searched cities within 2 months.
+      security:
+      - authentication:
+        - bookPartner
+        - searchPartner
+        - admin
+      parameters:
+      - description: The maximum number of cities to return.
+        in: path
+        name: limit
+        required: true
+        schema:
+          format: double
+          type: number
+        example: 10
+      tags:
+      - Cities
+  /v2/cities/popular/{direction}/{uniqueName}/{limit}:
+    get:
+      operationId: GetPopularCitiesFromTo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IPopularCity'
+                type: array
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: 'Returns the `limit` most searched cities for a given direction from/to a city within 2 weeks.
+
+        Falls back to global top cities if no results are found.'
+      security:
+      - authentication:
+        - bookPartner
+        - searchPartner
+        - admin
+      parameters:
+      - description: Can be either `from` or `to`.
+        in: path
+        name: direction
+        required: true
+        schema:
+          $ref: '#/components/schemas/ESearchDirection'
+      - description: The unique name of the city to be based on.
+        in: path
+        name: uniqueName
+        required: true
+        schema:
+          type: string
+        example: paris
+      - description: The maximum number of cities to return (capped at 10).
+        in: path
+        name: limit
+        required: true
+        schema:
+          format: double
+          type: number
+        example: 5
+      tags:
+      - Cities
+components:
+  schemas:
+    ESearchDirection:
+      enum:
+      - from
+      - to
+      type: string
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    IPopularCity:
+      properties:
+        unique_name:
+          type: string
+        city_id:
+          type: number
+          format: double
+        local_name:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        gpuid:
+          type: string
+        iscity:
+          type: boolean
+        popular:
+          type: boolean
+        nb_search:
+          type: string
+      required:
+      - unique_name
+      - city_id
+      - local_name
+      - latitude
+      - longitude
+      - gpuid
+      - iscity
+      - popular
+      - nb_search
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

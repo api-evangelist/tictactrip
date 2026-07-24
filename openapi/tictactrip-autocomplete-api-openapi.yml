@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  title: '@tictactrip/api Autocomplete API'
+  version: 2.1489.0
+  description: Tictactrip's API service
+  license:
+    name: UNLICENSED
+  contact:
+    name: Tictactrip
+    email: dev@tictactrip.eu
+    url: https://www.tictactrip.eu
+servers:
+- url: /
+tags:
+- name: Autocomplete
+paths:
+  /v2/autocomplete:
+    get:
+      operationId: GetAutocomplete
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Autocomplete'
+                type: array
+        '400':
+          description: Missing or invalid query parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: partnersApi:client:missingQueryParam
+                    errorMessage: The query parameter "q" is required
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: 'Autocomplete search for stop clusters and stop groups by name.
+
+        Returns cities and stations matching the query, filtered by the partner''s allowed gpuids when applicable.
+
+        Mirrors the behaviour of the legacy GET /autocomplete route.'
+      security:
+      - authentication:
+        - bookPartner
+        - searchPartner
+        - admin
+      parameters:
+      - description: The search query (e.g. a city name or prefix)
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+        example: Paris
+      tags:
+      - Autocomplete
+components:
+  schemas:
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    Autocomplete:
+      properties:
+        id:
+          type: number
+          format: double
+        unique_name:
+          type: string
+        local_name:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        new_id:
+          type: string
+        city_id:
+          type: number
+          format: double
+        gpuid:
+          type: string
+        nb_search:
+          type: string
+        popular:
+          type: boolean
+        iscity:
+          type: boolean
+      required:
+      - id
+      - unique_name
+      - local_name
+      - latitude
+      - longitude
+      - new_id
+      - city_id
+      - gpuid
+      - nb_search
+      - popular
+      - iscity
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

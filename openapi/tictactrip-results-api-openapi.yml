@@ -1,0 +1,573 @@
+openapi: 3.0.0
+info:
+  title: '@tictactrip/api Autocomplete Results API'
+  version: 2.1489.0
+  description: Tictactrip's API service
+  license:
+    name: UNLICENSED
+  contact:
+    name: Tictactrip
+    email: dev@tictactrip.eu
+    url: https://www.tictactrip.eu
+servers:
+- url: /
+tags:
+- name: Results
+paths:
+  /v2/results:
+    post:
+      operationId: GetResults
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IApiSearchResponse'
+              examples:
+                Example 1:
+                  value:
+                    trips:
+                      67f077b4-3836-4616-ace2-42d68b0f4c71:
+                        id: 67f077b4-3836-4616-ace2-42d68b0f4c71
+                        direction: outboundTrip
+                        origin:
+                          id: g|FRavignon_@spg3vp
+                          name: Avignon Centre
+                          city: Avignon
+                          region: Provence-Alpes-Côte d’Azur
+                          country: FR
+                          address: 1 rue du centre, 84000, Avignon
+                          latitude: 43.9408
+                          longitude: 4.79167
+                        destination:
+                          id: g|FRavignon_@spg3vp
+                          name: Avignon Centre
+                          city: Avignon
+                          region: Provence-Alpes-Côte d’Azur
+                          country: FR
+                          address: 1 rue du centre, 84000, Avignon
+                          latitude: 43.9408
+                          longitude: 4.79167
+                        available: true
+                        priceCents: 6000
+                        durationMinutes: 210
+                        departureUTC: 1619759072
+                        arrivalUTC: 1619773472
+                        originOffset: '+0200'
+                        destinationOffset: '+0200'
+                        isIdentityDocumentRequired: false
+                        transportType: MULTIMODAL
+                        providers:
+                        - name: Altibus
+                          company: Altibus
+                          transportType: bus
+                        - name: TGV
+                          company: SNCF
+                          transportType: train
+                        segments:
+                        - id: 0123456789
+                          provider:
+                            name: Altibus
+                            company: Altibus
+                            transportType: bus
+                          origin:
+                            id: g|FRavignon_@spg3vp
+                            name: Avignon Centre
+                            city: Avignon
+                            region: Provence-Alpes-Côte d’Azur
+                            country: FR
+                            address: 1 rue du centre, 84000, Avignon
+                            latitude: 43.9408
+                            longitude: 4.79167
+                          destination:
+                            id: g|FRavignon_@spg3vp
+                            name: Avignon Centre
+                            city: Avignon
+                            region: Provence-Alpes-Côte d’Azur
+                            country: FR
+                            address: 1 rue du centre, 84000, Avignon
+                            latitude: 43.9408
+                            longitude: 4.79167
+                          priceCents: 2000
+                          durationMinutes: 120
+                          departureUTC: 1619759072
+                          arrivalUTC: 1619773472
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          transportType: bus
+                          includedBaggage: true
+                          notAvailableReason: null
+                          isPresale: false
+                        - id: '2345678901'
+                          provider:
+                            name: TGV
+                            company: SNCF
+                            transportType: train
+                          origin:
+                            id: g|FRavignon_@spg3vp
+                            name: Avignon Centre
+                            city: Avignon
+                            region: Provence-Alpes-Côte d’Azur
+                            country: FR
+                            address: 1 rue du centre, 84000, Avignon
+                            latitude: 43.9408
+                            longitude: 4.79167
+                          destination:
+                            id: g|FRavignon_@spg3vp
+                            name: Avignon Centre
+                            city: Avignon
+                            region: Provence-Alpes-Côte d’Azur
+                            country: FR
+                            address: 1 rue du centre, 84000, Avignon
+                            latitude: 43.9408
+                            longitude: 4.79167
+                          priceCents: 4000
+                          durationMinutes: 80
+                          departureUTC: 1619774072
+                          arrivalUTC: 1619778872
+                          originOffset: '+0200'
+                          destinationOffset: '+0200'
+                          transportType: train
+                          includedBaggage: true
+                          notAvailableReason: null
+                          vehicleIdentifier: '6319'
+                          co2g: 50
+                          bookingClass: 2_ND_CLASS
+                          fareName: PREM'S
+                          isPresale: false
+                    bundles:
+                    - trips:
+                      - 67f077b4-3836-4616-ace2-42d68b0f4c71
+                      redirectionLink: v2/redirect/?outboundTripId=67f077b4-3836-4616-ace2-42d68b0f4c71&partnerId=FR-WB-TEST
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: string
+                    errorMessage: string
+        '404':
+          description: If the stopCluster is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: partnersApi:client:stopClusterNotFound
+                    errorMessage: This StopCluster could not be found
+        '500':
+          description: If an unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IErrorCodeResponse'
+              examples:
+                Example 1:
+                  value:
+                    errorKey: general:internal:unexpected
+                    errorMessage: An unexpected error occurred
+      description: Fetch results. Ignore search request that are further than 1800KM.
+      security:
+      - authentication:
+        - admin
+        - searchPartner
+        - bookPartner
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IApiGetResultsParams'
+            example:
+              originGpuid: c|FRavignon_@spg6j
+              destinationGpuid: c|FRmarseill@spey6
+              passengers:
+              - age: 22
+              outboundDate: '2021-04-28T00:00:00Z'
+              returnDate: '2021-04-28T00:00:00Z'
+      tags:
+      - Results
+components:
+  schemas:
+    IApiTripDurationFilter:
+      description: Filter about the trip duration. Each value is in minutes.
+      properties:
+        minDuration:
+          type: number
+          format: double
+        maxDuration:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    IApiSegment:
+      properties:
+        id:
+          type: string
+        provider:
+          $ref: '#/components/schemas/IApiProvider'
+        origin:
+          $ref: '#/components/schemas/IApiStopGroup'
+        destination:
+          $ref: '#/components/schemas/IApiStopGroup'
+        priceCents:
+          type: number
+          format: double
+        departureUTC:
+          type: number
+          format: double
+        arrivalUTC:
+          type: number
+          format: double
+        originOffset:
+          type: string
+        destinationOffset:
+          type: string
+        durationMinutes:
+          type: number
+          format: double
+        transportType:
+          $ref: '#/components/schemas/EApiTransportType'
+        vehicleIdentifier:
+          type: string
+        co2g:
+          type: number
+          format: double
+        bookingClass:
+          type: string
+        fareName:
+          type: string
+        notAvailableReason:
+          allOf:
+          - $ref: '#/components/schemas/ENotAvailableReason'
+          nullable: true
+        includedBaggage:
+          type: boolean
+        isPresale:
+          type: boolean
+      required:
+      - id
+      - provider
+      - origin
+      - destination
+      - priceCents
+      - departureUTC
+      - arrivalUTC
+      - originOffset
+      - destinationOffset
+      - durationMinutes
+      - transportType
+      - isPresale
+      type: object
+      additionalProperties: false
+    ETripDirection:
+      enum:
+      - outboundTrip
+      - returnTrip
+      type: string
+    IApiTripConnectionFilter:
+      description: 'Filter about the trip connection distance. Each value is in Km.
+
+        Useful when you want to filter trips with a maximum distance between two stops.'
+      properties:
+        maxConnectionDistance:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    ENotAvailableReason:
+      enum:
+      - CANCELLED
+      - FULL
+      - NOT_OPEN_TO_SALE
+      - NOT_SELLABLE
+      - MINORS_MUST_BE_ACCOMPANIED
+      type: string
+    IApiTripStopoverFilter:
+      description: Filter about the trip stopovers.
+      properties:
+        minStopovers:
+          type: number
+          format: double
+        maxStopovers:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    IApiTripProviderFilter:
+      description: 'Provides to the API the list of providers you want to include or exclude.
+
+        Provider must be provided with their ID which can be found on the (/v2/segmentProviders)[https://developers.tictactrip.eu/api#operation/GetSegmentProviders] endpoint.
+
+        - Included providers: Will trigger search ONLY for the providers you provided.
+
+        - Excluded providers: Will trigger search for all providers EXCEPT the ones you provided.'
+      properties:
+        includedProviders:
+          items:
+            type: string
+          type: array
+        excludedProviders:
+          items:
+            type: string
+          type: array
+      type: object
+      additionalProperties: false
+    IBundle:
+      properties:
+        trips:
+          items:
+            type: string
+          type: array
+        redirectionLink:
+          type: string
+      required:
+      - trips
+      - redirectionLink
+      type: object
+      additionalProperties: false
+    IApiStopGroup:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        address:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+      required:
+      - id
+      - name
+      - city
+      - region
+      - country
+      - address
+      - latitude
+      - longitude
+      type: object
+      additionalProperties: false
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    IApiTripTimeFilter:
+      description: Filter about the trip time. Each value is in the form 'YYYY-MM-DDTHH:mm'.
+      properties:
+        minDepartureTime:
+          type: string
+        maxDepartureTime:
+          type: string
+        minArrivalTime:
+          type: string
+        maxArrivalTime:
+          type: string
+      type: object
+      additionalProperties: false
+    IApiTripFilter:
+      description: Possible filters for a trip (outbound or return).
+      properties:
+        timeFilters:
+          $ref: '#/components/schemas/IApiTripTimeFilter'
+        stopoverFilters:
+          $ref: '#/components/schemas/IApiTripStopoverFilter'
+        durationFilters:
+          $ref: '#/components/schemas/IApiTripDurationFilter'
+        connectionFilters:
+          $ref: '#/components/schemas/IApiTripConnectionFilter'
+        relevanceSorts:
+          $ref: '#/components/schemas/IApiTripRelevanceSort'
+        stopGroupFilters:
+          $ref: '#/components/schemas/IApiTripStopGroupFilter'
+        providerFilters:
+          $ref: '#/components/schemas/IApiTripProviderFilter'
+      type: object
+      additionalProperties: false
+    IApiSearchResponse:
+      properties:
+        trips:
+          properties: {}
+          additionalProperties:
+            $ref: '#/components/schemas/Omit_IApiTrip.totalFeeCents_'
+          type: object
+        bundles:
+          items:
+            $ref: '#/components/schemas/IBundle'
+          type: array
+      required:
+      - trips
+      - bundles
+      type: object
+      additionalProperties: false
+    IApiTripStopGroupFilter:
+      properties:
+        originStopGroupIds:
+          type: number
+          format: double
+        destinationStopGroupIds:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    Pick_IApiTrip.Exclude_keyofIApiTrip.totalFeeCents__:
+      properties:
+        id:
+          type: string
+        durationMinutes:
+          type: number
+          format: double
+        priceCents:
+          type: number
+          format: double
+        direction:
+          $ref: '#/components/schemas/ETripDirection'
+        origin:
+          $ref: '#/components/schemas/IApiStopGroup'
+        destination:
+          $ref: '#/components/schemas/IApiStopGroup'
+        available:
+          type: boolean
+        departureUTC:
+          type: number
+          format: double
+        arrivalUTC:
+          type: number
+          format: double
+        originOffset:
+          type: string
+        destinationOffset:
+          type: string
+        transportType:
+          $ref: '#/components/schemas/ETripTransport'
+        providers:
+          items:
+            $ref: '#/components/schemas/IApiProvider'
+          type: array
+        segments:
+          items:
+            $ref: '#/components/schemas/IApiSegment'
+          type: array
+        isIdentityDocumentRequired:
+          type: boolean
+      required:
+      - id
+      - durationMinutes
+      - priceCents
+      - direction
+      - origin
+      - destination
+      - available
+      - departureUTC
+      - arrivalUTC
+      - originOffset
+      - destinationOffset
+      - transportType
+      - providers
+      - segments
+      - isIdentityDocumentRequired
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    IApiTripRelevanceSort:
+      description: "Sorts the trips according to their relevance. The relevance of a trip is calculated based on a weighted sum of the normalized price and duration. The weighted sum yields a relevance score that ranges from 0 to 1.\n\nThe weightage given to duration over price is used as follows:\n - A weight of 0: This indicates that only the price is significant in determining the trip's relevance. In this case, trips with lower prices are given higher relevance and are displayed first.\n - A weight of 0.5: This means that both duration and price hold equal significance in determining the trip's relevance. The sorting of trips will balance between lower prices and shorter durations.\n - A weight of 1: This implies that only the duration is significant for determining the trip's relevance. Therefore, trips with shorter durations are considered more relevant and are displayed first."
+      properties:
+        durationOverPriceFactor:
+          type: number
+          format: double
+      required:
+      - durationOverPriceFactor
+      type: object
+      additionalProperties: false
+    IApiGetResultsParams:
+      properties:
+        originGpuid:
+          type: string
+        destinationGpuid:
+          type: string
+        passengers:
+          items:
+            $ref: '#/components/schemas/IApiInputPassenger'
+          type: array
+        outboundDate:
+          type: string
+        returnDate:
+          type: string
+        outboundFilters:
+          $ref: '#/components/schemas/IApiTripFilter'
+        returnFilters:
+          $ref: '#/components/schemas/IApiTripFilter'
+      required:
+      - originGpuid
+      - destinationGpuid
+      - passengers
+      - outboundDate
+      type: object
+      additionalProperties: false
+    Omit_IApiTrip.totalFeeCents_:
+      $ref: '#/components/schemas/Pick_IApiTrip.Exclude_keyofIApiTrip.totalFeeCents__'
+      description: Construct a type with the properties of T except for those in type K.
+    IApiInputPassenger:
+      properties:
+        age:
+          type: number
+          format: double
+      required:
+      - age
+      type: object
+      additionalProperties: false
+    ETripTransport:
+      enum:
+      - MULTIMODAL
+      - BUS
+      - TRAIN
+      - CARPOOLING
+      type: string
+    EApiTransportType:
+      enum:
+      - carpooling
+      - bus
+      - train
+      type: string
+    IApiProvider:
+      properties:
+        name:
+          type: string
+        company:
+          type: string
+        transportType:
+          $ref: '#/components/schemas/EApiTransportType'
+      required:
+      - name
+      - company
+      - transportType
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
