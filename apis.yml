@@ -1,7 +1,26 @@
 aid: tictactrip
 name: TicTacTrip
-description: TicTacTrip is a company surfaced as a portfolio company of techstars and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  TicTacTrip is a European multimodal travel search and booking platform
+  (Techstars-backed) that aggregates train and bus inventory from 250+ carriers
+  across 20+ European countries into single, combined itineraries. Its REST API
+  exposes stop and city discovery, multimodal itinerary search with CO2 emissions
+  per journey, and a full booking workflow — cart, order, book, e-ticket and
+  cancellation — authenticated with partner bearer JWTs (API_SEARCH_PARTNER /
+  API_BOOK_PARTNER roles). API access is provisioned via sales@tictactrip.eu.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://developers.tictactrip.eu/img/logoTextBlack.svg
 url: https://raw.githubusercontent.com/api-evangelist/tictactrip/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +30,207 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Travel
+- Transportation
+- Trains
+- Buses
+- Booking
+- Mobility
+- Multimodal
+- Ticketing
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: tictactrip:tictactrip-autocomplete-api
+  name: TicTacTrip Autocomplete API
+  description: The Autocomplete API from TicTacTrip — 1 operation(s) for autocomplete.
+  humanURL: https://developers.tictactrip.eu/
+  baseURL: https://api.tictactrip.eu
+  tags:
+  - Autocomplete
+  properties:
+  - type: OpenAPI
+    url: openapi/tictactrip-autocomplete-api-openapi.yml
+  - type: APIReference
+    url: https://developers.tictactrip.eu/api
+  - type: Documentation
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: GettingStarted
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: Postman
+    url: >-
+      https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
+- aid: tictactrip:tictactrip-booking-api
+  name: TicTacTrip Booking API
+  description: The Booking API from TicTacTrip — 9 operation(s) for booking.
+  humanURL: https://developers.tictactrip.eu/
+  baseURL: https://api.tictactrip.eu
+  tags:
+  - Booking
+  properties:
+  - type: OpenAPI
+    url: openapi/tictactrip-booking-api-openapi.yml
+  - type: APIReference
+    url: https://developers.tictactrip.eu/api
+  - type: Documentation
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: GettingStarted
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: Postman
+    url: >-
+      https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
+- aid: tictactrip:tictactrip-cities-api
+  name: TicTacTrip Cities API
+  description: The Cities API from TicTacTrip — 2 operation(s) for cities.
+  humanURL: https://developers.tictactrip.eu/
+  baseURL: https://api.tictactrip.eu
+  tags:
+  - Cities
+  properties:
+  - type: OpenAPI
+    url: openapi/tictactrip-cities-api-openapi.yml
+  - type: APIReference
+    url: https://developers.tictactrip.eu/api
+  - type: Documentation
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: GettingStarted
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: Postman
+    url: >-
+      https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
+- aid: tictactrip:tictactrip-results-api
+  name: TicTacTrip Results API
+  description: The Results API from TicTacTrip — 1 operation(s) for results.
+  humanURL: https://developers.tictactrip.eu/
+  baseURL: https://api.tictactrip.eu
+  tags:
+  - Results
+  properties:
+  - type: OpenAPI
+    url: openapi/tictactrip-results-api-openapi.yml
+  - type: APIReference
+    url: https://developers.tictactrip.eu/api
+  - type: Documentation
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: GettingStarted
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: Postman
+    url: >-
+      https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
+- aid: tictactrip:tictactrip-segmentproviders-api
+  name: TicTacTrip SegmentProviders API
+  description: The SegmentProviders API from TicTacTrip — 1 operation(s) for segmentproviders.
+  humanURL: https://developers.tictactrip.eu/
+  baseURL: https://api.tictactrip.eu
+  tags:
+  - SegmentProviders
+  properties:
+  - type: OpenAPI
+    url: openapi/tictactrip-segmentproviders-api-openapi.yml
+  - type: APIReference
+    url: https://developers.tictactrip.eu/api
+  - type: Documentation
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: GettingStarted
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: Postman
+    url: >-
+      https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
+- aid: tictactrip:tictactrip-stopclusters-api
+  name: TicTacTrip StopClusters API
+  description: The StopClusters API from TicTacTrip — 2 operation(s) for stopclusters.
+  humanURL: https://developers.tictactrip.eu/
+  baseURL: https://api.tictactrip.eu
+  tags:
+  - StopClusters
+  properties:
+  - type: OpenAPI
+    url: openapi/tictactrip-stopclusters-api-openapi.yml
+  - type: APIReference
+    url: https://developers.tictactrip.eu/api
+  - type: Documentation
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: GettingStarted
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: Postman
+    url: >-
+      https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
+- aid: tictactrip:tictactrip-stopgroups-api
+  name: TicTacTrip StopGroups API
+  description: The StopGroups API from TicTacTrip — 2 operation(s) for stopgroups.
+  humanURL: https://developers.tictactrip.eu/
+  baseURL: https://api.tictactrip.eu
+  tags:
+  - StopGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/tictactrip-stopgroups-api-openapi.yml
+  - type: APIReference
+    url: https://developers.tictactrip.eu/api
+  - type: Documentation
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: GettingStarted
+    url: https://developers.tictactrip.eu/docs/intro
+  - type: Postman
+    url: >-
+      https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
 common:
+- type: AgenticAccess
+  url: agentic-access/tictactrip-agentic-access.yml
+- type: DomainSecurity
+  url: security/tictactrip-domain-security.yml
+- type: Authentication
+  url: authentication/tictactrip-authentication.yml
+- type: OpenAPI
+  url: openapi/tictactrip-openapi-original.json
+- type: Overlay
+  url: overlays/tictactrip-openapi-overlay.yaml
+- type: MCPServer
+  url: mcp/tictactrip-mcp.yml
+- type: ErrorCatalog
+  url: errors/tictactrip-problem-types.yml
+- type: Conformance
+  url: conformance/tictactrip-conformance.yml
+- type: Lifecycle
+  url: lifecycle/tictactrip-lifecycle.yml
+- type: StatusPage
+  url: https://status.tictactrip.eu/
+- type: Conventions
+  url: conventions/tictactrip-conventions.yml
+- type: DataModel
+  url: data-model/tictactrip-data-model.yml
+- type: Packages
+  url: packages/tictactrip-packages.yml
+- type: SDKs
+  url: packages/tictactrip-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/tictactrip-llms.txt
+- type: DeveloperPortal
+  url: https://developers.tictactrip.eu/
+- type: Documentation
+  url: https://developers.tictactrip.eu/docs/intro
+- type: APIReference
+  url: https://developers.tictactrip.eu/api
+- type: GettingStarted
+  url: https://developers.tictactrip.eu/docs/intro
+- type: Postman
+  url: https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
+- type: GitHubOrganization
+  url: https://github.com/tictactrip
+- type: Support
+  url: mailto:dev@tictactrip.eu
 - type: Website
   url: https://tictactrip.eu/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1

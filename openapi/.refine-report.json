@@ -1,0 +1,26 @@
+{
+  "provider": "tictactrip",
+  "sources": [
+    "tictactrip-autocomplete-api-openapi.yml",
+    "tictactrip-booking-api-openapi.yml",
+    "tictactrip-cities-api-openapi.yml",
+    "tictactrip-results-api-openapi.yml",
+    "tictactrip-segmentproviders-api-openapi.yml",
+    "tictactrip-stopclusters-api-openapi.yml",
+    "tictactrip-stopgroups-api-openapi.yml"
+  ],
+  "outputs": [
+    "tictactrip-autocomplete-api-openapi.yml",
+    "tictactrip-booking-api-openapi.yml",
+    "tictactrip-cities-api-openapi.yml",
+    "tictactrip-results-api-openapi.yml",
+    "tictactrip-segmentproviders-api-openapi.yml",
+    "tictactrip-stopclusters-api-openapi.yml",
+    "tictactrip-stopgroups-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

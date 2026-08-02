@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/tictactrip-openapi-original.json
+docs: https://developers.tictactrip.eu/docs/intro
+authentication:
+  style: http-bearer
+  format: JWT
+  header: "Authorization: Bearer <token>"
+  scheme_name: authentication
+  roles: [API_SEARCH_PARTNER, API_BOOK_PARTNER]
+  provisioning: Partner token issued on request via sales@tictactrip.eu.
+  cross_ref: authentication/tictactrip-authentication.yml
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or parameter is documented. Booking (POST /booking/v3/orders/{orderId}/book) is asynchronous (202) but not idempotency-keyed in the spec.
+pagination:
+  style: page-number
+  params:
+    page: Page number (query, number).
+    itemsPerPage: Items per page (query, number).
+  applies_to: [GetOrders]
+  note: Only the orders list is paginated in the spec; stopGroups/stopClusters return full collections.
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  header: null
+  note: No documented request-id / correlation-id header.
+versioning:
+  style: uri-path
+  values: [v2, v3]
+  cross_ref: lifecycle/tictactrip-lifecycle.yml
+error_envelope:
+  media_type: application/json
+  shape: { errorKey: string, errorMessage: string }
+  schema: "#/components/schemas/IErrorCodeResponse"
+  cross_ref: errors/tictactrip-problem-types.yml
+rate_limit_signaling:
+  headers: null
+  note: No RateLimit / X-RateLimit headers documented in the spec.

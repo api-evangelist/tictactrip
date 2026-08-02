@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Tictactrip API
+  version: 1.0.0
+extends: openapi/tictactrip-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: tictactrip
+      x-apievangelist-category: [travel, transportation, booking, multimodal]
+      x-apievangelist-auth: http-bearer-jwt
+      x-apievangelist-docs: https://developers.tictactrip.eu/
+      x-apievangelist-notes: >-
+        European multimodal (train + bus) search and booking aggregator covering
+        250+ carriers across 20+ countries, with CO2 emissions per journey.
+  - target: $.servers
+    update:
+      - url: https://api.tictactrip.eu
+        description: Production (the spec ships servers:[{url:'/'}]; the real base host is api.tictactrip.eu).
+  - target: $.components.securitySchemes.authentication
+    update:
+      x-apievangelist-provisioning: Partner bearer JWT issued on request via sales@tictactrip.eu.
+      x-apievangelist-roles: [API_SEARCH_PARTNER, API_BOOK_PARTNER]

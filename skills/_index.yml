@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/tictactrip-openapi-original.json
+skills:
+  - file: tictactrip-search-trips.md
+    name: Search multimodal train and bus trips
+    api: openapi/tictactrip-openapi-original.json
+    operations: [GetAutocomplete, GetAllStopClusters, GetStopCluster, GetResults]
+  - file: tictactrip-book-trip.md
+    name: Book a trip end to end
+    api: openapi/tictactrip-openapi-original.json
+    operations: [CreateCart, UpdateCart, GetCart, CreateOrder, CreateBook, GetOrder, DownloadTicket, GetDiscountCards]
+  - file: tictactrip-cancel-booking.md
+    name: Cancel a booked ticket
+    api: openapi/tictactrip-openapi-original.json
+    operations: [PartnerCancellationConditions, PartnerCancelBooking, GetOrder]

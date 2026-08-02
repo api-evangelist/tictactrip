@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/tictactrip-openapi-original.json
+format: custom-json
+envelope:
+  media_type: application/json
+  schema: "#/components/schemas/IErrorCodeResponse"
+  fields:
+    errorKey: Machine-readable error key / code (string).
+    errorMessage: Human-readable error message (string).
+  note: >-
+    Tictactrip does NOT use RFC 9457 problem+json. Every 4xx/5xx response returns
+    the IErrorCodeResponse envelope { errorKey, errorMessage }. The specific
+    errorKey values are not enumerated in the OpenAPI; only the HTTP status and
+    per-operation descriptions are published.
+problems:
+  - status: 400
+    title: Bad request
+    description: Missing or invalid query parameter / request body.
+    envelope: IErrorCodeResponse
+    seen_on: [GetAutocomplete, GetResults, CreateCart]
+  - status: 403
+    title: Forbidden
+    description: The caller is not authorized to access this order ticket / resource (partner scope mismatch).
+    envelope: IErrorCodeResponse
+    seen_on: [PartnerCancellationConditions, PartnerCancelBooking]
+  - status: 404
+    title: Not found
+    description: The referenced resource (StopGroup, StopCluster, cart, order, ticket) does not exist.
+    envelope: IErrorCodeResponse
+    seen_on: [GetStopGroup, GetStopCluster, GetResults, GetCart, UpdateCart, CreateCart, CreateOrder, GetOrder, CreateBook, DownloadTicket, PartnerCancellationConditions, PartnerCancelBooking]
+  - status: 409
+    title: Conflict
+    description: The requested state transition is invalid (e.g. cancelling a ticket that is not in a cancellable state).
+    envelope: IErrorCodeResponse
+    seen_on: [PartnerCancellationConditions, PartnerCancelBooking]
+  - status: 500
+    title: Internal server error
+    description: Unexpected server-side error. Returned by every operation.
+    envelope: IErrorCodeResponse
+    seen_on: [all]

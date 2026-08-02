@@ -1,0 +1,31 @@
+# Tictactrip API
+
+> Tictactrip is a European multimodal travel search and booking aggregator. One REST API combines train and bus inventory from 250+ carriers across 20+ European countries into single itineraries, with CO2 emissions per journey and a complete booking workflow (search, cart, order, book, ticket, cancel). Base URL: https://api.tictactrip.eu. Authentication is a bearer JWT partner token (request via sales@tictactrip.eu).
+
+## APIs
+- [Tictactrip API reference](https://developers.tictactrip.eu/api): 20 REST operations across discovery (segment providers, stop groups/clusters, autocomplete, popular cities, trip results) and booking (carts, orders, book, tickets, cancellation).
+- [OpenAPI specification](https://api.tictactrip.eu/documentation): OpenAPI 3.0.0, served live from the API host.
+
+## Getting started
+- [Introduction & tutorial](https://developers.tictactrip.eu/docs/intro): from zero to first booking in four calls.
+- Quick start flow: (1) authenticate with your bearer token; (2) resolve city ids via GET /v2/stopClusters or GET /v2/autocomplete; (3) search itineraries via POST /v2/results; (4) create a cart, order and book via /booking/v3.
+
+## Specs & artifacts
+- OpenAPI (harvested): openapi/tictactrip-openapi-original.json
+- Authentication profile: authentication/tictactrip-authentication.yml
+- API conventions (pagination, errors, versioning): conventions/tictactrip-conventions.yml
+- Error catalog: errors/tictactrip-problem-types.yml
+- Data model / ERD: data-model/tictactrip-data-model.yml
+- Lifecycle & versioning: lifecycle/tictactrip-lifecycle.yml
+- MCP candidate tools: mcp/tictactrip-mcp.yml
+
+## Tools & packages
+- [Postman collection](https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json)
+- [@tictactrip/ground-place-sdk](https://www.npmjs.com/package/@tictactrip/ground-place-sdk): manage the ground-place (stop) hierarchy.
+- [@tictactrip/gp-uid](https://www.npmjs.com/package/@tictactrip/gp-uid): ground place unique identifier generator.
+- [GitHub organization](https://github.com/tictactrip)
+
+## Operations
+- [Status page](https://status.tictactrip.eu/): Upptime-based uptime monitor.
+- Technical contact: dev@tictactrip.eu
+- Sales / API access: sales@tictactrip.eu

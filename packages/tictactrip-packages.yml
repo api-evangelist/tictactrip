@@ -1,0 +1,57 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/tictactrip
+notes: >-
+  First-party open-source libraries published by Tictactrip under the @tictactrip
+  npm scope. These are building-block libraries (ground-place identifiers, caching,
+  proxying) rather than a full generated REST client; Tictactrip ships no dedicated
+  API client SDK — integrators call the REST API at https://api.tictactrip.eu
+  directly. ground-place-sdk / gp-uid are the API-adjacent libraries (they generate
+  and manage the Ground place unique identifiers used by the stopGroups/stopClusters
+  resources).
+packages:
+  - language: javascript
+    registry: npm
+    name: "@tictactrip/ground-place-sdk"
+    version: 1.5.0
+    url: https://www.npmjs.com/package/@tictactrip/ground-place-sdk
+    repo: https://github.com/tictactrip/ground-place-sdk
+    install: npm install @tictactrip/ground-place-sdk
+    official: true
+    description: Ground Place SDK — manage the ground-place (stop group / stop cluster) hierarchy used by the API.
+  - language: javascript
+    registry: npm
+    name: "@tictactrip/gp-uid"
+    version: 2.1.1
+    url: https://www.npmjs.com/package/@tictactrip/gp-uid
+    repo: https://github.com/tictactrip/gp-uid
+    install: npm install @tictactrip/gp-uid
+    official: true
+    description: Ground place unique identifier (gpuid) generator — the id scheme behind stopGroupGpuid / stopClusterGpuid.
+  - language: javascript
+    registry: npm
+    name: "@tictactrip/axios-redis"
+    version: 5.0.0
+    url: https://www.npmjs.com/package/@tictactrip/axios-redis
+    repo: https://github.com/tictactrip/axios-redis
+    install: npm install @tictactrip/axios-redis
+    official: true
+    description: Axios Redis cache adapter (internal infrastructure library).
+  - language: javascript
+    registry: npm
+    name: "@tictactrip/api-cache"
+    version: 1.3.0
+    url: https://www.npmjs.com/package/@tictactrip/api-cache
+    repo: https://github.com/tictactrip/api-cache
+    install: npm install @tictactrip/api-cache
+    official: true
+    description: API Redis cache manager (internal infrastructure library).
+  - language: javascript
+    registry: npm
+    name: "@tictactrip/luminator"
+    version: 5.5.0
+    url: https://www.npmjs.com/package/@tictactrip/luminator
+    repo: https://github.com/tictactrip/luminator
+    install: npm install @tictactrip/luminator
+    official: true
+    description: Axios proxy provider agent (internal infrastructure library).

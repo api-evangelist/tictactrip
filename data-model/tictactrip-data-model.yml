@@ -1,0 +1,78 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/tictactrip-openapi-original.json
+notes: >-
+  Entity-relationship graph derived from OpenAPI schemas ($ref links) and the
+  path/id parameters (stopGroupGpuid, stopClusterGpuid, cartId, orderId,
+  orderTicketId). Ground places (stop groups / clusters) are keyed by a string
+  gpuid; carts, orders and tickets are the booking spine.
+entities:
+  - name: StopGroup
+    id_field: gpuid
+    id_shape: string (gpuid)
+    description: A physical stop / station served by carriers.
+  - name: StopCluster
+    id_field: gpuid
+    id_shape: string (gpuid)
+    description: A group of stops, typically a city or metro area.
+  - name: SegmentProvider
+    description: A transport carrier/operator that runs segments.
+  - name: City
+    id_field: id
+    description: A searchable city (popular-cities and autocomplete surface).
+  - name: Cart
+    id_field: cartId
+    schema: ISerializedCart
+    description: A pre-booking basket of selected trips, passengers and customer details.
+  - name: Order
+    id_field: orderId
+    schema: Order
+    description: A confirmed order created from a cart; booked and ticketed.
+  - name: OrderTicket
+    id_field: orderTicketId
+    description: An individual ticket within an order; cancellable.
+  - name: Trip
+    schema: IClientTrip
+    description: An itinerary made of one or more segments between origin and destination.
+  - name: Segment
+    schema: IClientSegment
+    description: A single leg of a trip operated by one SegmentProvider.
+  - name: Passenger
+    schema: ICartPassenger
+    description: A traveller on a cart/order, with category, title and identity documents.
+  - name: Customer
+    schema: ICartCustomer
+    description: The purchasing customer for a cart/order.
+  - name: DiscountCard
+    schema: IDiscountCard
+    description: A railcard / discount card applied to a passenger.
+relationships:
+  - from: StopCluster
+    to: StopGroup
+    type: has_many
+    via: gpuid hierarchy
+  - from: Segment
+    to: SegmentProvider
+    type: belongs_to
+  - from: Trip
+    to: Segment
+    type: has_many
+  - from: Cart
+    to: Trip
+    type: has_many
+  - from: Cart
+    to: Passenger
+    type: has_many
+  - from: Cart
+    to: Customer
+    type: has_one
+  - from: Order
+    to: Cart
+    type: belongs_to
+    via: cartId
+  - from: Order
+    to: OrderTicket
+    type: has_many
+  - from: Passenger
+    to: DiscountCard
+    type: has_many
