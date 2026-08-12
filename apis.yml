@@ -188,7 +188,7 @@ common:
 - type: Authentication
   url: authentication/tictactrip-authentication.yml
 - type: OpenAPI
-  url: openapi/tictactrip-openapi-original.json
+  url: openapi/_original/tictactrip-openapi-original.json
 - type: Overlay
   url: overlays/tictactrip-openapi-overlay.yaml
 - type: MCPServer
