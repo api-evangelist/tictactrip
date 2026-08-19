@@ -1,0 +1,297 @@
+{
+  "item": [
+    {
+      "id": "1b24fecf-bc76-4fc2-9870-aee839d86b68",
+      "name": "Results",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f6390ba-e911-46e3-a882-9371943a649b",
+          "name": "Get Results",
+          "request": {
+            "name": "Get Results",
+            "description": {
+              "content": "Fetch results. Ignore search request that are further than 1800KM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originGpuid\": \"<string>\",\n  \"destinationGpuid\": \"<string>\",\n  \"passengers\": [\n    {\n      \"age\": \"<double>\"\n    },\n    {\n      \"age\": \"<double>\"\n    }\n  ],\n  \"outboundDate\": \"<string>\",\n  \"returnDate\": \"<string>\",\n  \"outboundFilters\": {\n    \"timeFilters\": {\n      \"minDepartureTime\": \"<string>\",\n      \"maxDepartureTime\": \"<string>\",\n      \"minArrivalTime\": \"<string>\",\n      \"maxArrivalTime\": \"<string>\"\n    },\n    \"stopoverFilters\": {\n      \"minStopovers\": \"<double>\",\n      \"maxStopovers\": \"<double>\"\n    },\n    \"durationFilters\": {\n      \"minDuration\": \"<double>\",\n      \"maxDuration\": \"<double>\"\n    },\n    \"connectionFilters\": {\n      \"maxConnectionDistance\": \"<double>\"\n    },\n    \"relevanceSorts\": {\n      \"durationOverPriceFactor\": \"<double>\"\n    },\n    \"stopGroupFilters\": {\n      \"originStopGroupIds\": \"<double>\",\n      \"destinationStopGroupIds\": \"<double>\"\n    },\n    \"providerFilters\": {\n      \"includedProviders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"excludedProviders\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"returnFilters\": {\n    \"timeFilters\": {\n      \"minDepartureTime\": \"<string>\",\n      \"maxDepartureTime\": \"<string>\",\n      \"minArrivalTime\": \"<string>\",\n      \"maxArrivalTime\": \"<string>\"\n    },\n    \"stopoverFilters\": {\n      \"minStopovers\": \"<double>\",\n      \"maxStopovers\": \"<double>\"\n    },\n    \"durationFilters\": {\n      \"minDuration\": \"<double>\",\n      \"maxDuration\": \"<double>\"\n    },\n    \"connectionFilters\": {\n      \"maxConnectionDistance\": \"<double>\"\n    },\n    \"relevanceSorts\": {\n      \"durationOverPriceFactor\": \"<double>\"\n    },\n    \"stopGroupFilters\": {\n      \"originStopGroupIds\": \"<double>\",\n      \"destinationStopGroupIds\": \"<double>\"\n    },\n    \"providerFilters\": {\n      \"includedProviders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"excludedProviders\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3ba45c2-59f1-4f5f-8429-b53ff3ca9f4d",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originGpuid\": \"c|FRavignon_@spg6j\",\n  \"destinationGpuid\": \"c|FRmarseill@spey6\",\n  \"passengers\": [\n    {\n      \"age\": 22\n    }\n  ],\n  \"outboundDate\": \"2021-04-28T00:00:00Z\",\n  \"returnDate\": \"2021-04-28T00:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"trips\": {\n    \"67f077b4-3836-4616-ace2-42d68b0f4c71\": {\n      \"id\": \"67f077b4-3836-4616-ace2-42d68b0f4c71\",\n      \"direction\": \"outboundTrip\",\n      \"origin\": {\n        \"id\": \"g|FRavignon_@spg3vp\",\n        \"name\": \"Avignon Centre\",\n        \"city\": \"Avignon\",\n        \"region\": \"Provence-Alpes-Côte d’Azur\",\n        \"country\": \"FR\",\n        \"address\": \"1 rue du centre, 84000, Avignon\",\n        \"latitude\": 43.9408,\n        \"longitude\": 4.79167\n      },\n      \"destination\": {\n        \"id\": \"g|FRavignon_@spg3vp\",\n        \"name\": \"Avignon Centre\",\n        \"city\": \"Avignon\",\n        \"region\": \"Provence-Alpes-Côte d’Azur\",\n        \"country\": \"FR\",\n        \"address\": \"1 rue du centre, 84000, Avignon\",\n        \"latitude\": 43.9408,\n        \"longitude\": 4.79167\n      },\n      \"available\": true,\n      \"priceCents\": 6000,\n      \"durationMinutes\": 210,\n      \"departureUTC\": 1619759072,\n      \"arrivalUTC\": 1619773472,\n      \"originOffset\": \"+0200\",\n      \"destinationOffset\": \"+0200\",\n      \"isIdentityDocumentRequired\": false,\n      \"transportType\": \"MULTIMODAL\",\n      \"providers\": [\n        {\n          \"name\": \"Altibus\",\n          \"company\": \"Altibus\",\n          \"transportType\": \"bus\"\n        },\n        {\n          \"name\": \"TGV\",\n          \"company\": \"SNCF\",\n          \"transportType\": \"train\"\n        }\n      ],\n      \"segments\": [\n        {\n          \"id\": 123456789,\n          \"provider\": {\n            \"name\": \"Altibus\",\n            \"company\": \"Altibus\",\n            \"transportType\": \"bus\"\n          },\n          \"origin\": {\n            \"id\": \"g|FRavignon_@spg3vp\",\n            \"name\": \"Avignon Centre\",\n            \"city\": \"Avignon\",\n            \"region\": \"Provence-Alpes-Côte d’Azur\",\n            \"country\": \"FR\",\n            \"address\": \"1 rue du centre, 84000, Avignon\",\n            \"latitude\": 43.9408,\n            \"longitude\": 4.79167\n          },\n          \"destination\": {\n            \"id\": \"g|FRavignon_@spg3vp\",\n            \"name\": \"Avignon Centre\",\n            \"city\": \"Avignon\",\n            \"region\": \"Provence-Alpes-Côte d’Azur\",\n            \"country\": \"FR\",\n            \"address\": \"1 rue du centre, 84000, Avignon\",\n            \"latitude\": 43.9408,\n            \"longitude\": 4.79167\n          },\n          \"priceCents\": 2000,\n          \"durationMinutes\": 120,\n          \"departureUTC\": 1619759072,\n          \"arrivalUTC\": 1619773472,\n          \"originOffset\": \"+0200\",\n          \"destinationOffset\": \"+0200\",\n          \"transportType\": \"bus\",\n          \"includedBaggage\": true,\n          \"notAvailableReason\": null,\n          \"isPresale\": false\n        },\n        {\n          \"id\": \"2345678901\",\n          \"provider\": {\n            \"name\": \"TGV\",\n            \"company\": \"SNCF\",\n            \"transportType\": \"train\"\n          },\n          \"origin\": {\n            \"id\": \"g|FRavignon_@spg3vp\",\n            \"name\": \"Avignon Centre\",\n            \"city\": \"Avignon\",\n            \"region\": \"Provence-Alpes-Côte d’Azur\",\n            \"country\": \"FR\",\n            \"address\": \"1 rue du centre, 84000, Avignon\",\n            \"latitude\": 43.9408,\n            \"longitude\": 4.79167\n          },\n          \"destination\": {\n            \"id\": \"g|FRavignon_@spg3vp\",\n            \"name\": \"Avignon Centre\",\n            \"city\": \"Avignon\",\n            \"region\": \"Provence-Alpes-Côte d’Azur\",\n            \"country\": \"FR\",\n            \"address\": \"1 rue du centre, 84000, Avignon\",\n            \"latitude\": 43.9408,\n            \"longitude\": 4.79167\n          },\n          \"priceCents\": 4000,\n          \"durationMinutes\": 80,\n          \"departureUTC\": 1619774072,\n          \"arrivalUTC\": 1619778872,\n          \"originOffset\": \"+0200\",\n          \"destinationOffset\": \"+0200\",\n          \"transportType\": \"train\",\n          \"includedBaggage\": true,\n          \"notAvailableReason\": null,\n          \"vehicleIdentifier\": \"6319\",\n          \"co2g\": 50,\n          \"bookingClass\": \"2_ND_CLASS\",\n          \"fareName\": \"PREM'S\",\n          \"isPresale\": false\n        }\n      ]\n    }\n  },\n  \"bundles\": [\n    {\n      \"trips\": [\n        \"67f077b4-3836-4616-ace2-42d68b0f4c71\"\n      ],\n      \"redirectionLink\": \"v2/redirect/?outboundTripId=67f077b4-3836-4616-ace2-42d68b0f4c71&partnerId=FR-WB-TEST\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "522b97fa-69cb-4433-aef2-b4bec9eaab38",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originGpuid\": \"c|FRavignon_@spg6j\",\n  \"destinationGpuid\": \"c|FRmarseill@spey6\",\n  \"passengers\": [\n    {\n      \"age\": 22\n    }\n  ],\n  \"outboundDate\": \"2021-04-28T00:00:00Z\",\n  \"returnDate\": \"2021-04-28T00:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7655a76-d9e3-4bb6-a460-93ca2a0d0fc1",
+              "name": "If the stopCluster is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originGpuid\": \"c|FRavignon_@spg6j\",\n  \"destinationGpuid\": \"c|FRmarseill@spey6\",\n  \"passengers\": [\n    {\n      \"age\": 22\n    }\n  ],\n  \"outboundDate\": \"2021-04-28T00:00:00Z\",\n  \"returnDate\": \"2021-04-28T00:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"partnersApi:client:stopClusterNotFound\",\n  \"errorMessage\": \"This StopCluster could not be found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ca299cd-4998-4db1-b155-3761e6e3f451",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originGpuid\": \"c|FRavignon_@spg6j\",\n  \"destinationGpuid\": \"c|FRmarseill@spey6\",\n  \"passengers\": [\n    {\n      \"age\": 22\n    }\n  ],\n  \"outboundDate\": \"2021-04-28T00:00:00Z\",\n  \"returnDate\": \"2021-04-28T00:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "005aa860-d9f0-4384-b8cb-407e3f45e497",
+    "name": "@tictactrip/api Autocomplete Results API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tictactrip's API service\n\nContact Support:\n Name: Tictactrip\n Email: dev@tictactrip.eu",
+      "type": "text/plain"
+    }
+  }
+}

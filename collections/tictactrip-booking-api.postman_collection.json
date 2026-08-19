@@ -1,0 +1,2604 @@
+{
+  "item": [
+    {
+      "id": "56c72519-52d6-451d-a63b-e9cd11e2b1a0",
+      "name": "Booking",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "03d81535-4a5a-43e8-9be8-963f6e098543",
+          "name": "Get Cart",
+          "request": {
+            "name": "Get Cart",
+            "description": {
+              "content": "Get a cart by its id and its matching order if it exists.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "carts",
+                ":cartId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cartId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5b12fe2f-b19c-4e63-b93d-f9e4d5fa19ac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts",
+                    ":cartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cartId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cart\": {\n    \"id\": \"6771146ca0b7432b\",\n    \"partnerId\": null,\n    \"partnerExternalId\": null,\n    \"paidPrice\": 1420,\n    \"rawPrice\": 1320,\n    \"totalPrice\": 1420,\n    \"isIdentityDocumentRequired\": false,\n    \"trips\": {\n      \"outboundTrip\": {\n        \"id\": \"1165021\",\n        \"uuid\": \"1f945779-4d9d-47ae-a711-c32bbcbf7639\",\n        \"origin\": {\n          \"id\": 12709,\n          \"city\": \"Pralognan La Vanoise\",\n          \"country\": \"France\",\n          \"station\": \"PRALOGNAN LA VANOISE Airelles\"\n        },\n        \"destination\": {\n          \"id\": 549,\n          \"city\": \"Moûtiers\",\n          \"country\": \"France\",\n          \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\"\n        },\n        \"originOffset\": \"+0200\",\n        \"destinationOffset\": \"+0200\",\n        \"priceCents\": 1420,\n        \"feeCents\": 0,\n        \"paidPrice\": 1420,\n        \"departureUTC\": 1663561920,\n        \"arrivalUTC\": 1663566300,\n        \"durationMinutes\": 73,\n        \"companies\": [\n          \"Altibus\"\n        ],\n        \"segments\": [\n          {\n            \"id\": \"1764084\",\n            \"company\": \"Altibus\",\n            \"mean\": \"bus\",\n            \"origin\": {\n              \"city\": \"Pralognan La Vanoise\",\n              \"country\": \"France\",\n              \"station\": \"PRALOGNAN LA VANOISE Airelles\",\n              \"lat\": 45.3819,\n              \"long\": 6.72121\n            },\n            \"destination\": {\n              \"city\": \"Moûtiers\",\n              \"country\": \"France\",\n              \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\",\n              \"lat\": 45.4852,\n              \"long\": 6.5291\n            },\n            \"isBookable\": true,\n            \"priceCents\": 1420,\n            \"feeCents\": 100,\n            \"includedProviderFeeCents\": 120,\n            \"departureUTC\": 1663561920,\n            \"arrivalUTC\": 1663566300,\n            \"originOffset\": \"+0200\",\n            \"destinationOffset\": \"+0200\",\n            \"durationMinutes\": 73,\n            \"redirectionLink\": \"/redirect?company=21&trip=MOG577&date=19/09/2022&env=production\",\n            \"isPresale\": false\n          }\n        ],\n        \"mean\": \"BUS\",\n        \"co2g\": 669\n      }\n    },\n    \"passengers\": [\n      {\n        \"id\": 1445751,\n        \"lastName\": null,\n        \"firstName\": null,\n        \"title\": null,\n        \"isCustomer\": false,\n        \"discountCardId\": null,\n        \"category\": \"adults\",\n        \"discountCards\": [],\n        \"age\": 30,\n        \"birthdate\": null\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef9f92a4-76a9-4d7f-9e10-2f440ad000f0",
+              "name": "If cart does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts",
+                    ":cartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cartId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"carts:client:cartNotFound\",\n  \"errorMessage\": \"Cart was not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7babb8be-02d8-46a4-8e06-acce5e6ef08d",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts",
+                    ":cartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cartId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9299dc39-a3a1-43a1-997c-b4621020b9eb",
+          "name": "Update Cart",
+          "request": {
+            "name": "Update Cart",
+            "description": {
+              "content": "\nUpdates a cart with the provided informations. A price lookup is done everytime a cart is patched.\nKeep in mind that patching a cart with an empty payload WILL NOT reset the cart's data, and will trigger a price lookup with the saved cart's data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "carts",
+                ":cartId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cartId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passengers\": [\n    {\n      \"age\": \"<double>\",\n      \"category\": \"<string>\",\n      \"discountCards\": [\n        {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"birthdate\": \"<dateTime>\",\n      \"identityDocument\": {\n        \"type\": \"<string>\",\n        \"documentIdentifier\": \"<string>\",\n        \"expirationDate\": \"<string>\",\n        \"countryCode\": \"<string>\"\n      },\n      \"isCustomer\": \"<boolean>\"\n    },\n    {\n      \"age\": \"<double>\",\n      \"category\": \"<string>\",\n      \"discountCards\": [\n        {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"birthdate\": \"<dateTime>\",\n      \"identityDocument\": {\n        \"type\": \"<string>\",\n        \"documentIdentifier\": \"<string>\",\n        \"expirationDate\": \"<string>\",\n        \"countryCode\": \"<string>\"\n      },\n      \"isCustomer\": \"<boolean>\"\n    }\n  ],\n  \"customer\": {\n    \"mail\": \"<string>\",\n    \"title\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"birthdate\": \"<dateTime>\",\n    \"isSubscribedToNewsletter\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"language\": \"<string>\",\n    \"devices\": [\n      {\n        \"id\": \"<double>\",\n        \"orderCustomerId\": \"<string>\",\n        \"notificationToken\": \"<string>\",\n        \"deviceId\": \"<string>\",\n        \"platform\": \"<string>\",\n        \"userAgent\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"deletedAt\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<double>\",\n        \"orderCustomerId\": \"<string>\",\n        \"notificationToken\": \"<string>\",\n        \"deviceId\": \"<string>\",\n        \"platform\": \"<string>\",\n        \"userAgent\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"deletedAt\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"segmentAlternatives\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19c0fc86-a0ea-4b04-9c23-db4d87a67f77",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts",
+                    ":cartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cartId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"passengers\": [\n    {\n      \"lastName\": \"name\",\n      \"discountCards\": [],\n      \"isCustomer\": true,\n      \"title\": \"MR\",\n      \"firstName\": \"firstName\",\n      \"category\": \"adults\",\n      \"age\": 25,\n      \"birthdate\": \"1992-09-09\"\n    }\n  ],\n  \"customer\": {\n    \"lastName\": \"lastName\",\n    \"mail\": \"mail@mail.com\",\n    \"isSubscribedToNewsletter\": false,\n    \"title\": \"MR\",\n    \"firstName\": \"firstName\",\n    \"birthdate\": \"1992-09-09\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cart\": {\n    \"id\": \"6771146ca0b7432b\",\n    \"partnerId\": null,\n    \"partnerExternalId\": null,\n    \"paidPrice\": 1180,\n    \"totalPrice\": 1180,\n    \"rawPrice\": 1080,\n    \"isIdentityDocumentRequired\": false,\n    \"trips\": {\n      \"outboundTrip\": {\n        \"id\": \"1165021\",\n        \"uuid\": \"1f945779-4d9d-47ae-a711-c32bbcbf7639\",\n        \"origin\": {\n          \"id\": 12709,\n          \"city\": \"Pralognan La Vanoise\",\n          \"country\": \"France\",\n          \"station\": \"PRALOGNAN LA VANOISE Airelles\"\n        },\n        \"destination\": {\n          \"id\": 549,\n          \"city\": \"Moûtiers\",\n          \"country\": \"France\",\n          \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\"\n        },\n        \"originOffset\": \"+0200\",\n        \"destinationOffset\": \"+0200\",\n        \"priceCents\": 1080,\n        \"feeCents\": 0,\n        \"paidPrice\": 1180,\n        \"departureUTC\": 1663561920,\n        \"arrivalUTC\": 1663566300,\n        \"durationMinutes\": 73,\n        \"companies\": [\n          \"Altibus\"\n        ],\n        \"segments\": [\n          {\n            \"id\": \"1764084\",\n            \"company\": \"Altibus\",\n            \"mean\": \"bus\",\n            \"origin\": {\n              \"city\": \"Pralognan La Vanoise\",\n              \"country\": \"France\",\n              \"station\": \"PRALOGNAN LA VANOISE Airelles\",\n              \"lat\": 45.3819,\n              \"long\": 6.72121\n            },\n            \"destination\": {\n              \"city\": \"Moûtiers\",\n              \"country\": \"France\",\n              \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\",\n              \"lat\": 45.4852,\n              \"long\": 6.5291\n            },\n            \"isBookable\": true,\n            \"priceCents\": 1180,\n            \"feeCents\": 100,\n            \"includedProviderFeeCents\": 120,\n            \"departureUTC\": 1663561920,\n            \"arrivalUTC\": 1663566300,\n            \"originOffset\": \"+0200\",\n            \"destinationOffset\": \"+0200\",\n            \"durationMinutes\": 73,\n            \"redirectionLink\": \"/redirect?company=21&trip=MOG577&date=19/09/2022&env=production\",\n            \"isPresale\": false\n          }\n        ],\n        \"mean\": \"BUS\",\n        \"co2g\": 669\n      }\n    },\n    \"passengers\": [\n      {\n        \"id\": 1445752,\n        \"lastName\": \"name\",\n        \"firstName\": \"firstName\",\n        \"title\": \"MR\",\n        \"isCustomer\": true,\n        \"discountCardId\": null,\n        \"category\": \"adults\",\n        \"discountCards\": [],\n        \"age\": 30,\n        \"birthdate\": \"1992-09-09T00:00:00.000Z\"\n      }\n    ],\n    \"customer\": {\n      \"mail\": \"mail@mail.com\",\n      \"title\": \"MR\",\n      \"lastName\": \"lastName\",\n      \"firstName\": \"firstName\",\n      \"birthdate\": \"1992-09-09T00:00:00.000Z\"\n    }\n  },\n  \"isAvailable\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f795c0f5-e084-449f-ade0-327c260ae8ca",
+              "name": "If cart does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts",
+                    ":cartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cartId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"passengers\": [\n    {\n      \"lastName\": \"name\",\n      \"discountCards\": [],\n      \"isCustomer\": true,\n      \"title\": \"MR\",\n      \"firstName\": \"firstName\",\n      \"category\": \"adults\",\n      \"age\": 25,\n      \"birthdate\": \"1992-09-09\"\n    }\n  ],\n  \"customer\": {\n    \"lastName\": \"lastName\",\n    \"mail\": \"mail@mail.com\",\n    \"isSubscribedToNewsletter\": false,\n    \"title\": \"MR\",\n    \"firstName\": \"firstName\",\n    \"birthdate\": \"1992-09-09\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"carts:client:cartNotFound\",\n  \"errorMessage\": \"Cart was not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32bf4495-ad08-4a1d-9281-da3b313f96dd",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts",
+                    ":cartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cartId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"passengers\": [\n    {\n      \"lastName\": \"name\",\n      \"discountCards\": [],\n      \"isCustomer\": true,\n      \"title\": \"MR\",\n      \"firstName\": \"firstName\",\n      \"category\": \"adults\",\n      \"age\": 25,\n      \"birthdate\": \"1992-09-09\"\n    }\n  ],\n  \"customer\": {\n    \"lastName\": \"lastName\",\n    \"mail\": \"mail@mail.com\",\n    \"isSubscribedToNewsletter\": false,\n    \"title\": \"MR\",\n    \"firstName\": \"firstName\",\n    \"birthdate\": \"1992-09-09\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93d33c80-a1cd-4dbe-9eca-db7fd720781c",
+          "name": "Create Cart",
+          "request": {
+            "name": "Create Cart",
+            "description": {
+              "content": "Creates a cart. Has to contain at least an outbound trip id and minimal passenger information for it to work.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "carts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"outboundTripId\": \"<string>\",\n  \"returnTripId\": \"<string>\",\n  \"passengers\": [\n    {\n      \"age\": \"<double>\",\n      \"category\": \"<string>\",\n      \"discountCards\": [\n        {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"birthdate\": \"<dateTime>\",\n      \"identityDocument\": {\n        \"type\": \"<string>\",\n        \"documentIdentifier\": \"<string>\",\n        \"expirationDate\": \"<string>\",\n        \"countryCode\": \"<string>\"\n      },\n      \"isCustomer\": \"<boolean>\"\n    },\n    {\n      \"age\": \"<double>\",\n      \"category\": \"<string>\",\n      \"discountCards\": [\n        {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"code\": \"<string>\"\n        }\n      ],\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"birthdate\": \"<dateTime>\",\n      \"identityDocument\": {\n        \"type\": \"<string>\",\n        \"documentIdentifier\": \"<string>\",\n        \"expirationDate\": \"<string>\",\n        \"countryCode\": \"<string>\"\n      },\n      \"isCustomer\": \"<boolean>\"\n    }\n  ],\n  \"customer\": {\n    \"mail\": \"<string>\",\n    \"title\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"birthdate\": \"<dateTime>\",\n    \"isSubscribedToNewsletter\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"language\": \"<string>\",\n    \"devices\": [\n      {\n        \"id\": \"<double>\",\n        \"orderCustomerId\": \"<string>\",\n        \"notificationToken\": \"<string>\",\n        \"deviceId\": \"<string>\",\n        \"platform\": \"<string>\",\n        \"userAgent\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"deletedAt\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<double>\",\n        \"orderCustomerId\": \"<string>\",\n        \"notificationToken\": \"<string>\",\n        \"deviceId\": \"<string>\",\n        \"platform\": \"<string>\",\n        \"userAgent\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"deletedAt\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"partnerId\": \"<string>\",\n  \"partnerExternalId\": \"<string>\",\n  \"deviceId\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "756edd8d-cb5d-4368-bf6f-0b0b775341ca",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"outboundTripId\": \"1f945779-4d9d-47ae-a711-c32bbcbf7639\",\n  \"passengers\": [\n    {\n      \"age\": 30,\n      \"discountCards\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cart\": {\n    \"id\": \"6771146ca0b7432b\",\n    \"partnerId\": null,\n    \"partnerExternalId\": null,\n    \"paidPrice\": 1420,\n    \"rawPrice\": 1320,\n    \"totalPrice\": 1420,\n    \"isIdentityDocumentRequired\": false,\n    \"trips\": {\n      \"outboundTrip\": {\n        \"id\": \"1165021\",\n        \"uuid\": \"1f945779-4d9d-47ae-a711-c32bbcbf7639\",\n        \"origin\": {\n          \"id\": 12709,\n          \"city\": \"Pralognan La Vanoise\",\n          \"country\": \"France\",\n          \"station\": \"PRALOGNAN LA VANOISE Airelles\"\n        },\n        \"destination\": {\n          \"id\": 549,\n          \"city\": \"Moûtiers\",\n          \"country\": \"France\",\n          \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\"\n        },\n        \"originOffset\": \"+0200\",\n        \"destinationOffset\": \"+0200\",\n        \"priceCents\": 1420,\n        \"feeCents\": 0,\n        \"paidPrice\": 1420,\n        \"departureUTC\": 1663561920,\n        \"arrivalUTC\": 1663566300,\n        \"durationMinutes\": 73,\n        \"companies\": [\n          \"Altibus\"\n        ],\n        \"segments\": [\n          {\n            \"id\": \"1764084\",\n            \"company\": \"Altibus\",\n            \"mean\": \"bus\",\n            \"origin\": {\n              \"city\": \"Pralognan La Vanoise\",\n              \"country\": \"France\",\n              \"station\": \"PRALOGNAN LA VANOISE Airelles\",\n              \"lat\": 45.3819,\n              \"long\": 6.72121\n            },\n            \"destination\": {\n              \"city\": \"Moûtiers\",\n              \"country\": \"France\",\n              \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\",\n              \"lat\": 45.4852,\n              \"long\": 6.5291\n            },\n            \"isBookable\": true,\n            \"priceCents\": 1420,\n            \"feeCents\": 100,\n            \"includedProviderFeeCents\": 120,\n            \"departureUTC\": 1663561920,\n            \"arrivalUTC\": 1663566300,\n            \"originOffset\": \"+0200\",\n            \"destinationOffset\": \"+0200\",\n            \"durationMinutes\": 73,\n            \"redirectionLink\": \"/redirect?company=21&trip=MOG577&date=19/09/2022&env=production\",\n            \"isPresale\": false\n          }\n        ],\n        \"mean\": \"BUS\",\n        \"co2g\": 669\n      }\n    },\n    \"passengers\": [\n      {\n        \"id\": 1445751,\n        \"lastName\": null,\n        \"firstName\": null,\n        \"title\": null,\n        \"isCustomer\": false,\n        \"discountCardId\": null,\n        \"category\": \"adults\",\n        \"discountCards\": [],\n        \"age\": 30,\n        \"birthdate\": null\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97a3c53d-1ce7-4ed0-844b-20f81c626a65",
+              "name": "If trip does not exist or has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"outboundTripId\": \"1f945779-4d9d-47ae-a711-c32bbcbf7639\",\n  \"passengers\": [\n    {\n      \"age\": 30,\n      \"discountCards\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"carts:client:tripExpired\",\n  \"errorMessage\": \"The trip does not exist or has expired\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2e717ce-7ab7-48cf-a012-69bf3100a922",
+              "name": "If partner is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"outboundTripId\": \"1f945779-4d9d-47ae-a711-c32bbcbf7639\",\n  \"passengers\": [\n    {\n      \"age\": 30,\n      \"discountCards\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"partnersApi:client:partnerNotFound\",\n  \"errorMessage\": \"Partner was not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ee195eb-8439-4d86-85d8-495bddfa6ed0",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"outboundTripId\": \"1f945779-4d9d-47ae-a711-c32bbcbf7639\",\n  \"passengers\": [\n    {\n      \"age\": 30,\n      \"discountCards\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76a5ab92-fdf4-4d1c-bb74-f146571d9abc",
+          "name": "Get Orders",
+          "request": {
+            "name": "Get Orders",
+            "description": {
+              "content": "Retrieves a paginated list of all orders for the authenticated partner, ordered by most recent first.\nEach page contains up to 30 orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-indexed). Defaults to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "itemsPerPage",
+                  "value": "30",
+                  "description": "Number of orders per page. Defaults to 30 and is capped at 30."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fcaf6104-3710-49ce-b7d7-2ca324f8a6c4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "itemsPerPage",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orders\": [\n    {\n      \"id\": \"8bc8557793fe4447\",\n      \"orderDate\": \"2022-09-09T15:30:02.896Z\",\n      \"cartId\": \"6771146ca0b7432b\",\n      \"orderStatus\": \"CREATED\",\n      \"paidPrice\": 1180,\n      \"rawPrice\": 1180,\n      \"totalPrice\": 1880,\n      \"trips\": {\n        \"outboundTrip\": {\n          \"id\": \"309496\",\n          \"origin\": {\n            \"city\": \"Pralognan La Vanoise\",\n            \"country\": \"France\",\n            \"station\": \"PRALOGNAN LA VANOISE Airelles\"\n          },\n          \"destination\": {\n            \"city\": \"Moûtiers\",\n            \"country\": \"France\",\n            \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\"\n          },\n          \"priceCents\": 1180,\n          \"feeCents\": 0,\n          \"paidPrice\": 1180,\n          \"departureUTC\": 1663561920,\n          \"arrivalUTC\": 1663566300,\n          \"originOffset\": \"+0200\",\n          \"destinationOffset\": \"+0200\",\n          \"durationMinutes\": 73,\n          \"companies\": [\n            \"Altibus\"\n          ],\n          \"segments\": [\n            {\n              \"id\": \"406308\",\n              \"company\": \"Altibus\",\n              \"mean\": \"bus\",\n              \"origin\": {\n                \"city\": \"Pralognan La Vanoise\",\n                \"country\": \"France\",\n                \"station\": \"PRALOGNAN LA VANOISE Airelles\",\n                \"lat\": 45.3886,\n                \"long\": 6.7163\n              },\n              \"destination\": {\n                \"city\": \"Moûtiers\",\n                \"country\": \"France\",\n                \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\",\n                \"lat\": 45.4867,\n                \"long\": 6.5311\n              },\n              \"priceCents\": 1180,\n              \"feeCents\": 100,\n              \"includedProviderFeeCents\": 120,\n              \"departureUTC\": 1663561920,\n              \"arrivalUTC\": 1663566300,\n              \"originOffset\": \"+0200\",\n              \"destinationOffset\": \"+0200\",\n              \"durationMinutes\": 73,\n              \"isBookable\": true,\n              \"redirectionLink\": \"/redirect?company=21&trip=MOG577&date=19/09/2022&env=production\",\n              \"eTicketUrl\": \"https://api.tictactrip.eu/booking/v3/orders/8bc8557793fe4447/etickets/79967/download?filename=eticket\",\n              \"isPresale\": false\n            }\n          ],\n          \"mean\": \"BUS\",\n          \"co2g\": 669\n        }\n      },\n      \"passengers\": [\n        {\n          \"id\": 349410,\n          \"title\": \"MR\",\n          \"lastName\": \"name\",\n          \"firstName\": \"firstName\",\n          \"category\": \"adults\",\n          \"discountCards\": [],\n          \"isCustomer\": true,\n          \"identityDocument\": null,\n          \"age\": 30,\n          \"birthDay\": 9,\n          \"birthMonth\": 9,\n          \"birthYear\": 1992,\n          \"discountCardId\": null\n        }\n      ],\n      \"customer\": {\n        \"mail\": \"mail@mail.com\",\n        \"title\": \"MR\",\n        \"lastName\": \"name\",\n        \"firstName\": \"firstName\",\n        \"birthDay\": 9,\n        \"birthMonth\": 9,\n        \"birthYear\": 1992\n      },\n      \"paymentStatus\": \"ACCEPTED\"\n    }\n  ],\n  \"pagination\": {\n    \"currentPage\": 1,\n    \"itemsPerPage\": 30,\n    \"totalItems\": 1,\n    \"totalPages\": 1,\n    \"hasNextPage\": false,\n    \"hasPreviousPage\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7ba4b12-3a18-4819-8d15-d8e69d0ff59a",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "itemsPerPage",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "576470e3-a646-443c-9579-2668c9e6c628",
+          "name": "Create Order",
+          "request": {
+            "name": "Create Order",
+            "description": {
+              "content": "Creates an order. It uses the cart's information to build the order from it.\nThe cart must have been patched with customer information and at least one passenger.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cartId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "855e5707-28a4-486d-b8e7-5c4be13109f7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cartId\": \"6771146ca0b7432b\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order\": {\n    \"id\": \"8bc8557793fe4447\",\n    \"orderDate\": \"2022-09-09T13:24:15.533Z\",\n    \"cartId\": \"6771146ca0b7432b\",\n    \"orderStatus\": \"CREATED\",\n    \"totalPrice\": 1180,\n    \"rawPrice\": 1180,\n    \"paidPrice\": 1180,\n    \"trips\": {\n      \"outboundTrip\": {\n        \"id\": \"309495\",\n        \"origin\": {\n          \"city\": \"Pralognan La Vanoise\",\n          \"country\": \"France\",\n          \"station\": \"PRALOGNAN LA VANOISE Airelles\"\n        },\n        \"destination\": {\n          \"city\": \"Moûtiers\",\n          \"country\": \"France\",\n          \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\"\n        },\n        \"priceCents\": 1180,\n        \"feeCents\": 0,\n        \"paidPrice\": 1180,\n        \"departureUTC\": 1663561920,\n        \"arrivalUTC\": 1663566300,\n        \"originOffset\": \"+0200\",\n        \"destinationOffset\": \"+0200\",\n        \"durationMinutes\": 73,\n        \"companies\": [\n          \"Altibus\"\n        ],\n        \"segments\": [\n          {\n            \"id\": \"406307\",\n            \"company\": \"Altibus\",\n            \"mean\": \"bus\",\n            \"origin\": {\n              \"city\": \"Pralognan La Vanoise\",\n              \"country\": \"France\",\n              \"station\": \"PRALOGNAN LA VANOISE Airelles\",\n              \"lat\": 45.3886,\n              \"long\": 6.7163\n            },\n            \"destination\": {\n              \"city\": \"Moûtiers\",\n              \"country\": \"France\",\n              \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\",\n              \"lat\": 45.4867,\n              \"long\": 6.5311\n            },\n            \"priceCents\": 1180,\n            \"feeCents\": 100,\n            \"includedProviderFeeCents\": 120,\n            \"departureUTC\": 1663561920,\n            \"arrivalUTC\": 1663566300,\n            \"originOffset\": \"+0200\",\n            \"destinationOffset\": \"+0200\",\n            \"durationMinutes\": 73,\n            \"isBookable\": true,\n            \"redirectionLink\": \"/redirect?company=21&trip=MOG577&date=19/09/2022&env=production\",\n            \"isPresale\": false\n          }\n        ],\n        \"mean\": \"BUS\",\n        \"co2g\": 669\n      }\n    },\n    \"passengers\": [\n      {\n        \"id\": 349409,\n        \"title\": \"MR\",\n        \"lastName\": \"name\",\n        \"firstName\": \"firstName\",\n        \"category\": \"adults\",\n        \"discountCards\": [],\n        \"isCustomer\": true,\n        \"identityDocument\": null,\n        \"age\": 30,\n        \"birthDay\": 9,\n        \"birthMonth\": 9,\n        \"birthYear\": 1992,\n        \"discountCardId\": null\n      }\n    ],\n    \"customer\": {\n      \"mail\": \"mail@mail.com\",\n      \"title\": \"MR\",\n      \"lastName\": \"name\",\n      \"firstName\": \"firstName\",\n      \"birthDay\": 9,\n      \"birthMonth\": 9,\n      \"birthYear\": 1992\n    },\n    \"paymentStatus\": \"ACCEPTED\"\n  },\n  \"priceCentsDiff\": 0,\n  \"isAvailable\": true,\n  \"expiresAt\": \"2022-09-09T13:39:15.533Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2da8189d-d78f-4f5f-aef8-481301315abc",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cartId\": \"6771146ca0b7432b\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cc8e8e1-d9ba-4d72-a204-38f8e1344fd7",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cartId\": \"6771146ca0b7432b\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9695388-115b-4698-84b1-e274f12b6920",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {
+              "content": "Retrieves the order from the given cart ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "18b69a7e-3854-43fe-9bfe-284899358347",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order\": {\n    \"id\": \"8bc8557793fe4447\",\n    \"orderDate\": \"2022-09-09T15:30:02.896Z\",\n    \"cartId\": \"6771146ca0b7432b\",\n    \"orderStatus\": \"CREATED\",\n    \"paidPrice\": 1180,\n    \"rawPrice\": 1180,\n    \"totalPrice\": 1880,\n    \"trips\": {\n      \"outboundTrip\": {\n        \"id\": \"309496\",\n        \"origin\": {\n          \"city\": \"Pralognan La Vanoise\",\n          \"country\": \"France\",\n          \"station\": \"PRALOGNAN LA VANOISE Airelles\"\n        },\n        \"destination\": {\n          \"city\": \"Moûtiers\",\n          \"country\": \"France\",\n          \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\"\n        },\n        \"priceCents\": 1180,\n        \"feeCents\": 0,\n        \"paidPrice\": 1180,\n        \"departureUTC\": 1663561920,\n        \"arrivalUTC\": 1663566300,\n        \"originOffset\": \"+0200\",\n        \"destinationOffset\": \"+0200\",\n        \"durationMinutes\": 73,\n        \"companies\": [\n          \"Altibus\"\n        ],\n        \"segments\": [\n          {\n            \"id\": \"406308\",\n            \"company\": \"Altibus\",\n            \"mean\": \"bus\",\n            \"origin\": {\n              \"city\": \"Pralognan La Vanoise\",\n              \"country\": \"France\",\n              \"station\": \"PRALOGNAN LA VANOISE Airelles\",\n              \"lat\": 45.3886,\n              \"long\": 6.7163\n            },\n            \"destination\": {\n              \"city\": \"Moûtiers\",\n              \"country\": \"France\",\n              \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\",\n              \"lat\": 45.4867,\n              \"long\": 6.5311\n            },\n            \"priceCents\": 1180,\n            \"feeCents\": 100,\n            \"includedProviderFeeCents\": 120,\n            \"departureUTC\": 1663561920,\n            \"arrivalUTC\": 1663566300,\n            \"originOffset\": \"+0200\",\n            \"destinationOffset\": \"+0200\",\n            \"durationMinutes\": 73,\n            \"isBookable\": true,\n            \"redirectionLink\": \"/redirect?company=21&trip=MOG577&date=19/09/2022&env=production\",\n            \"eTicketUrl\": \"https://api.tictactrip.eu/booking/v3/orders/8bc8557793fe4447/etickets/79967/download?filename=eticket\",\n            \"isPresale\": false\n          }\n        ],\n        \"mean\": \"BUS\",\n        \"co2g\": 669\n      }\n    },\n    \"passengers\": [\n      {\n        \"id\": 349410,\n        \"title\": \"MR\",\n        \"lastName\": \"name\",\n        \"firstName\": \"firstName\",\n        \"category\": \"adults\",\n        \"discountCards\": [],\n        \"isCustomer\": true,\n        \"identityDocument\": null,\n        \"age\": 30,\n        \"birthDay\": 9,\n        \"birthMonth\": 9,\n        \"birthYear\": 1992,\n        \"discountCardId\": null\n      }\n    ],\n    \"customer\": {\n      \"mail\": \"mail@mail.com\",\n      \"title\": \"MR\",\n      \"lastName\": \"name\",\n      \"firstName\": \"firstName\",\n      \"birthDay\": 9,\n      \"birthMonth\": 9,\n      \"birthYear\": 1992\n    },\n    \"paymentStatus\": \"ACCEPTED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90f6f3e9-0930-4095-a865-8a96bdd43eb1",
+              "name": "If order does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"orders:client:orderNotFound\",\n  \"errorMessage\": \"Order was not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e9c7214-6fc6-42a3-a754-91aa0f2aaf59",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3d51817-f2ca-4d0e-bb9b-b70167d0ba38",
+          "name": "Get Discount Cards",
+          "request": {
+            "name": "Get Discount Cards",
+            "description": {
+              "content": "Returns all available discount cards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "discountCards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be08f5b1-68c3-4cca-91ff-a9d208e1d052",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "discountCards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"TTT_ADULT_PASS\",\n    \"label\": \"Avantage Adulte\",\n    \"visibility\": 7,\n    \"cardCode\": \"WEEKEND_PASS\",\n    \"isIdRequired\": true\n  },\n  {\n    \"id\": \"TTT_VSC_YOUNG_PASS\",\n    \"label\": \"Avantage Jeune\",\n    \"visibility\": 6,\n    \"cardCode\": \"YOUNG_PASS\",\n    \"isIdRequired\": true\n  },\n  {\n    \"id\": \"TTT_VSC_SENIOR_PASS\",\n    \"label\": \"Avantage Senior\",\n    \"visibility\": 5,\n    \"cardCode\": \"SENIOR_PASS\",\n    \"isIdRequired\": true\n  },\n  {\n    \"id\": \"TTT_VSC_FAM30\",\n    \"label\": \"Famille nombreuse 30%\",\n    \"visibility\": 4,\n    \"cardCode\": \"FAM30\",\n    \"isIdRequired\": false\n  },\n  {\n    \"id\": \"TTT_VSC_FAM40\",\n    \"label\": \"Famille nombreuse 40%\",\n    \"visibility\": 3,\n    \"cardCode\": \"FAM40\",\n    \"isIdRequired\": false\n  },\n  {\n    \"id\": \"TTT_VSC_FAM50\",\n    \"label\": \"Famille nombreuse 50%\",\n    \"visibility\": 2,\n    \"cardCode\": \"FAM50\",\n    \"isIdRequired\": false\n  },\n  {\n    \"id\": \"TTT_VSC_FAM75\",\n    \"label\": \"Famille nombreuse 75%\",\n    \"visibility\": 1,\n    \"cardCode\": \"FAM75\",\n    \"isIdRequired\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b382b9d-cfb9-4632-815a-814586bd1755",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "discountCards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ada4ae53-e60b-4a57-aff2-c76ef1545d79",
+          "name": "Create Book",
+          "request": {
+            "name": "Create Book",
+            "description": {
+              "content": "Triggers an asynchronous booking process.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "orders",
+                ":orderId",
+                "book"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d32fd147-007f-4c7e-ad4b-5858353b23f3",
+              "name": "Booking in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order\": {\n    \"id\": \"8bc8557793fe4447\",\n    \"orderDate\": \"2022-09-09T15:30:02.896Z\",\n    \"cartId\": \"6771146ca0b7432b\",\n    \"orderStatus\": \"PENDING_BOOKING\",\n    \"paidPrice\": 1180,\n    \"rawPrice\": 1180,\n    \"totalPrice\": 1880,\n    \"trips\": {\n      \"outboundTrip\": {\n        \"id\": \"309496\",\n        \"origin\": {\n          \"city\": \"Pralognan La Vanoise\",\n          \"country\": \"France\",\n          \"station\": \"PRALOGNAN LA VANOISE Airelles\"\n        },\n        \"destination\": {\n          \"city\": \"Moûtiers\",\n          \"country\": \"France\",\n          \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\"\n        },\n        \"priceCents\": 1180,\n        \"feeCents\": 0,\n        \"paidPrice\": 1180,\n        \"departureUTC\": 1663561920,\n        \"arrivalUTC\": 1663566300,\n        \"originOffset\": \"+0200\",\n        \"destinationOffset\": \"+0200\",\n        \"durationMinutes\": 73,\n        \"companies\": [\n          \"Altibus\"\n        ],\n        \"segments\": [\n          {\n            \"id\": \"406308\",\n            \"company\": \"Altibus\",\n            \"mean\": \"bus\",\n            \"origin\": {\n              \"city\": \"Pralognan La Vanoise\",\n              \"country\": \"France\",\n              \"station\": \"PRALOGNAN LA VANOISE Airelles\",\n              \"lat\": 45.3886,\n              \"long\": 6.7163\n            },\n            \"destination\": {\n              \"city\": \"Moûtiers\",\n              \"country\": \"France\",\n              \"station\": \"Moûtiers - Salins-les-Thermes - Brides-les-Bains\",\n              \"lat\": 45.4867,\n              \"long\": 6.5311\n            },\n            \"priceCents\": 1180,\n            \"feeCents\": 100,\n            \"includedProviderFeeCents\": 120,\n            \"departureUTC\": 1663561920,\n            \"arrivalUTC\": 1663566300,\n            \"originOffset\": \"+0200\",\n            \"destinationOffset\": \"+0200\",\n            \"durationMinutes\": 73,\n            \"isBookable\": true,\n            \"redirectionLink\": \"/redirect?company=21&trip=MOG577&date=19/09/2022&env=production\",\n            \"isPresale\": false\n          }\n        ],\n        \"mean\": \"BUS\",\n        \"co2g\": 669\n      }\n    },\n    \"passengers\": [\n      {\n        \"id\": 349410,\n        \"title\": \"MR\",\n        \"lastName\": \"name\",\n        \"firstName\": \"firstName\",\n        \"category\": \"adults\",\n        \"discountCards\": [],\n        \"isCustomer\": true,\n        \"identityDocument\": null,\n        \"age\": 30,\n        \"birthDay\": 9,\n        \"birthMonth\": 9,\n        \"birthYear\": 1992,\n        \"discountCardId\": null\n      }\n    ],\n    \"customer\": {\n      \"mail\": \"mail@mail.com\",\n      \"title\": \"MR\",\n      \"lastName\": \"name\",\n      \"firstName\": \"firstName\",\n      \"birthDay\": 9,\n      \"birthMonth\": 9,\n      \"birthYear\": 1992\n    },\n    \"paymentStatus\": \"ACCEPTED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cdc43f7-7476-4856-b77f-ad8dc98ef1f3",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "556ed499-ac49-4eca-8f3d-3d2b62b9e52e",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b6660f2-5907-4add-a761-372f4cc8707d",
+          "name": "Download Ticket",
+          "request": {
+            "name": "Download Ticket",
+            "description": {
+              "content": "Download an order Eticket and gives the name provided to the file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "orders",
+                ":orderId",
+                "ticket"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filename",
+                  "value": "ticket"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b6503167-0deb-4f21-8508-383d17efaf10",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId",
+                    "ticket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filename",
+                      "value": "myTicketName"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55d0f810-1884-489e-b0ff-a6a20c75b3b4",
+              "name": "If no order is found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId",
+                    "ticket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filename",
+                      "value": "myTicketName"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"orderEtickets:client:orderNotFound\",\n  \"errorMessage\": \"Order was not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1040cc3a-08c3-4dad-ba16-60d91c1bf5af",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orders",
+                    ":orderId",
+                    "ticket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filename",
+                      "value": "myTicketName"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8febaa78-c403-411a-b9a1-96b254e96ee1",
+          "name": "Partner Cancellation Conditions",
+          "request": {
+            "name": "Partner Cancellation Conditions",
+            "description": {
+              "content": "Get cancellation conditions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "orderTickets",
+                ":orderTicketId",
+                "cancellation",
+                "conditions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "orderTicketId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7208732c-a752-4335-9b5b-2dda944ece60",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isCancellable\": true,\n  \"feeCents\": 9504.796943494675,\n  \"bookingId\": \"string\",\n  \"isRefundedByVoucher\": true,\n  \"cutoff\": \"string\",\n  \"voucherAmountCents\": 2537.6726544224925\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dceff49c-d996-43ee-b81c-079295e6a2a7",
+              "name": "If you're accessing an order ticket you haven't emitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"partnersApi:client:notIssuer\",\n  \"errorMessage\": \"The user is not the issuer of this entity\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd5248e3-399a-4063-831a-069b0b962bbe",
+              "name": "If no order is found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"orderEtickets:client:orderNotFound\",\n  \"errorMessage\": \"Order was not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4523b5ba-cad7-4023-9dda-51bcd78485af",
+              "name": "If cancelling a ticket that shouldn't be canceled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"bookableTickets:client:bookableTicketNotCancellable\",\n  \"errorMessage\": \"Bookable ticket is not cancellable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecc76d4d-eb51-4351-b0d1-e219dfc1f5e0",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation",
+                    "conditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41876516-d291-41ed-b4fb-11f73eef54fa",
+          "name": "Partner Cancel Booking",
+          "request": {
+            "name": "Partner Cancel Booking",
+            "description": {},
+            "url": {
+              "path": [
+                "booking",
+                "v3",
+                "orderTickets",
+                ":orderTicketId",
+                "cancellation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "orderTicketId",
+                  "description": "(Required) The order ticket id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6be936dc-4a1d-4ea9-83e6-87a5cdcc020c",
+              "name": "The status of the cancellation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) The order ticket id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "323e2213-9de2-49c1-9ff3-db80c9265200",
+              "name": "If you're accessing an order ticket you haven't emitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) The order ticket id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"partnersApi:client:notIssuer\",\n  \"errorMessage\": \"The user is not the issuer of this entity\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b593d054-9b8f-490c-b9af-8691f6db3d7f",
+              "name": "If no order is found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) The order ticket id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"orderEtickets:client:orderNotFound\",\n  \"errorMessage\": \"Order was not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d237bfee-a90f-44ee-87b2-2c666b8ed1c4",
+              "name": "If cancelling a ticket that shouldn't be canceled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) The order ticket id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"bookableTickets:client:bookableTicketNotCancellable\",\n  \"errorMessage\": \"Bookable ticket is not cancellable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a58bba3-5034-46cb-8861-e078aed0d1df",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "booking",
+                    "v3",
+                    "orderTickets",
+                    ":orderTicketId",
+                    "cancellation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "orderTicketId",
+                      "description": "(Required) The order ticket id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4b6484af-00e2-4116-a562-68fa3b33d6c7",
+    "name": "@tictactrip/api Autocomplete Booking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tictactrip's API service\n\nContact Support:\n Name: Tictactrip\n Email: dev@tictactrip.eu",
+      "type": "text/plain"
+    }
+  }
+}

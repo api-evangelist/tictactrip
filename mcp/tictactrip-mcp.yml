@@ -2,75 +2,79 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/tictactrip-openapi-original.json
-notes: >-
-  No official hosted/remote MCP server was found for Tictactrip (no entry in the
-  MCP registry, no @tictactrip MCP package on npm, no mcp.tictactrip.eu host).
-  This is a CANDIDATE tool surface derived one-tool-per-operation from the
-  published OpenAPI so an agent (or a follow-up forge_mcp_tools pass) can stand
-  one up. Auth: bearer JWT partner token (request from sales@tictactrip.eu).
+notes: 'No official hosted/remote MCP server was found for Tictactrip (no entry in the MCP registry, no
+  @tictactrip MCP package on npm, no mcp.tictactrip.eu host). This is a CANDIDATE tool surface derived
+  one-tool-per-operation from the published OpenAPI so an agent (or a follow-up forge_mcp_tools pass)
+  can stand one up. Auth: bearer JWT partner token (request from sales@tictactrip.eu).'
 server:
   name: tictactrip
   transport: http
   url: null
   base_url: https://api.tictactrip.eu
 tools:
-  - name: get_segment_providers
-    description: Retrieve all segment (carrier) providers.
-    source_operation: openapi/tictactrip-openapi-original.json#GetSegmentProviders
-  - name: list_stop_groups
-    description: List all StopGroups (physical stops).
-    source_operation: openapi/tictactrip-openapi-original.json#GetAllStopGroups
-  - name: get_stop_group
-    description: Get a specific StopGroup by gpuid.
-    source_operation: openapi/tictactrip-openapi-original.json#GetStopGroup
-  - name: list_stop_clusters
-    description: List all StopClusters (grouped stops / cities).
-    source_operation: openapi/tictactrip-openapi-original.json#GetAllStopClusters
-  - name: get_stop_cluster
-    description: Get a specific StopCluster by gpuid.
-    source_operation: openapi/tictactrip-openapi-original.json#GetStopCluster
-  - name: autocomplete
-    description: Search stops and clusters by name (typeahead).
-    source_operation: openapi/tictactrip-openapi-original.json#GetAutocomplete
-  - name: get_popular_cities
-    description: Retrieve the top searched cities.
-    source_operation: openapi/tictactrip-openapi-original.json#GetPopularCities
-  - name: get_popular_cities_from_to
-    description: Get popular destinations from/to a given city.
-    source_operation: openapi/tictactrip-openapi-original.json#GetPopularCitiesFromTo
-  - name: search_results
-    description: Search multimodal trip results (train/bus itineraries) between origin and destination.
-    source_operation: openapi/tictactrip-openapi-original.json#GetResults
-  - name: get_cart
-    description: Retrieve a booking cart by id.
-    source_operation: openapi/tictactrip-openapi-original.json#GetCart
-  - name: update_cart
-    description: Update cart information (passengers, options).
-    source_operation: openapi/tictactrip-openapi-original.json#UpdateCart
-  - name: create_cart
-    description: Create a new booking cart from selected trips.
-    source_operation: openapi/tictactrip-openapi-original.json#CreateCart
-  - name: list_orders
-    description: List paginated orders.
-    source_operation: openapi/tictactrip-openapi-original.json#GetOrders
-  - name: create_order
-    description: Create an order from a cart.
-    source_operation: openapi/tictactrip-openapi-original.json#CreateOrder
-  - name: get_order
-    description: Get a specific order by id.
-    source_operation: openapi/tictactrip-openapi-original.json#GetOrder
-  - name: list_discount_cards
-    description: List available discount / railcards.
-    source_operation: openapi/tictactrip-openapi-original.json#GetDiscountCards
-  - name: book_order
-    description: Trigger the booking process for an order (async, 202).
-    source_operation: openapi/tictactrip-openapi-original.json#CreateBook
-  - name: download_ticket
-    description: Download the e-ticket for an order.
-    source_operation: openapi/tictactrip-openapi-original.json#DownloadTicket
-  - name: cancellation_conditions
-    description: Get cancellation terms for an order ticket.
-    source_operation: openapi/tictactrip-openapi-original.json#PartnerCancellationConditions
-  - name: cancel_booking
-    description: Cancel a booked order ticket.
-    source_operation: openapi/tictactrip-openapi-original.json#PartnerCancelBooking
+- name: get_segment_providers
+  description: Retrieve all segment (carrier) providers.
+  source_operation: openapi/tictactrip-openapi-original.json#GetSegmentProviders
+- name: list_stop_groups
+  description: List all StopGroups (physical stops).
+  source_operation: openapi/tictactrip-openapi-original.json#GetAllStopGroups
+- name: get_stop_group
+  description: Get a specific StopGroup by gpuid.
+  source_operation: openapi/tictactrip-openapi-original.json#GetStopGroup
+- name: list_stop_clusters
+  description: List all StopClusters (grouped stops / cities).
+  source_operation: openapi/tictactrip-openapi-original.json#GetAllStopClusters
+- name: get_stop_cluster
+  description: Get a specific StopCluster by gpuid.
+  source_operation: openapi/tictactrip-openapi-original.json#GetStopCluster
+- name: autocomplete
+  description: Search stops and clusters by name (typeahead).
+  source_operation: openapi/tictactrip-openapi-original.json#GetAutocomplete
+- name: get_popular_cities
+  description: Retrieve the top searched cities.
+  source_operation: openapi/tictactrip-openapi-original.json#GetPopularCities
+- name: get_popular_cities_from_to
+  description: Get popular destinations from/to a given city.
+  source_operation: openapi/tictactrip-openapi-original.json#GetPopularCitiesFromTo
+- name: search_results
+  description: Search multimodal trip results (train/bus itineraries) between origin and destination.
+  source_operation: openapi/tictactrip-openapi-original.json#GetResults
+- name: get_cart
+  description: Retrieve a booking cart by id.
+  source_operation: openapi/tictactrip-openapi-original.json#GetCart
+- name: update_cart
+  description: Update cart information (passengers, options).
+  source_operation: openapi/tictactrip-openapi-original.json#UpdateCart
+- name: create_cart
+  description: Create a new booking cart from selected trips.
+  source_operation: openapi/tictactrip-openapi-original.json#CreateCart
+- name: list_orders
+  description: List paginated orders.
+  source_operation: openapi/tictactrip-openapi-original.json#GetOrders
+- name: create_order
+  description: Create an order from a cart.
+  source_operation: openapi/tictactrip-openapi-original.json#CreateOrder
+- name: get_order
+  description: Get a specific order by id.
+  source_operation: openapi/tictactrip-openapi-original.json#GetOrder
+- name: list_discount_cards
+  description: List available discount / railcards.
+  source_operation: openapi/tictactrip-openapi-original.json#GetDiscountCards
+- name: book_order
+  description: Trigger the booking process for an order (async, 202).
+  source_operation: openapi/tictactrip-openapi-original.json#CreateBook
+- name: download_ticket
+  description: Download the e-ticket for an order.
+  source_operation: openapi/tictactrip-openapi-original.json#DownloadTicket
+- name: cancellation_conditions
+  description: Get cancellation terms for an order ticket.
+  source_operation: openapi/tictactrip-openapi-original.json#PartnerCancellationConditions
+- name: cancel_booking
+  description: Cancel a booked order ticket.
+  source_operation: openapi/tictactrip-openapi-original.json#PartnerCancelBooking
+deployment:
+  mode: none
+  verified: derived
+  tools: 20
+  checked: '2026-08-12'
+  source: catalog MCP census

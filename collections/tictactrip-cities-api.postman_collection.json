@@ -1,0 +1,404 @@
+{
+  "item": [
+    {
+      "id": "ab646940-7281-4e37-8d24-863f27019a06",
+      "name": "Cities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ac77980-f097-40c6-bfd7-62da45a8e3c2",
+          "name": "Get Popular Cities",
+          "request": {
+            "name": "Get Popular Cities",
+            "description": {
+              "content": "Returns the `limit` most searched cities within 2 months.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "cities",
+                "popular",
+                ":limit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "limit",
+                  "description": "(Required) The maximum number of cities to return."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dcc0971e-e578-46c6-91d8-505e5025f01c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cities",
+                    "popular",
+                    ":limit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "limit",
+                      "description": "(Required) The maximum number of cities to return."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"unique_name\": \"string\",\n    \"city_id\": 3816.2475205191527,\n    \"local_name\": \"string\",\n    \"latitude\": 1721.2343640873873,\n    \"longitude\": 1963.9653112631884,\n    \"gpuid\": \"string\",\n    \"iscity\": false,\n    \"popular\": false,\n    \"nb_search\": \"string\"\n  },\n  {\n    \"unique_name\": \"string\",\n    \"city_id\": 8884.091928752181,\n    \"local_name\": \"string\",\n    \"latitude\": 5523.241204037014,\n    \"longitude\": 8467.087151025276,\n    \"gpuid\": \"string\",\n    \"iscity\": false,\n    \"popular\": true,\n    \"nb_search\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a22c739-0e04-4959-b27c-8dffd7e8ee35",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cities",
+                    "popular",
+                    ":limit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "limit",
+                      "description": "(Required) The maximum number of cities to return."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39510566-d60c-411a-8b90-49b482017ad8",
+          "name": "Get Popular Cities From To",
+          "request": {
+            "name": "Get Popular Cities From To",
+            "description": {
+              "content": "Returns the `limit` most searched cities for a given direction from/to a city within 2 weeks.\nFalls back to global top cities if no results are found.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "cities",
+                "popular",
+                ":direction",
+                ":uniqueName",
+                ":limit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "direction",
+                  "description": "(Required) Can be either `from` or `to`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uniqueName",
+                  "description": "(Required) The unique name of the city to be based on."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "limit",
+                  "description": "(Required) The maximum number of cities to return (capped at 10)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a179e16-1b55-4d3d-9e1e-158a7a58de0c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cities",
+                    "popular",
+                    ":direction",
+                    ":uniqueName",
+                    ":limit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "direction",
+                      "description": "(Required) Can be either `from` or `to`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uniqueName",
+                      "description": "(Required) The unique name of the city to be based on."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "limit",
+                      "description": "(Required) The maximum number of cities to return (capped at 10)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"unique_name\": \"string\",\n    \"city_id\": 3816.2475205191527,\n    \"local_name\": \"string\",\n    \"latitude\": 1721.2343640873873,\n    \"longitude\": 1963.9653112631884,\n    \"gpuid\": \"string\",\n    \"iscity\": false,\n    \"popular\": false,\n    \"nb_search\": \"string\"\n  },\n  {\n    \"unique_name\": \"string\",\n    \"city_id\": 8884.091928752181,\n    \"local_name\": \"string\",\n    \"latitude\": 5523.241204037014,\n    \"longitude\": 8467.087151025276,\n    \"gpuid\": \"string\",\n    \"iscity\": false,\n    \"popular\": true,\n    \"nb_search\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e585ce09-18c3-409c-826a-6c9ef781fd19",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cities",
+                    "popular",
+                    ":direction",
+                    ":uniqueName",
+                    ":limit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "direction",
+                      "description": "(Required) Can be either `from` or `to`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uniqueName",
+                      "description": "(Required) The unique name of the city to be based on."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "limit",
+                      "description": "(Required) The maximum number of cities to return (capped at 10)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "275b2d09-4241-403f-84a8-f147b56be6ef",
+    "name": "@tictactrip/api Autocomplete Cities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tictactrip's API service\n\nContact Support:\n Name: Tictactrip\n Email: dev@tictactrip.eu",
+      "type": "text/plain"
+    }
+  }
+}

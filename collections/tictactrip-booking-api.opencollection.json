@@ -1,0 +1,259 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "@tictactrip/api Autocomplete Booking API",
+    "version": "2.1489.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Booking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetCart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/booking/v3/carts/:cartId",
+            "params": [
+              {
+                "name": "cartId",
+                "value": "6771146ca0b7432b",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a cart by its id and its matching order if it exists."
+        },
+        {
+          "info": {
+            "name": "UpdateCart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/booking/v3/carts/:cartId",
+            "params": [
+              {
+                "name": "cartId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "\nUpdates a cart with the provided informations. A price lookup is done everytime a cart is patched.\nKeep in mind that patching a cart with an empty payload WILL NOT reset the cart's data, and will trigger a price lookup with the saved cart's data."
+        },
+        {
+          "info": {
+            "name": "CreateCart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/booking/v3/carts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a cart. Has to contain at least an outbound trip id and minimal passenger information for it to work."
+        },
+        {
+          "info": {
+            "name": "GetOrders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/booking/v3/orders",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-indexed). Defaults to 1."
+              },
+              {
+                "name": "itemsPerPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of orders per page. Defaults to 30 and is capped at 30."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a paginated list of all orders for the authenticated partner, ordered by most recent first.\nEach page contains up to 30 orders."
+        },
+        {
+          "info": {
+            "name": "CreateOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/booking/v3/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an order. It uses the cart's information to build the order from it.\nThe cart must have been patched with customer information and at least one passenger."
+        },
+        {
+          "info": {
+            "name": "GetOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/booking/v3/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "8bc8557793fe4447",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the order from the given cart ID."
+        },
+        {
+          "info": {
+            "name": "GetDiscountCards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/booking/v3/discountCards"
+          },
+          "docs": "Returns all available discount cards."
+        },
+        {
+          "info": {
+            "name": "CreateBook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/booking/v3/orders/:orderId/book",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "8bc8557793fe4447",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Triggers an asynchronous booking process."
+        },
+        {
+          "info": {
+            "name": "DownloadTicket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/booking/v3/orders/:orderId/ticket",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "8bc8557793fe4447",
+                "type": "path"
+              },
+              {
+                "name": "filename",
+                "value": "myTicketName",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download an order Eticket and gives the name provided to the file."
+        },
+        {
+          "info": {
+            "name": "PartnerCancellationConditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/booking/v3/orderTickets/:orderTicketId/cancellation/conditions",
+            "params": [
+              {
+                "name": "orderTicketId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get cancellation conditions."
+        },
+        {
+          "info": {
+            "name": "PartnerCancelBooking",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/booking/v3/orderTickets/:orderTicketId/cancellation",
+            "params": [
+              {
+                "name": "orderTicketId",
+                "value": "",
+                "type": "path",
+                "description": "The order ticket id"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

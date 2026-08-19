@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "@tictactrip/api Autocomplete StopClusters API",
+    "version": "2.1489.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StopClusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetAllStopClusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/stopClusters",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the list of all StopClusters."
+        },
+        {
+          "info": {
+            "name": "GetStopCluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/stopClusters/:stopClusterGpuid",
+            "params": [
+              {
+                "name": "stopClusterGpuid",
+                "value": "c|FRangers__@gbrw5",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a StopCluster details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

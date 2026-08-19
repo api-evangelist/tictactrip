@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "@tictactrip/api Autocomplete StopGroups API",
+    "version": "2.1489.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StopGroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetAllStopGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/stopGroups",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the list of all StopGroups."
+        },
+        {
+          "info": {
+            "name": "GetStopGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/stopGroups/:stopGroupGpuid",
+            "params": [
+              {
+                "name": "stopGroupGpuid",
+                "value": "g|FRavignon_@spg3vp",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a StopGroup details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "@tictactrip/api Autocomplete SegmentProviders API",
+    "version": "2.1489.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SegmentProviders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetSegmentProviders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/segmentProviders",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns all SegmentProviders"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

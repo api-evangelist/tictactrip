@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "16e8d1ba-0189-42e0-a2c0-4a52aa554928",
+      "name": "StopGroups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10eb794b-995c-4fcb-a1cc-879d73fb4d0c",
+          "name": "Get All Stop Groups",
+          "request": {
+            "name": "Get All Stop Groups",
+            "description": {
+              "content": "Returns the list of all StopGroups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "stopGroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "providerId",
+                  "value": "<double>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "05aa7ba7-5dd8-4b74-b550-34d2f7b2703c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "providerId",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"g|FRavignon_@spg3vp\",\n    \"name\": \"Avignon Centre\",\n    \"city\": \"Avignon\",\n    \"region\": \"Provence-Alpes-Côte d’Azur\",\n    \"country\": \"FR\",\n    \"address\": \"1 rue du centre, 84000, Avignon\",\n    \"latitude\": 43.9408,\n    \"longitude\": 4.79167,\n    \"transportTypes\": [\n      \"bus\",\n      \"train\"\n    ],\n    \"stopClusters\": [\n      {\n        \"id\": \"c|FRavignon_@spg6j\",\n        \"name\": \"Avignon\",\n        \"city\": \"Avignon\",\n        \"region\": \"Provence-Alpes-Côte d'Azur\",\n        \"country\": \"FR\",\n        \"latitude\": 43.952499,\n        \"longitude\": 4.804022\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f4e8dbe-0e9c-4323-bd2c-dbf4c79796d6",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "providerId",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2109418d-0b9d-40eb-bd2f-5a6b011a81d7",
+          "name": "Get Stop Group",
+          "request": {
+            "name": "Get Stop Group",
+            "description": {
+              "content": "Returns a StopGroup details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "stopGroups",
+                ":stopGroupGpuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stopGroupGpuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f8ab0690-af58-42f9-b36b-254c49bc49fa",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopGroups",
+                    ":stopGroupGpuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stopGroupGpuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"g|FRavignon_@spg3vp\",\n  \"name\": \"Avignon Centre\",\n  \"city\": \"Avignon\",\n  \"region\": \"Provence-Alpes-Côte d’Azur\",\n  \"country\": \"FR\",\n  \"address\": \"1 rue du centre, 84000, Avignon\",\n  \"latitude\": 43.9408,\n  \"longitude\": 4.79167,\n  \"transportTypes\": [\n    \"bus\",\n    \"train\"\n  ],\n  \"stopClusters\": [\n    {\n      \"id\": \"c|FRavignon_@spg6j\",\n      \"name\": \"Avignon\",\n      \"city\": \"Avignon\",\n      \"region\": \"Provence-Alpes-Côte d'Azur\",\n      \"country\": \"FR\",\n      \"latitude\": 43.952499,\n      \"longitude\": 4.804022\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4da9caeb-9d2a-4ec1-9fb9-fac303bca83d",
+              "name": "StopGroup not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopGroups",
+                    ":stopGroupGpuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stopGroupGpuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"partnersApi:client:stopGroupNotFound\",\n  \"errorMessage\": \"This StopGroup could not be found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c40982c-8885-4101-94c2-0043579dc7ab",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopGroups",
+                    ":stopGroupGpuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stopGroupGpuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a794dfb7-054a-42f7-9dae-c4d3bd3eb1c1",
+    "name": "@tictactrip/api Autocomplete StopGroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tictactrip's API service\n\nContact Support:\n Name: Tictactrip\n Email: dev@tictactrip.eu",
+      "type": "text/plain"
+    }
+  }
+}

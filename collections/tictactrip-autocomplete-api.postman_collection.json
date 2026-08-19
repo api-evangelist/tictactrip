@@ -1,0 +1,230 @@
+{
+  "item": [
+    {
+      "id": "32fa5b0b-9066-43a1-97f9-58b6f779d670",
+      "name": "Autocomplete",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02963059-fc38-4475-82e9-cb5268ba1dcc",
+          "name": "Get Autocomplete",
+          "request": {
+            "name": "Get Autocomplete",
+            "description": {
+              "content": "Autocomplete search for stop clusters and stop groups by name.\nReturns cities and stations matching the query, filtered by the partner's allowed gpuids when applicable.\nMirrors the behaviour of the legacy GET /autocomplete route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The search query (e.g. a city name or prefix)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "93477bd8-e91a-40fe-9465-f15ada1c4c49",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "Paris"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4762.5933653434395,\n    \"unique_name\": \"string\",\n    \"local_name\": \"string\",\n    \"latitude\": 8975.624084159674,\n    \"longitude\": 5199.901911273089,\n    \"new_id\": \"string\",\n    \"city_id\": 1583.8142620915107,\n    \"gpuid\": \"string\",\n    \"nb_search\": \"string\",\n    \"popular\": false,\n    \"iscity\": false\n  },\n  {\n    \"id\": 7612.124052994755,\n    \"unique_name\": \"string\",\n    \"local_name\": \"string\",\n    \"latitude\": 7242.671510426855,\n    \"longitude\": 711.9946854736936,\n    \"new_id\": \"string\",\n    \"city_id\": 4783.345873909627,\n    \"gpuid\": \"string\",\n    \"nb_search\": \"string\",\n    \"popular\": true,\n    \"iscity\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36d4a2c5-30b3-4541-b0b0-45ebfc5155c9",
+              "name": "Missing or invalid query parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "Paris"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"partnersApi:client:missingQueryParam\",\n  \"errorMessage\": \"The query parameter \\\"q\\\" is required\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf3e0dc3-3ce7-4fcd-8b44-8459bdf43e00",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "Paris"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a20f31bb-8c85-4ea4-972a-4c8d55b1c62e",
+    "name": "@tictactrip/api Autocomplete API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tictactrip's API service\n\nContact Support:\n Name: Tictactrip\n Email: dev@tictactrip.eu",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "@tictactrip/api Autocomplete API",
+    "version": "2.1489.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autocomplete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetAutocomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/autocomplete",
+            "params": [
+              {
+                "name": "q",
+                "value": "Paris",
+                "type": "query",
+                "description": "The search query (e.g. a city name or prefix)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Autocomplete search for stop clusters and stop groups by name.\nReturns cities and stations matching the query, filtered by the partner's allowed gpuids when applicable.\nMirrors the behaviour of the legacy GET /autocomplete route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "@tictactrip/api Autocomplete Cities API",
+    "version": "2.1489.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetPopularCities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/cities/popular/:limit",
+            "params": [
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "path",
+                "description": "The maximum number of cities to return."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the `limit` most searched cities within 2 months."
+        },
+        {
+          "info": {
+            "name": "GetPopularCitiesFromTo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/cities/popular/:direction/:uniqueName/:limit",
+            "params": [
+              {
+                "name": "direction",
+                "value": "",
+                "type": "path",
+                "description": "Can be either `from` or `to`."
+              },
+              {
+                "name": "uniqueName",
+                "value": "paris",
+                "type": "path",
+                "description": "The unique name of the city to be based on."
+              },
+              {
+                "name": "limit",
+                "value": "5",
+                "type": "path",
+                "description": "The maximum number of cities to return (capped at 10)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the `limit` most searched cities for a given direction from/to a city within 2 weeks.\nFalls back to global top cities if no results are found."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

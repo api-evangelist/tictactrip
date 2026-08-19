@@ -1,0 +1,376 @@
+{
+  "item": [
+    {
+      "id": "67a86add-6fc4-488c-abb4-3f2296db7cd2",
+      "name": "StopClusters",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58546341-291c-48b2-87b8-7d1d04ca1a81",
+          "name": "Get All Stop Clusters",
+          "request": {
+            "name": "Get All Stop Clusters",
+            "description": {
+              "content": "Returns the list of all StopClusters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "stopClusters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "771df73e-eae9-4504-9f64-5f98206e6d40",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopClusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"c|FRangers__@gbrw5\",\n    \"name\": \"Angers\",\n    \"city\": \"Angers\",\n    \"region\": \"Pays-de-la-Loire\",\n    \"country\": \"FR\",\n    \"latitude\": 47.478419,\n    \"longitude\": 0.563166,\n    \"transportTypes\": [\n      \"bus\",\n      \"train\"\n    ],\n    \"stopGroups\": [\n      {\n        \"id\": \"g|FRangmaiec@gbrw5c\",\n        \"name\": \"Angers Maitre Ecole\",\n        \"city\": \"Angers\",\n        \"region\": \"Pays-de-la-Loire\",\n        \"country\": \"FR\",\n        \"address\": \"21 Rue Louis Legendre, 49100 Angers, France\",\n        \"latitude\": 47.467,\n        \"longitude\": 0.5322,\n        \"transportTypes\": [\n          \"train\"\n        ]\n      },\n      {\n        \"id\": \"g|FRangsaila@gbrw52\",\n        \"name\": \"Angers Saint-Laud\",\n        \"city\": \"Angers\",\n        \"region\": \"Pays-de-la-Loire\",\n        \"country\": \"FR\",\n        \"address\": \"1 Esplanade De La Gare, 49100 Angers, France\",\n        \"latitude\": 47.46477,\n        \"longitude\": 0.55693,\n        \"transportTypes\": [\n          \"bus\",\n          \"train\"\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdf705fb-2315-4455-9dec-3f8b51a1b38c",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopClusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc29700e-bff8-412e-a6da-42096b229b63",
+          "name": "Get Stop Cluster",
+          "request": {
+            "name": "Get Stop Cluster",
+            "description": {
+              "content": "Returns a StopCluster details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "stopClusters",
+                ":stopClusterGpuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stopClusterGpuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "65ffe488-f861-4cd2-9dfc-f61f903345eb",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopClusters",
+                    ":stopClusterGpuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stopClusterGpuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c|FRangers__@gbrw5\",\n  \"name\": \"Angers\",\n  \"city\": \"Angers\",\n  \"region\": \"Pays-de-la-Loire\",\n  \"country\": \"FR\",\n  \"latitude\": 47.478419,\n  \"longitude\": 0.563166,\n  \"transportTypes\": [\n    \"bus\",\n    \"train\"\n  ],\n  \"stopGroups\": [\n    {\n      \"id\": \"g|FRangmaiec@gbrw5c\",\n      \"name\": \"Angers Maitre Ecole\",\n      \"city\": \"Angers\",\n      \"region\": \"Pays-de-la-Loire\",\n      \"country\": \"FR\",\n      \"address\": \"21 Rue Louis Legendre, 49100 Angers, France\",\n      \"latitude\": 47.467,\n      \"longitude\": 0.5322,\n      \"transportTypes\": [\n        \"train\"\n      ]\n    },\n    {\n      \"id\": \"g|FRangsaila@gbrw52\",\n      \"name\": \"Angers Saint-Laud\",\n      \"city\": \"Angers\",\n      \"region\": \"Pays-de-la-Loire\",\n      \"country\": \"FR\",\n      \"address\": \"1 Esplanade De La Gare, 49100 Angers, France\",\n      \"latitude\": 47.46477,\n      \"longitude\": 0.55693,\n      \"transportTypes\": [\n        \"bus\",\n        \"train\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cf3937c-b34c-4163-841f-7ff4dbb1e24e",
+              "name": "StopCluster not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopClusters",
+                    ":stopClusterGpuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stopClusterGpuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"partnersApi:client:stopClusterNotFound\",\n  \"errorMessage\": \"This StopCluster could not be found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4edb04e-631d-4d47-bf1d-9a7deccc4b42",
+              "name": "If an unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stopClusters",
+                    ":stopClusterGpuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stopClusterGpuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"general:internal:unexpected\",\n  \"errorMessage\": \"An unexpected error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c64fd5b1-c710-45b8-b652-2ee272eb4200",
+    "name": "@tictactrip/api Autocomplete StopClusters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Tictactrip's API service\n\nContact Support:\n Name: Tictactrip\n Email: dev@tictactrip.eu",
+      "type": "text/plain"
+    }
+  }
+}
