@@ -8,6 +8,17 @@ description: >-
   per journey, and a full booking workflow — cart, order, book, e-ticket and
   cancellation — authenticated with partner bearer JWTs (API_SEARCH_PARTNER /
   API_BOOK_PARTNER roles). API access is provisioned via sales@tictactrip.eu.
+deliveryModel:
+  model: library
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Library · distributed through package registries, no callable service
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
