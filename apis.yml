@@ -202,6 +202,9 @@ apis:
     url: >-
       https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
 common:
+- type: CapabilityMap
+  url: capabilities/tictactrip-capability-edges.yml
+  name: TicTacTrip Business Capability Map
 - type: AgenticAccess
   url: agentic-access/tictactrip-agentic-access.yml
 - type: DomainSecurity
