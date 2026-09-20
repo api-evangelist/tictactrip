@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 2
 edges:
 - tag: Booking
   spec_file: tictactrip-booking-api-openapi.yml
@@ -24,3 +24,13 @@ edges:
   reason: Full reservation workflow — cart creation, order creation, booking confirmation, ticket issuance
     and cancellation against carrier inventory. This is booking and reservation of transport capacity;
     the frame's capability is freight-leaning while this is passenger travel, so confidence is below 0.9.
+- tag: Results
+  spec_file: tictactrip-results-api-openapi.yml
+  capability_id: BC-3490
+  capability_id_l1: BC-3490
+  capability_name: Mobility Services Operations Management
+  confidence: 0.7
+  evidence: POST /v2/results  GetResults; schemas IApiSearchResponse, IApiTripProviderFilter, IApiTripConnectionFilter
+  reason: Multimodal itinerary search returning combined trips across carriers — mobility services operations,
+    but split between trip/booking operations and multimodal aggregation, so only the L1 is asserted.
+  recovered_from: vertical-automotive-mobility-edges.json
