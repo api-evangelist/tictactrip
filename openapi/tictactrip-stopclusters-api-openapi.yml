@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: '@tictactrip/api Autocomplete StopClusters API'
+  title: '@tictactrip/api Stop Clusters API'
   version: 2.1489.0
   description: Tictactrip's API service
   license:
@@ -81,6 +81,8 @@ paths:
       parameters: []
       tags:
       - StopClusters
+      summary: Get all stop clusters
+      x-summary-source: derived
   /v2/stopClusters/{stopClusterGpuid}:
     get:
       operationId: GetStopCluster
@@ -163,8 +165,27 @@ paths:
         example: c|FRangers__@gbrw5
       tags:
       - StopClusters
+      summary: Get stop cluster
+      x-summary-source: derived
 components:
   schemas:
+    EApiTransportType:
+      enum:
+      - carpooling
+      - bus
+      - train
+      type: string
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
     IApiStopGroupWithTransportTypes:
       properties:
         id:
@@ -239,23 +260,6 @@ components:
       - stopGroups
       type: object
       additionalProperties: false
-    IErrorCodeResponse:
-      properties:
-        errorKey:
-          type: string
-        errorMessage:
-          type: string
-      required:
-      - errorKey
-      - errorMessage
-      type: object
-      additionalProperties: false
-    EApiTransportType:
-      enum:
-      - carpooling
-      - bus
-      - train
-      type: string
   securitySchemes:
     authentication:
       type: http

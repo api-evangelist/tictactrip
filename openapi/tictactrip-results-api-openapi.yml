@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: '@tictactrip/api Autocomplete Results API'
+  title: '@tictactrip/api Results API'
   version: 2.1489.0
   description: Tictactrip's API service
   license:
@@ -195,245 +195,10 @@ paths:
               returnDate: '2021-04-28T00:00:00Z'
       tags:
       - Results
+      summary: Get results
+      x-summary-source: derived
 components:
   schemas:
-    IApiTripDurationFilter:
-      description: Filter about the trip duration. Each value is in minutes.
-      properties:
-        minDuration:
-          type: number
-          format: double
-        maxDuration:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    IApiSegment:
-      properties:
-        id:
-          type: string
-        provider:
-          $ref: '#/components/schemas/IApiProvider'
-        origin:
-          $ref: '#/components/schemas/IApiStopGroup'
-        destination:
-          $ref: '#/components/schemas/IApiStopGroup'
-        priceCents:
-          type: number
-          format: double
-        departureUTC:
-          type: number
-          format: double
-        arrivalUTC:
-          type: number
-          format: double
-        originOffset:
-          type: string
-        destinationOffset:
-          type: string
-        durationMinutes:
-          type: number
-          format: double
-        transportType:
-          $ref: '#/components/schemas/EApiTransportType'
-        vehicleIdentifier:
-          type: string
-        co2g:
-          type: number
-          format: double
-        bookingClass:
-          type: string
-        fareName:
-          type: string
-        notAvailableReason:
-          allOf:
-          - $ref: '#/components/schemas/ENotAvailableReason'
-          nullable: true
-        includedBaggage:
-          type: boolean
-        isPresale:
-          type: boolean
-      required:
-      - id
-      - provider
-      - origin
-      - destination
-      - priceCents
-      - departureUTC
-      - arrivalUTC
-      - originOffset
-      - destinationOffset
-      - durationMinutes
-      - transportType
-      - isPresale
-      type: object
-      additionalProperties: false
-    ETripDirection:
-      enum:
-      - outboundTrip
-      - returnTrip
-      type: string
-    IApiTripConnectionFilter:
-      description: 'Filter about the trip connection distance. Each value is in Km.
-
-        Useful when you want to filter trips with a maximum distance between two stops.'
-      properties:
-        maxConnectionDistance:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    ENotAvailableReason:
-      enum:
-      - CANCELLED
-      - FULL
-      - NOT_OPEN_TO_SALE
-      - NOT_SELLABLE
-      - MINORS_MUST_BE_ACCOMPANIED
-      type: string
-    IApiTripStopoverFilter:
-      description: Filter about the trip stopovers.
-      properties:
-        minStopovers:
-          type: number
-          format: double
-        maxStopovers:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
-    IApiTripProviderFilter:
-      description: 'Provides to the API the list of providers you want to include or exclude.
-
-        Provider must be provided with their ID which can be found on the (/v2/segmentProviders)[https://developers.tictactrip.eu/api#operation/GetSegmentProviders] endpoint.
-
-        - Included providers: Will trigger search ONLY for the providers you provided.
-
-        - Excluded providers: Will trigger search for all providers EXCEPT the ones you provided.'
-      properties:
-        includedProviders:
-          items:
-            type: string
-          type: array
-        excludedProviders:
-          items:
-            type: string
-          type: array
-      type: object
-      additionalProperties: false
-    IBundle:
-      properties:
-        trips:
-          items:
-            type: string
-          type: array
-        redirectionLink:
-          type: string
-      required:
-      - trips
-      - redirectionLink
-      type: object
-      additionalProperties: false
-    IApiStopGroup:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-        country:
-          type: string
-        address:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-      required:
-      - id
-      - name
-      - city
-      - region
-      - country
-      - address
-      - latitude
-      - longitude
-      type: object
-      additionalProperties: false
-    IErrorCodeResponse:
-      properties:
-        errorKey:
-          type: string
-        errorMessage:
-          type: string
-      required:
-      - errorKey
-      - errorMessage
-      type: object
-      additionalProperties: false
-    IApiTripTimeFilter:
-      description: Filter about the trip time. Each value is in the form 'YYYY-MM-DDTHH:mm'.
-      properties:
-        minDepartureTime:
-          type: string
-        maxDepartureTime:
-          type: string
-        minArrivalTime:
-          type: string
-        maxArrivalTime:
-          type: string
-      type: object
-      additionalProperties: false
-    IApiTripFilter:
-      description: Possible filters for a trip (outbound or return).
-      properties:
-        timeFilters:
-          $ref: '#/components/schemas/IApiTripTimeFilter'
-        stopoverFilters:
-          $ref: '#/components/schemas/IApiTripStopoverFilter'
-        durationFilters:
-          $ref: '#/components/schemas/IApiTripDurationFilter'
-        connectionFilters:
-          $ref: '#/components/schemas/IApiTripConnectionFilter'
-        relevanceSorts:
-          $ref: '#/components/schemas/IApiTripRelevanceSort'
-        stopGroupFilters:
-          $ref: '#/components/schemas/IApiTripStopGroupFilter'
-        providerFilters:
-          $ref: '#/components/schemas/IApiTripProviderFilter'
-      type: object
-      additionalProperties: false
-    IApiSearchResponse:
-      properties:
-        trips:
-          properties: {}
-          additionalProperties:
-            $ref: '#/components/schemas/Omit_IApiTrip.totalFeeCents_'
-          type: object
-        bundles:
-          items:
-            $ref: '#/components/schemas/IBundle'
-          type: array
-      required:
-      - trips
-      - bundles
-      type: object
-      additionalProperties: false
-    IApiTripStopGroupFilter:
-      properties:
-        originStopGroupIds:
-          type: number
-          format: double
-        destinationStopGroupIds:
-          type: number
-          format: double
-      type: object
-      additionalProperties: false
     Pick_IApiTrip.Exclude_keyofIApiTrip.totalFeeCents__:
       properties:
         id:
@@ -492,14 +257,49 @@ components:
       - isIdentityDocumentRequired
       type: object
       description: From T, pick a set of properties whose keys are in the union K
-    IApiTripRelevanceSort:
-      description: "Sorts the trips according to their relevance. The relevance of a trip is calculated based on a weighted sum of the normalized price and duration. The weighted sum yields a relevance score that ranges from 0 to 1.\n\nThe weightage given to duration over price is used as follows:\n - A weight of 0: This indicates that only the price is significant in determining the trip's relevance. In this case, trips with lower prices are given higher relevance and are displayed first.\n - A weight of 0.5: This means that both duration and price hold equal significance in determining the trip's relevance. The sorting of trips will balance between lower prices and shorter durations.\n - A weight of 1: This implies that only the duration is significant for determining the trip's relevance. Therefore, trips with shorter durations are considered more relevant and are displayed first."
+    IErrorCodeResponse:
       properties:
-        durationOverPriceFactor:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    IApiTripDurationFilter:
+      description: Filter about the trip duration. Each value is in minutes.
+      properties:
+        minDuration:
           type: number
           format: double
-      required:
-      - durationOverPriceFactor
+        maxDuration:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    IApiTripTimeFilter:
+      description: Filter about the trip time. Each value is in the form 'YYYY-MM-DDTHH:mm'.
+      properties:
+        minDepartureTime:
+          type: string
+        maxDepartureTime:
+          type: string
+        minArrivalTime:
+          type: string
+        maxArrivalTime:
+          type: string
+      type: object
+      additionalProperties: false
+    IApiTripConnectionFilter:
+      description: 'Filter about the trip connection distance. Each value is in Km.
+
+        Useful when you want to filter trips with a maximum distance between two stops.'
+      properties:
+        maxConnectionDistance:
+          type: number
+          format: double
       type: object
       additionalProperties: false
     IApiGetResultsParams:
@@ -527,9 +327,213 @@ components:
       - outboundDate
       type: object
       additionalProperties: false
+    IApiSearchResponse:
+      properties:
+        trips:
+          properties: {}
+          additionalProperties:
+            $ref: '#/components/schemas/Omit_IApiTrip.totalFeeCents_'
+          type: object
+        bundles:
+          items:
+            $ref: '#/components/schemas/IBundle'
+          type: array
+      required:
+      - trips
+      - bundles
+      type: object
+      additionalProperties: false
+    IBundle:
+      properties:
+        trips:
+          items:
+            type: string
+          type: array
+        redirectionLink:
+          type: string
+      required:
+      - trips
+      - redirectionLink
+      type: object
+      additionalProperties: false
+    IApiTripRelevanceSort:
+      description: "Sorts the trips according to their relevance. The relevance of a trip is calculated based on a weighted sum of the normalized price and duration. The weighted sum yields a relevance score that ranges from 0 to 1.\n\nThe weightage given to duration over price is used as follows:\n - A weight of 0: This indicates that only the price is significant in determining the trip's relevance. In this case, trips with lower prices are given higher relevance and are displayed first.\n - A weight of 0.5: This means that both duration and price hold equal significance in determining the trip's relevance. The sorting of trips will balance between lower prices and shorter durations.\n - A weight of 1: This implies that only the duration is significant for determining the trip's relevance. Therefore, trips with shorter durations are considered more relevant and are displayed first."
+      properties:
+        durationOverPriceFactor:
+          type: number
+          format: double
+      required:
+      - durationOverPriceFactor
+      type: object
+      additionalProperties: false
+    IApiSegment:
+      properties:
+        id:
+          type: string
+        provider:
+          $ref: '#/components/schemas/IApiProvider'
+        origin:
+          $ref: '#/components/schemas/IApiStopGroup'
+        destination:
+          $ref: '#/components/schemas/IApiStopGroup'
+        priceCents:
+          type: number
+          format: double
+        departureUTC:
+          type: number
+          format: double
+        arrivalUTC:
+          type: number
+          format: double
+        originOffset:
+          type: string
+        destinationOffset:
+          type: string
+        durationMinutes:
+          type: number
+          format: double
+        transportType:
+          $ref: '#/components/schemas/EApiTransportType'
+        vehicleIdentifier:
+          type: string
+        co2g:
+          type: number
+          format: double
+        bookingClass:
+          type: string
+        fareName:
+          type: string
+        notAvailableReason:
+          allOf:
+          - $ref: '#/components/schemas/ENotAvailableReason'
+        includedBaggage:
+          type: boolean
+        isPresale:
+          type: boolean
+      required:
+      - id
+      - provider
+      - origin
+      - destination
+      - priceCents
+      - departureUTC
+      - arrivalUTC
+      - originOffset
+      - destinationOffset
+      - durationMinutes
+      - transportType
+      - isPresale
+      type: object
+      additionalProperties: false
+    IApiTripFilter:
+      description: Possible filters for a trip (outbound or return).
+      properties:
+        timeFilters:
+          $ref: '#/components/schemas/IApiTripTimeFilter'
+        stopoverFilters:
+          $ref: '#/components/schemas/IApiTripStopoverFilter'
+        durationFilters:
+          $ref: '#/components/schemas/IApiTripDurationFilter'
+        connectionFilters:
+          $ref: '#/components/schemas/IApiTripConnectionFilter'
+        relevanceSorts:
+          $ref: '#/components/schemas/IApiTripRelevanceSort'
+        stopGroupFilters:
+          $ref: '#/components/schemas/IApiTripStopGroupFilter'
+        providerFilters:
+          $ref: '#/components/schemas/IApiTripProviderFilter'
+      type: object
+      additionalProperties: false
+    EApiTransportType:
+      enum:
+      - carpooling
+      - bus
+      - train
+      type: string
+    ETripTransport:
+      enum:
+      - MULTIMODAL
+      - BUS
+      - TRAIN
+      - CARPOOLING
+      type: string
+    ENotAvailableReason:
+      enum:
+      - CANCELLED
+      - FULL
+      - NOT_OPEN_TO_SALE
+      - NOT_SELLABLE
+      - MINORS_MUST_BE_ACCOMPANIED
+      type: string
+    IApiTripProviderFilter:
+      description: 'Provides to the API the list of providers you want to include or exclude.
+
+        Provider must be provided with their ID which can be found on the (/v2/segmentProviders)[https://developers.tictactrip.eu/api#operation/GetSegmentProviders] endpoint.
+
+        - Included providers: Will trigger search ONLY for the providers you provided.
+
+        - Excluded providers: Will trigger search for all providers EXCEPT the ones you provided.'
+      properties:
+        includedProviders:
+          items:
+            type: string
+          type: array
+        excludedProviders:
+          items:
+            type: string
+          type: array
+      type: object
+      additionalProperties: false
+    ETripDirection:
+      enum:
+      - outboundTrip
+      - returnTrip
+      type: string
     Omit_IApiTrip.totalFeeCents_:
       $ref: '#/components/schemas/Pick_IApiTrip.Exclude_keyofIApiTrip.totalFeeCents__'
       description: Construct a type with the properties of T except for those in type K.
+    IApiTripStopoverFilter:
+      description: Filter about the trip stopovers.
+      properties:
+        minStopovers:
+          type: number
+          format: double
+        maxStopovers:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
+    IApiStopGroup:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        address:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+      required:
+      - id
+      - name
+      - city
+      - region
+      - country
+      - address
+      - latitude
+      - longitude
+      type: object
+      additionalProperties: false
     IApiInputPassenger:
       properties:
         age:
@@ -539,19 +543,16 @@ components:
       - age
       type: object
       additionalProperties: false
-    ETripTransport:
-      enum:
-      - MULTIMODAL
-      - BUS
-      - TRAIN
-      - CARPOOLING
-      type: string
-    EApiTransportType:
-      enum:
-      - carpooling
-      - bus
-      - train
-      type: string
+    IApiTripStopGroupFilter:
+      properties:
+        originStopGroupIds:
+          type: number
+          format: double
+        destinationStopGroupIds:
+          type: number
+          format: double
+      type: object
+      additionalProperties: false
     IApiProvider:
       properties:
         name:

@@ -1,13 +1,7 @@
 {
   "provider": "tictactrip",
   "sources": [
-    "tictactrip-autocomplete-api-openapi.yml",
-    "tictactrip-booking-api-openapi.yml",
-    "tictactrip-cities-api-openapi.yml",
-    "tictactrip-results-api-openapi.yml",
-    "tictactrip-segmentproviders-api-openapi.yml",
-    "tictactrip-stopclusters-api-openapi.yml",
-    "tictactrip-stopgroups-api-openapi.yml"
+    "_original/tictactrip-openapi-original.json"
   ],
   "outputs": [
     "tictactrip-autocomplete-api-openapi.yml",
@@ -21,6 +15,45 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tictactrip-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "tictactrip-openapi-original.json: tagged paths GET /v2/segmentProviders -> SegmentProviders",
+    "tictactrip-openapi-original.json: tagged paths GET /v2/stopGroups -> StopGroups",
+    "tictactrip-openapi-original.json: tagged paths GET /v2/stopGroups/{stopGroupGpuid} -> StopGroups",
+    "tictactrip-openapi-original.json: tagged paths GET /v2/stopClusters -> StopClusters",
+    "tictactrip-openapi-original.json: tagged paths GET /v2/stopClusters/{stopClusterGpuid} -> StopClusters",
+    "tictactrip-openapi-original.json: tagged paths GET /v2/autocomplete -> Autocomplete",
+    "tictactrip-openapi-original.json: tagged paths GET /v2/cities/popular/{limit} -> Cities",
+    "tictactrip-openapi-original.json: tagged paths GET /v2/cities/popular/{direction}/{uniqueName}/{limit} -> Cities",
+    "tictactrip-openapi-original.json: tagged paths POST /v2/results -> Results",
+    "tictactrip-openapi-original.json: tagged paths GET /booking/v3/carts/{cartId} -> Booking",
+    "tictactrip-openapi-original.json: tagged paths PATCH /booking/v3/carts/{cartId} -> Booking",
+    "tictactrip-openapi-original.json: tagged paths POST /booking/v3/carts -> Booking",
+    "tictactrip-openapi-original.json: tagged paths GET /booking/v3/orders -> Booking",
+    "tictactrip-openapi-original.json: tagged paths POST /booking/v3/orders -> Booking",
+    "tictactrip-openapi-original.json: tagged paths GET /booking/v3/orders/{orderId} -> Booking",
+    "tictactrip-openapi-original.json: tagged paths GET /booking/v3/discountCards -> Booking",
+    "tictactrip-openapi-original.json: tagged paths POST /booking/v3/orders/{orderId}/book -> Booking",
+    "tictactrip-openapi-original.json: tagged paths GET /booking/v3/orders/{orderId}/ticket -> Booking",
+    "tictactrip-openapi-original.json: tagged paths GET /booking/v3/orderTickets/{orderTicketId}/cancellation/conditions -> Booking",
+    "tictactrip-openapi-original.json: tagged paths PUT /booking/v3/orderTickets/{orderTicketId}/cancellation -> Booking",
+    "tictactrip-openapi-original.json: declared missing tag: Autocomplete",
+    "tictactrip-openapi-original.json: declared missing tag: Booking",
+    "tictactrip-openapi-original.json: declared missing tag: Cities",
+    "tictactrip-openapi-original.json: declared missing tag: Results",
+    "tictactrip-openapi-original.json: declared missing tag: SegmentProviders",
+    "tictactrip-openapi-original.json: declared missing tag: StopClusters",
+    "tictactrip-openapi-original.json: declared missing tag: StopGroups",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tictactrip-autocomplete-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tictactrip-booking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tictactrip-cities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tictactrip-results-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tictactrip-segmentproviders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tictactrip-stopclusters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tictactrip-stopgroups-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

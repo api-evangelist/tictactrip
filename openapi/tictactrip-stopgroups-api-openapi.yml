@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: '@tictactrip/api Autocomplete StopGroups API'
+  title: '@tictactrip/api Stop Groups API'
   version: 2.1489.0
   description: Tictactrip's API service
   license:
@@ -74,6 +74,8 @@ paths:
           type: number
       tags:
       - StopGroups
+      summary: Get all stop groups
+      x-summary-source: derived
   /v2/stopGroups/{stopGroupGpuid}:
     get:
       operationId: GetStopGroup
@@ -143,19 +145,10 @@ paths:
         example: g|FRavignon_@spg3vp
       tags:
       - StopGroups
+      summary: Get stop group
+      x-summary-source: derived
 components:
   schemas:
-    IErrorCodeResponse:
-      properties:
-        errorKey:
-          type: string
-        errorMessage:
-          type: string
-      required:
-      - errorKey
-      - errorMessage
-      type: object
-      additionalProperties: false
     IApiStopCluster:
       properties:
         id:
@@ -223,6 +216,17 @@ components:
       - region
       - transportTypes
       - stopClusters
+      type: object
+      additionalProperties: false
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
       type: object
       additionalProperties: false
     EApiTransportType:
