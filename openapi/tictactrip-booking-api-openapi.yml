@@ -1277,39 +1277,268 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    IBookingCancellationConditions:
+    ICreateCartBody:
       properties:
-        isCancellable:
-          type: boolean
-          description: Specifies whether the booking is cancellable or not
-        feeCents:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: The fee in cents that applies to the cancellation and must be deducted from the price to calculate the refund value
-        cutoff:
+        outboundTripId:
+          type: string
+        returnTripId:
+          type: string
+        passengers:
+          items:
+            $ref: '#/components/schemas/ICartPassenger'
+          type: array
+        customer:
+          $ref: '#/components/schemas/ICartCustomer'
+        partnerId:
           type:
           - string
           - 'null'
-          description: The date (deadline) in ISO 8601 format by which the booking can be cancelled for a cost of `feeCents`. e.g. 2021-06-15T06:05:00.000Z
-        bookingId:
-          $ref: '#/components/schemas/TBookableTicketId'
-          description: Booking id
-        isRefundedByVoucher:
-          type: boolean
-          description: Specifies whether the booking is reimbursed with coupons or not
+        partnerExternalId:
+          type:
+          - string
+          - 'null'
+          description: Matches an id provided from a partner. It is used to keep track of the partner's orders and enables an order match between their system and our own
+        deviceId:
+          type: number
+          format: double
       required:
-      - isCancellable
+      - outboundTripId
+      type: object
+      additionalProperties: false
+    ISerializedTrip_IClientSegment_:
+      properties:
+        id:
+          type: string
+        uuid:
+          type: string
+        origin:
+          $ref: '#/components/schemas/TClientPlace'
+        destination:
+          $ref: '#/components/schemas/TClientPlace'
+        priceCents:
+          type: number
+          format: double
+        feeCents:
+          type: number
+          format: double
+        paidPrice:
+          type: number
+          format: double
+        departureUTC:
+          type: number
+          format: double
+        arrivalUTC:
+          type: number
+          format: double
+        originOffset:
+          type: string
+        destinationOffset:
+          type: string
+        durationMinutes:
+          type: number
+          format: double
+        companies:
+          items:
+            type: string
+          type: array
+        mean:
+          $ref: '#/components/schemas/ETripTransport'
+        segments:
+          items:
+            $ref: '#/components/schemas/IClientSegment'
+          type: array
+        co2g:
+          type: number
+          format: double
+        vehicleIdentifier:
+          type: string
+      required:
+      - id
+      - origin
+      - destination
+      - priceCents
       - feeCents
-      - bookingId
-      - isRefundedByVoucher
+      - paidPrice
+      - departureUTC
+      - arrivalUTC
+      - originOffset
+      - destinationOffset
+      - durationMinutes
+      - companies
+      - mean
+      - segments
+      - co2g
       type: object
       additionalProperties: false
-    OrderTicketCancellationStatus:
-      additionalProperties: false
+    ISerializedOrder:
+      properties:
+        id:
+          type: string
+        paidPrice:
+          type: number
+          format: double
+        rawPrice:
+          type: number
+          format: double
+        totalPrice:
+          type: number
+          format: double
+        orderDate:
+          type: string
+        cartId:
+          type: string
+        partnerId:
+          type: string
+        orderStatus:
+          $ref: '#/components/schemas/EOrderStatus'
+        trips:
+          properties:
+            returnTrip:
+              $ref: '#/components/schemas/IClientTrip'
+            outboundTrip:
+              $ref: '#/components/schemas/IClientTrip'
+          required:
+          - outboundTrip
+          type: object
+        passengers:
+          items:
+            $ref: '#/components/schemas/TClientPassenger'
+          type: array
+        customer:
+          $ref: '#/components/schemas/TClientCustomer'
+        error:
+          $ref: '#/components/schemas/IErrorCodeResponse'
+        paymentStatus:
+          $ref: '#/components/schemas/EPaymentStatus'
+      required:
+      - id
+      - paidPrice
+      - rawPrice
+      - totalPrice
+      - orderDate
+      - orderStatus
+      - trips
+      - passengers
+      - customer
+      - paymentStatus
       type: object
-      description: '{@inheritDoc}'
+      additionalProperties: false
+    ICartCustomer:
+      properties:
+        id:
+          type: string
+        mail:
+          type: string
+        title:
+          $ref: '#/components/schemas/EPassengerTitle'
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthdate:
+          type: string
+          format: date-time
+        phoneNumber:
+          type: string
+        orders:
+          items:
+            $ref: '#/components/schemas/Order'
+          type: array
+        language:
+          type: string
+        devices:
+          items:
+            $ref: '#/components/schemas/DeviceAttributes'
+          type: array
+        isSubscribedToNewsletter:
+          type: boolean
+      required:
+      - mail
+      - title
+      - firstName
+      - lastName
+      - birthdate
+      - isSubscribedToNewsletter
+      type: object
+      additionalProperties: false
+    EPaymentStatus:
+      enum:
+      - ACCEPTED
+      - REFUSED
+      - CANCELLED
+      - ERROR
+      - INPROGRESS
+      - ONHOLD_PARTNER
+      - PENDING_RISK
+      type: string
+    TClientCustomer:
+      properties:
+        mail:
+          type: string
+        lastName:
+          type: string
+        firstName:
+          type: string
+        title:
+          $ref: '#/components/schemas/EPassengerTitle'
+        birthDay:
+          type: number
+          format: double
+        birthMonth:
+          type: number
+          format: double
+        birthYear:
+          type: number
+          format: double
+      required:
+      - mail
+      - lastName
+      - firstName
+      - title
+      - birthDay
+      - birthMonth
+      - birthYear
+      type: object
+      additionalProperties: false
+    ICreateOrderPayload:
+      properties:
+        cartId:
+          type: string
+      required:
+      - cartId
+      type: object
+      additionalProperties: false
+    EOrderStatus:
+      enum:
+      - CREATED
+      - SUCCESS
+      - CANCELED
+      - CANCELED_PARTIAL
+      - PENDING_BOOKING
+      - ERRORED
+      - UNAVAILABLE
+      - REFUNDED
+      - PRESOLD
+      type: string
+    IVoucherDetails:
+      properties:
+        voucher:
+          type: string
+        expireDateUTCUnix:
+          type: number
+          format: double
+        amountCents:
+          type: number
+          format: double
+        usableOn:
+          type: string
+      required:
+      - voucher
+      - expireDateUTCUnix
+      - amountCents
+      - usableOn
+      type: object
+      additionalProperties: false
     IErrorCodeResponse:
       properties:
         errorKey:
@@ -1321,11 +1550,37 @@ components:
       - errorMessage
       type: object
       additionalProperties: false
-    EIdentityDocumentType:
+    Order:
+      additionalProperties: false
+      type: object
+      description: '{@inheritDoc}'
+    EPassengerCategory:
       enum:
-      - IDENTITY_CARD
-      - PASSPORT
+      - youths
+      - seniors
+      - adults
       type: string
+    IDiscountCard:
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        cardCode:
+          type: string
+        visibility:
+          type: number
+          format: double
+        isIdRequired:
+          type: boolean
+      required:
+      - id
+      - label
+      - cardCode
+      - visibility
+      - isIdRequired
+      type: object
+      additionalProperties: false
     ISerializedCart:
       properties:
         id:
@@ -1373,85 +1628,154 @@ components:
       - isIdentityDocumentRequired
       type: object
       additionalProperties: false
-    ICreateOrderResponse:
+    IGetOrdersResponse:
       properties:
-        order:
-          $ref: '#/components/schemas/ISerializedOrder'
-        priceCentsDiff:
-          type: number
-          format: double
-        isAvailable:
-          type: boolean
-        expiresAt:
-          type: string
-          format: date-time
-        paylineToken:
-          type: string
+        orders:
+          items:
+            $ref: '#/components/schemas/ISerializedOrder'
+          type: array
+        pagination:
+          properties:
+            hasPreviousPage:
+              type: boolean
+            hasNextPage:
+              type: boolean
+            totalPages:
+              type: number
+              format: double
+            totalItems:
+              type: number
+              format: double
+            itemsPerPage:
+              type: number
+              format: double
+            currentPage:
+              type: number
+              format: double
+          required:
+          - hasPreviousPage
+          - hasNextPage
+          - totalPages
+          - totalItems
+          - itemsPerPage
+          - currentPage
+          type: object
       required:
-      - order
-      - priceCentsDiff
-      - isAvailable
-      - expiresAt
+      - orders
+      - pagination
       type: object
       additionalProperties: false
-    ETicketStatusStatus:
+    IClientTrip:
+      $ref: '#/components/schemas/ISerializedTrip_IClientSegment_'
+    EIdentityDocumentType:
       enum:
-      - LOCKED
-      - CANCELED
-      - BOOKED
-      - ERRORED
-      - ERRORED_AFTER_BOOKED
-      - REFUNDED
-      - PRESOLD
+      - IDENTITY_CARD
+      - PASSPORT
       type: string
-    DeviceAttributes:
+    IClientSegment:
       properties:
         id:
+          type: string
+        company:
+          type: string
+        mean:
+          $ref: '#/components/schemas/EApiTransportType'
+        origin:
+          $ref: '#/components/schemas/TClientPlace'
+        destination:
+          $ref: '#/components/schemas/TClientPlace'
+        priceCents:
           type: number
           format: double
-        orderCustomerId:
+        feeCents:
+          type: number
+          format: double
+        includedProviderFeeCents:
+          type: number
+          format: double
+        departureUTC:
+          type: number
+          format: double
+        arrivalUTC:
+          type: number
+          format: double
+        originOffset:
+          type: string
+        destinationOffset:
+          type: string
+        durationMinutes:
+          type: number
+          format: double
+        isBookable:
+          type: boolean
+        bookingStatus:
+          $ref: '#/components/schemas/ETicketStatusStatus'
+        redirectionLink:
+          type: string
+        conditions:
+          items:
+            type: string
+          type: array
+        conditionsName:
+          type: string
+        fareName:
+          type: string
+        bookingClass:
+          type: string
+        vehicleIdentifier:
+          type: string
+        cancellationStatus:
+          type: string
+        voucherDetails:
+          $ref: '#/components/schemas/IVoucherDetails'
+        companyProviderName:
+          type: string
+        companyId:
+          type: number
+          format: double
+        isCustomerCancellationEnabled:
+          type: boolean
+        refundedAmountCents:
+          type: number
+          format: double
+        eTicketUrl:
           type:
           - string
           - 'null'
-        notificationToken:
-          type: string
-        deviceId:
-          type: string
-        platform:
-          type: string
-        userAgent:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        deletedAt:
+        cancellationConditions:
+          items:
+            type: string
+          type: array
+        availableSeats:
           type:
-          - string
+          - number
           - 'null'
-          format: date-time
+          format: double
+        isPresale:
+          type: boolean
       required:
       - id
-      - orderCustomerId
-      - notificationToken
-      - deviceId
-      - platform
-      - userAgent
-      - createdAt
-      - updatedAt
-      - deletedAt
+      - company
+      - mean
+      - origin
+      - destination
+      - priceCents
+      - feeCents
+      - includedProviderFeeCents
+      - departureUTC
+      - arrivalUTC
+      - originOffset
+      - destinationOffset
+      - durationMinutes
+      - isBookable
+      - redirectionLink
+      - isPresale
       type: object
       additionalProperties: false
-    ICreateOrderPayload:
-      properties:
-        cartId:
-          type: string
-      required:
-      - cartId
-      type: object
+    OrderTicketCancellationStatus:
       additionalProperties: false
+      type: object
+      description: '{@inheritDoc}'
     EIsoCountryCodes:
       enum:
       - AF
@@ -1753,6 +2077,77 @@ components:
       - age
       type: object
       additionalProperties: false
+    IBookingCancellationConditions:
+      properties:
+        isCancellable:
+          type: boolean
+          description: Specifies whether the booking is cancellable or not
+        feeCents:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: The fee in cents that applies to the cancellation and must be deducted from the price to calculate the refund value
+        cutoff:
+          type:
+          - string
+          - 'null'
+          description: The date (deadline) in ISO 8601 format by which the booking can be cancelled for a cost of `feeCents`. e.g. 2021-06-15T06:05:00.000Z
+        bookingId:
+          $ref: '#/components/schemas/TBookableTicketId'
+          description: Booking id
+        isRefundedByVoucher:
+          type: boolean
+          description: Specifies whether the booking is reimbursed with coupons or not
+      required:
+      - isCancellable
+      - feeCents
+      - bookingId
+      - isRefundedByVoucher
+      type: object
+      additionalProperties: false
+    TBookableTicketId:
+      type: string
+    DeviceAttributes:
+      properties:
+        id:
+          type: number
+          format: double
+        orderCustomerId:
+          type:
+          - string
+          - 'null'
+        notificationToken:
+          type: string
+        deviceId:
+          type: string
+        platform:
+          type: string
+        userAgent:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - orderCustomerId
+      - notificationToken
+      - deviceId
+      - platform
+      - userAgent
+      - createdAt
+      - updatedAt
+      - deletedAt
+      type: object
+      additionalProperties: false
     ISerializedCustomer:
       properties:
         mail:
@@ -1772,313 +2167,6 @@ components:
       - firstName
       - title
       - birthdate
-      type: object
-      additionalProperties: false
-    TBookableTicketId:
-      type: string
-    EPassengerCategory:
-      enum:
-      - youths
-      - seniors
-      - adults
-      type: string
-    EApiTransportType:
-      enum:
-      - carpooling
-      - bus
-      - train
-      type: string
-    EPassengerTitle:
-      enum:
-      - MR
-      - MS
-      type: string
-    IUpdateCartPayload:
-      properties:
-        passengers:
-          items:
-            $ref: '#/components/schemas/ICartPassenger'
-          type: array
-        customer:
-          $ref: '#/components/schemas/ICartCustomer'
-        segmentAlternatives:
-          properties: {}
-          additionalProperties:
-            type: string
-          type: object
-      type: object
-      additionalProperties: false
-    ICreateCartBody:
-      properties:
-        outboundTripId:
-          type: string
-        returnTripId:
-          type: string
-        passengers:
-          items:
-            $ref: '#/components/schemas/ICartPassenger'
-          type: array
-        customer:
-          $ref: '#/components/schemas/ICartCustomer'
-        partnerId:
-          type:
-          - string
-          - 'null'
-        partnerExternalId:
-          type:
-          - string
-          - 'null'
-          description: Matches an id provided from a partner. It is used to keep track of the partner's orders and enables an order match between their system and our own
-        deviceId:
-          type: number
-          format: double
-      required:
-      - outboundTripId
-      type: object
-      additionalProperties: false
-    ISerializedPassenger:
-      properties:
-        id:
-          type: number
-          format: double
-        lastName:
-          type: string
-        firstName:
-          type: string
-        category:
-          $ref: '#/components/schemas/EPassengerCategory'
-        discountCards:
-          items:
-            $ref: '#/components/schemas/IDiscountCard'
-          type: array
-        title:
-          $ref: '#/components/schemas/EPassengerTitle'
-        isCustomer:
-          type: boolean
-        birthdate:
-          type: string
-          format: date-time
-        age:
-          type: number
-          format: double
-        discountCardId:
-          type: string
-      required:
-      - id
-      - lastName
-      - firstName
-      - category
-      - discountCards
-      - title
-      - isCustomer
-      - birthdate
-      - age
-      type: object
-      additionalProperties: false
-    IClientSegment:
-      properties:
-        id:
-          type: string
-        company:
-          type: string
-        mean:
-          $ref: '#/components/schemas/EApiTransportType'
-        origin:
-          $ref: '#/components/schemas/TClientPlace'
-        destination:
-          $ref: '#/components/schemas/TClientPlace'
-        priceCents:
-          type: number
-          format: double
-        feeCents:
-          type: number
-          format: double
-        includedProviderFeeCents:
-          type: number
-          format: double
-        departureUTC:
-          type: number
-          format: double
-        arrivalUTC:
-          type: number
-          format: double
-        originOffset:
-          type: string
-        destinationOffset:
-          type: string
-        durationMinutes:
-          type: number
-          format: double
-        isBookable:
-          type: boolean
-        bookingStatus:
-          $ref: '#/components/schemas/ETicketStatusStatus'
-        redirectionLink:
-          type: string
-        conditions:
-          items:
-            type: string
-          type: array
-        conditionsName:
-          type: string
-        fareName:
-          type: string
-        bookingClass:
-          type: string
-        vehicleIdentifier:
-          type: string
-        cancellationStatus:
-          type: string
-        voucherDetails:
-          $ref: '#/components/schemas/IVoucherDetails'
-        companyProviderName:
-          type: string
-        companyId:
-          type: number
-          format: double
-        isCustomerCancellationEnabled:
-          type: boolean
-        refundedAmountCents:
-          type: number
-          format: double
-        eTicketUrl:
-          type:
-          - string
-          - 'null'
-        cancellationConditions:
-          items:
-            type: string
-          type: array
-        availableSeats:
-          type:
-          - number
-          - 'null'
-          format: double
-        isPresale:
-          type: boolean
-      required:
-      - id
-      - company
-      - mean
-      - origin
-      - destination
-      - priceCents
-      - feeCents
-      - includedProviderFeeCents
-      - departureUTC
-      - arrivalUTC
-      - originOffset
-      - destinationOffset
-      - durationMinutes
-      - isBookable
-      - redirectionLink
-      - isPresale
-      type: object
-      additionalProperties: false
-    EOrderStatus:
-      enum:
-      - CREATED
-      - SUCCESS
-      - CANCELED
-      - CANCELED_PARTIAL
-      - PENDING_BOOKING
-      - ERRORED
-      - UNAVAILABLE
-      - REFUNDED
-      - PRESOLD
-      type: string
-    EPaymentStatus:
-      enum:
-      - ACCEPTED
-      - REFUSED
-      - CANCELLED
-      - ERROR
-      - INPROGRESS
-      - ONHOLD_PARTNER
-      - PENDING_RISK
-      type: string
-    ICartCustomer:
-      properties:
-        id:
-          type: string
-        mail:
-          type: string
-        title:
-          $ref: '#/components/schemas/EPassengerTitle'
-        firstName:
-          type: string
-        lastName:
-          type: string
-        birthdate:
-          type: string
-          format: date-time
-        phoneNumber:
-          type: string
-        orders:
-          items:
-            $ref: '#/components/schemas/Order'
-          type: array
-        language:
-          type: string
-        devices:
-          items:
-            $ref: '#/components/schemas/DeviceAttributes'
-          type: array
-        isSubscribedToNewsletter:
-          type: boolean
-      required:
-      - mail
-      - title
-      - firstName
-      - lastName
-      - birthdate
-      - isSubscribedToNewsletter
-      type: object
-      additionalProperties: false
-    IIdentityDocument:
-      properties:
-        type:
-          $ref: '#/components/schemas/EIdentityDocumentType'
-        documentIdentifier:
-          type: string
-        expirationDate:
-          type: string
-          description: YYYY-MM-DD
-        countryCode:
-          $ref: '#/components/schemas/EIsoCountryCodes'
-      required:
-      - type
-      - documentIdentifier
-      - expirationDate
-      - countryCode
-      type: object
-      additionalProperties: false
-    IClientTrip:
-      $ref: '#/components/schemas/ISerializedTrip_IClientSegment_'
-    TClientPlace:
-      properties:
-        id:
-          type: number
-          format: double
-        city:
-          type: string
-        country:
-          type: string
-        stopGroupGpuid:
-          type: string
-        stopClusterGpuid:
-          type: string
-        station:
-          type: string
-        lat:
-          type: number
-          format: double
-        long:
-          type: number
-          format: double
-      required:
-      - city
-      - country
       type: object
       additionalProperties: false
     ICartPassenger:
@@ -2122,181 +2210,84 @@ components:
       - age
       type: object
       additionalProperties: false
-    IDiscountCard:
+    IIdentityDocument:
+      properties:
+        type:
+          $ref: '#/components/schemas/EIdentityDocumentType'
+        documentIdentifier:
+          type: string
+        expirationDate:
+          type: string
+          description: YYYY-MM-DD
+        countryCode:
+          $ref: '#/components/schemas/EIsoCountryCodes'
+      required:
+      - type
+      - documentIdentifier
+      - expirationDate
+      - countryCode
+      type: object
+      additionalProperties: false
+    EApiTransportType:
+      enum:
+      - carpooling
+      - bus
+      - train
+      type: string
+    ETicketStatusStatus:
+      enum:
+      - LOCKED
+      - CANCELED
+      - BOOKED
+      - ERRORED
+      - ERRORED_AFTER_BOOKED
+      - REFUNDED
+      - PRESOLD
+      type: string
+    ISerializedPassenger:
       properties:
         id:
-          type: string
-        label:
-          type: string
-        cardCode:
-          type: string
-        visibility:
           type: number
           format: double
-        isIdRequired:
-          type: boolean
-      required:
-      - id
-      - label
-      - cardCode
-      - visibility
-      - isIdRequired
-      type: object
-      additionalProperties: false
-    IVoucherDetails:
-      properties:
-        voucher:
-          type: string
-        expireDateUTCUnix:
-          type: number
-          format: double
-        amountCents:
-          type: number
-          format: double
-        usableOn:
-          type: string
-      required:
-      - voucher
-      - expireDateUTCUnix
-      - amountCents
-      - usableOn
-      type: object
-      additionalProperties: false
-    ISerializedTrip_IClientSegment_:
-      properties:
-        id:
-          type: string
-        uuid:
-          type: string
-        origin:
-          $ref: '#/components/schemas/TClientPlace'
-        destination:
-          $ref: '#/components/schemas/TClientPlace'
-        priceCents:
-          type: number
-          format: double
-        feeCents:
-          type: number
-          format: double
-        paidPrice:
-          type: number
-          format: double
-        departureUTC:
-          type: number
-          format: double
-        arrivalUTC:
-          type: number
-          format: double
-        originOffset:
-          type: string
-        destinationOffset:
-          type: string
-        durationMinutes:
-          type: number
-          format: double
-        companies:
-          items:
-            type: string
-          type: array
-        mean:
-          $ref: '#/components/schemas/ETripTransport'
-        segments:
-          items:
-            $ref: '#/components/schemas/IClientSegment'
-          type: array
-        co2g:
-          type: number
-          format: double
-        vehicleIdentifier:
-          type: string
-      required:
-      - id
-      - origin
-      - destination
-      - priceCents
-      - feeCents
-      - paidPrice
-      - departureUTC
-      - arrivalUTC
-      - originOffset
-      - destinationOffset
-      - durationMinutes
-      - companies
-      - mean
-      - segments
-      - co2g
-      type: object
-      additionalProperties: false
-    Order:
-      additionalProperties: false
-      type: object
-      description: '{@inheritDoc}'
-    TClientCustomer:
-      properties:
-        mail:
-          type: string
         lastName:
           type: string
         firstName:
           type: string
+        category:
+          $ref: '#/components/schemas/EPassengerCategory'
+        discountCards:
+          items:
+            $ref: '#/components/schemas/IDiscountCard'
+          type: array
         title:
           $ref: '#/components/schemas/EPassengerTitle'
-        birthDay:
+        isCustomer:
+          type: boolean
+        birthdate:
+          type: string
+          format: date-time
+        age:
           type: number
           format: double
-        birthMonth:
-          type: number
-          format: double
-        birthYear:
-          type: number
-          format: double
+        discountCardId:
+          type: string
       required:
-      - mail
+      - id
       - lastName
       - firstName
+      - category
+      - discountCards
       - title
-      - birthDay
-      - birthMonth
-      - birthYear
+      - isCustomer
+      - birthdate
+      - age
       type: object
       additionalProperties: false
-    IGetOrdersResponse:
-      properties:
-        orders:
-          items:
-            $ref: '#/components/schemas/ISerializedOrder'
-          type: array
-        pagination:
-          properties:
-            hasPreviousPage:
-              type: boolean
-            hasNextPage:
-              type: boolean
-            totalPages:
-              type: number
-              format: double
-            totalItems:
-              type: number
-              format: double
-            itemsPerPage:
-              type: number
-              format: double
-            currentPage:
-              type: number
-              format: double
-          required:
-          - hasPreviousPage
-          - hasNextPage
-          - totalPages
-          - totalItems
-          - itemsPerPage
-          - currentPage
-          type: object
-      required:
-      - orders
-      - pagination
-      type: object
-      additionalProperties: false
+    EPassengerTitle:
+      enum:
+      - MR
+      - MS
+      type: string
     ETripTransport:
       enum:
       - MULTIMODAL
@@ -2304,57 +2295,66 @@ components:
       - TRAIN
       - CARPOOLING
       type: string
-    ISerializedOrder:
+    TClientPlace:
       properties:
         id:
-          type: string
-        paidPrice:
           type: number
           format: double
-        rawPrice:
+        city:
+          type: string
+        country:
+          type: string
+        stopGroupGpuid:
+          type: string
+        stopClusterGpuid:
+          type: string
+        station:
+          type: string
+        lat:
           type: number
           format: double
-        totalPrice:
+        long:
           type: number
           format: double
-        orderDate:
+      required:
+      - city
+      - country
+      type: object
+      additionalProperties: false
+    ICreateOrderResponse:
+      properties:
+        order:
+          $ref: '#/components/schemas/ISerializedOrder'
+        priceCentsDiff:
+          type: number
+          format: double
+        isAvailable:
+          type: boolean
+        expiresAt:
           type: string
-        cartId:
+          format: date-time
+        paylineToken:
           type: string
-        partnerId:
-          type: string
-        orderStatus:
-          $ref: '#/components/schemas/EOrderStatus'
-        trips:
-          properties:
-            returnTrip:
-              $ref: '#/components/schemas/IClientTrip'
-            outboundTrip:
-              $ref: '#/components/schemas/IClientTrip'
-          required:
-          - outboundTrip
-          type: object
+      required:
+      - order
+      - priceCentsDiff
+      - isAvailable
+      - expiresAt
+      type: object
+      additionalProperties: false
+    IUpdateCartPayload:
+      properties:
         passengers:
           items:
-            $ref: '#/components/schemas/TClientPassenger'
+            $ref: '#/components/schemas/ICartPassenger'
           type: array
         customer:
-          $ref: '#/components/schemas/TClientCustomer'
-        error:
-          $ref: '#/components/schemas/IErrorCodeResponse'
-        paymentStatus:
-          $ref: '#/components/schemas/EPaymentStatus'
-      required:
-      - id
-      - paidPrice
-      - rawPrice
-      - totalPrice
-      - orderDate
-      - orderStatus
-      - trips
-      - passengers
-      - customer
-      - paymentStatus
+          $ref: '#/components/schemas/ICartCustomer'
+        segmentAlternatives:
+          properties: {}
+          additionalProperties:
+            type: string
+          type: object
       type: object
       additionalProperties: false
   securitySchemes:

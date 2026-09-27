@@ -52,6 +52,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
     TSegmentProvider:
       properties:
         requiresIdentityDocument:
@@ -69,17 +80,6 @@ components:
       - name
       - id
       type: object
-    IErrorCodeResponse:
-      properties:
-        errorKey:
-          type: string
-        errorMessage:
-          type: string
-      required:
-      - errorKey
-      - errorMessage
-      type: object
-      additionalProperties: false
   securitySchemes:
     authentication:
       type: http
