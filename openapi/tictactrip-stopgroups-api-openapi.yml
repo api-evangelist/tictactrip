@@ -149,23 +149,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    EApiTransportType:
-      enum:
-      - carpooling
-      - bus
-      - train
-      type: string
-    IErrorCodeResponse:
-      properties:
-        errorKey:
-          type: string
-        errorMessage:
-          type: string
-      required:
-      - errorKey
-      - errorMessage
-      type: object
-      additionalProperties: false
     IApiStopCluster:
       properties:
         id:
@@ -194,6 +177,23 @@ components:
       - longitude
       type: object
       additionalProperties: false
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    EApiTransportType:
+      enum:
+      - carpooling
+      - bus
+      - train
+      type: string
     IGetStopGroupResponse:
       properties:
         id:

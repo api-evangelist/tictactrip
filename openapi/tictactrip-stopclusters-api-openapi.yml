@@ -175,17 +175,6 @@ components:
       - bus
       - train
       type: string
-    IErrorCodeResponse:
-      properties:
-        errorKey:
-          type: string
-        errorMessage:
-          type: string
-      required:
-      - errorKey
-      - errorMessage
-      type: object
-      additionalProperties: false
     IApiStopGroupWithTransportTypes:
       properties:
         id:
@@ -220,6 +209,17 @@ components:
       - latitude
       - longitude
       - transportTypes
+      type: object
+      additionalProperties: false
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
       type: object
       additionalProperties: false
     IGetStopClusterResponse:

@@ -115,6 +115,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    IErrorCodeResponse:
+      properties:
+        errorKey:
+          type: string
+        errorMessage:
+          type: string
+      required:
+      - errorKey
+      - errorMessage
+      type: object
+      additionalProperties: false
+    ESearchDirection:
+      enum:
+      - from
+      - to
+      type: string
     IPopularCity:
       properties:
         unique_name:
@@ -150,22 +166,6 @@ components:
       - nb_search
       type: object
       additionalProperties: false
-    IErrorCodeResponse:
-      properties:
-        errorKey:
-          type: string
-        errorMessage:
-          type: string
-      required:
-      - errorKey
-      - errorMessage
-      type: object
-      additionalProperties: false
-    ESearchDirection:
-      enum:
-      - from
-      - to
-      type: string
   securitySchemes:
     authentication:
       type: http
