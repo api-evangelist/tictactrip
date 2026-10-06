@@ -42,7 +42,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-10-06'
 tags:
 - Company
 - Travel
@@ -203,6 +203,8 @@ apis:
     url: >-
       https://github.com/tictactrip/documentation/blob/main/static/Tictactrip.postman_collection.json
 common:
+- url: https://www.tictactrip.eu/blog/
+  type: Blog
 - type: CapabilityMap
   url: capabilities/tictactrip-capability-edges.yml
   name: TicTacTrip Business Capability Map
