@@ -1,90 +1,22 @@
-generated: '2026-07-21'
+generated: '2026-09-23'
 method: generated
-source: openapi/tictactrip-openapi-original.json
+source: openapi/tictactrip-autocomplete-api-openapi.yml, openapi/tictactrip-booking-api-openapi.yml,
+  openapi/tictactrip-cities-api-openapi.yml, openapi/tictactrip-results-api-openapi.yml, openapi/tictactrip-segmentproviders-api-openapi.yml,
+  openapi/tictactrip-stopclusters-api-openapi.yml, openapi/tictactrip-stopgroups-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 20
   by_action_class:
-    connected: 14
-    acting: 6
+    connected: 15
+    acting: 5
   by_consequence:
-    read: 14
-    write: 3
+    read: 15
+    write: 2
     physical: 3
   human_in_the_loop_required: 0
 operations:
-- path: /v2/segmentProviders
-  method: get
-  operationId: GetSegmentProviders
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - admin
-    - bookPartner
-    - searchPartner
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/stopGroups
-  method: get
-  operationId: GetAllStopGroups
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - admin
-    - bookPartner
-    - searchPartner
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/stopGroups/{stopGroupGpuid}
-  method: get
-  operationId: GetStopGroup
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - admin
-    - bookPartner
-    - searchPartner
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/stopClusters
-  method: get
-  operationId: GetAllStopClusters
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - admin
-    - bookPartner
-    - searchPartner
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/stopClusters/{stopClusterGpuid}
-  method: get
-  operationId: GetStopCluster
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - admin
-    - bookPartner
-    - searchPartner
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v2/autocomplete
   method: get
   operationId: GetAutocomplete
@@ -99,54 +31,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/cities/popular/{limit}
-  method: get
-  operationId: GetPopularCities
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - admin
-    - bookPartner
-    - searchPartner
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/cities/popular/{direction}/{uniqueName}/{limit}
-  method: get
-  operationId: GetPopularCitiesFromTo
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - admin
-    - bookPartner
-    - searchPartner
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/results
-  method: post
-  operationId: GetResults
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - admin
-    - bookPartner
-    - searchPartner
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /booking/v3/carts/{cartId}
   method: get
   operationId: GetCart
@@ -323,3 +207,115 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v2/cities/popular/{limit}
+  method: get
+  operationId: GetPopularCities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - admin
+    - bookPartner
+    - searchPartner
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/cities/popular/{direction}/{uniqueName}/{limit}
+  method: get
+  operationId: GetPopularCitiesFromTo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - admin
+    - bookPartner
+    - searchPartner
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/results
+  method: post
+  operationId: GetResults
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - admin
+    - bookPartner
+    - searchPartner
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/segmentProviders
+  method: get
+  operationId: GetSegmentProviders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - admin
+    - bookPartner
+    - searchPartner
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/stopClusters
+  method: get
+  operationId: GetAllStopClusters
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - admin
+    - bookPartner
+    - searchPartner
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/stopClusters/{stopClusterGpuid}
+  method: get
+  operationId: GetStopCluster
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - admin
+    - bookPartner
+    - searchPartner
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/stopGroups
+  method: get
+  operationId: GetAllStopGroups
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - admin
+    - bookPartner
+    - searchPartner
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/stopGroups/{stopGroupGpuid}
+  method: get
+  operationId: GetStopGroup
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - admin
+    - bookPartner
+    - searchPartner
+    token:
+      max-ttl: 3600
+    audit: none
