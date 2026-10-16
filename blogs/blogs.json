@@ -1,0 +1,14 @@
+{
+  "repo": "tictactrip",
+  "feeds": [
+    {
+      "source": "https://www.tictactrip.eu/blog/",
+      "feed_url": "https://www.tictactrip.eu/blog/feed/",
+      "title": "",
+      "saved": 7,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 7,
+  "fetched": "2026-10-10T13:15:00Z"
+}
