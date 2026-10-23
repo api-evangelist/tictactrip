@@ -5,10 +5,17 @@
       "source": "https://www.tictactrip.eu/blog/",
       "feed_url": "https://www.tictactrip.eu/blog/feed/",
       "title": "",
-      "saved": 7,
+      "saved": 0,
       "method": "discovered"
+    },
+    {
+      "source": "https://www.tictactrip.eu/blog/feed/",
+      "feed_url": "https://www.tictactrip.eu/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "post_count": 7,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 11,
+  "fetched": "2026-10-17T14:53:57Z"
 }
